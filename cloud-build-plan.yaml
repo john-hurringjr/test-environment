@@ -1,0 +1,20 @@
+---
+steps:
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['cp', 'gs://${_PLAN_BUCKET}/variables/test-environment-variables.auto.tfvars', '.']
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['cp', 'gs://${_PLAN_BUCKET}/backend/backend.tf', '.']
+    waitFor: ['-']
+  - name: hashicorp/terraform
+    args:
+      - init
+  - name: hashicorp/terraform
+    args:
+      - plan
+      - -out=terraform.tfplan
+  - name: hashicorp/terraform
+    args:
+      - show
+      - -json
+      - ./terraform.tfplan
