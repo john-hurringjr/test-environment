@@ -31,16 +31,15 @@ module "org_iam" {
 
 }
 
-
 /******************************************
   Org Policies
  *****************************************/
 
-//module "org_policies" {
-//  source = "github.com/john-hurringjr/test-modules/org-iam"
-//
-//  domain_identity_primary   = var.domain_identity_primary
-//  domain_identity_secondary = var.domain_identity_secondary
-//  organization_id           = var.organization_id
-//
-//}
+module "org_policies" {
+  source = "github.com/john-hurringjr/test-modules/org-policies"
+
+  domain_identity_primary   = var.domain_identity_primary
+  domain_identity_secondary = var.domain_identity_secondary
+  organization_id           = var.organization_id
+
+}
