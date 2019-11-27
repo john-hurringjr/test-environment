@@ -24,7 +24,6 @@ module "org_iam" {
   terraform_service_account = var.terraform_service_account
   network_admins_group      = var.network_admins_group
   security_admins_group     = var.security_admins_group
-
   sre_group                 = var.sre_group
   domain_identity_primary   = var.domain_identity_primary
   domain_identity_secondary = var.domain_identity_secondary
@@ -32,16 +31,15 @@ module "org_iam" {
 
 }
 
-
 /******************************************
   Org Policies
  *****************************************/
 
-//module "org_policies" {
-//  source = "github.com/john-hurringjr/test-modules/org-iam"
-//
-//  domain_identity_primary   = var.domain_identity_primary
-//  domain_identity_secondary = var.domain_identity_secondary
-//  organization_id           = var.organization_id
-//
-//}
+module "org_policies" {
+  source = "github.com/john-hurringjr/test-modules/org-iam"
+
+  domain_identity_primary   = var.domain_identity_primary
+  domain_identity_secondary = var.domain_identity_secondary
+  organization_id           = var.organization_id
+
+}
