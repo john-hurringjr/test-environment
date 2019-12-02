@@ -14,10 +14,20 @@
  */
 
 /******************************************
-  Shared VPC
+  "On Prem"
  *****************************************/
 //
-//module "org_iam" {
-//  source = "github.com/john-hurringjr/test-modules/project-creation/"
+//module "on_prem_project" {
+//
+//  source = "github.com/john-hurringjr/test-modules/project-creation"
+//
+//  project_friendly_name     = "On Premise Sim"
+//  unique_shared_id          = var.unique_shared_id
+//  environment               = "test"
+//  unique_project_identifier = "on-prem"
+//  folder_id                 = google_folder.on_premise.id
+//  billing_account_id        = var.billing_account_id
+//  label_business_unit       = "bu1"
+//  label_restrictions        = "none"
 //
 //}

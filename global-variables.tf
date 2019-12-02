@@ -18,33 +18,48 @@
  *****************************************/
 
 variable "organization_id" {
-  type        = number
+  type = string
 }
 
 variable "organization_admins_group" {
-  type        = string
+  type = string
 }
 
 variable "terraform_service_account" {
-  type        = string
+  type = string
 }
 
 variable "network_admins_group" {
-  type        = string
+  type = string
 }
 
 variable "security_admins_group" {
-  type        = string
+  type = string
 }
 
 variable "sre_group" {
-  type        = string
+  type = string
+}
+
+variable "billing_admins_group" {
+  type = string
 }
 
 variable "domain_identity_primary" {
-  type        = string
+  type = string
 }
 
 variable "domain_identity_secondary" {
-  type        = string
+  type = string
 }
+
+/******************************************
+  Variables for project creation
+ *****************************************/
+
+variable "unique_shared_id" {
+  type = string
+}
+
+variable "billing_account_id" {}
+

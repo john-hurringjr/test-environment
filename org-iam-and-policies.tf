@@ -28,6 +28,7 @@ module "org_iam" {
   domain_identity_primary   = var.domain_identity_primary
   domain_identity_secondary = var.domain_identity_secondary
   organization_id           = var.organization_id
+  billing_admins_group      = var.billing_admins_group
 
 }
 
