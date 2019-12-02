@@ -17,17 +17,18 @@
   Top Level Folders
  *****************************************/
 
-//resource "google_folder" "shared_services" {
-//  display_name  = "Shared Services"
-//  parent        = "organizations/${var.organization_id}"
-//}
-//
-//resource "google_folder" "internal" {
-//  display_name  = "General Use"
-//  parent        = "organizations/${var.organization_id}"
-//}
-//
-//resource "google_folder" "on_premise" {
-//  display_name  = "On Premise Simulation"
-//  parent        = "organizations/${var.organization_id}"
-//}
+resource "google_folder" "shared_services" {
+  display_name  = "Shared Services"
+  parent        = "organizations/${var.organization_id}"
+}
+
+resource "google_folder" "internal" {
+  display_name  = "General Use"
+  parent        = "organizations/${var.organization_id}"
+}
+
+resource "google_folder" "on_premise" {
+  display_name  = "On Premise Simulation"
+  parent        = "organizations/${var.organization_id}"
+}
+
