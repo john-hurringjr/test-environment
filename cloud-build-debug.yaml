@@ -21,12 +21,7 @@ steps:
         export TF_LOG=TRACE
         export TF_LOG_PATH=./terraform.log
   - name: hashicorp/terraform
-    args:
-      - apply
-      - --auto-approve
-      - ||
-        - exit
-        - 0
+    args: ['apply', '-auto-approve', '||', 'exit', '0']
   - name: gcr.io/cloud-builders/gsutil
     args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/']
 
