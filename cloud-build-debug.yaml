@@ -24,6 +24,9 @@ steps:
     args:
       - apply
       - --auto-approve
+      - ||
+      - exit
+      - 0
   - name: gcr.io/cloud-builders/gsutil
     args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/']
 
