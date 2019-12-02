@@ -21,11 +21,23 @@ variable "organization_id" {
   type = string
 }
 
-variable "organization_admins_group" {
+variable "terraform_service_account" {
   type = string
 }
 
-variable "terraform_service_account" {
+variable "domain_identity_primary" {
+  type = string
+}
+
+variable "domain_identity_secondary" {
+  type = string
+}
+
+/******************************************
+  Variables of groups
+ *****************************************/
+
+variable "organization_admins_group" {
   type = string
 }
 
@@ -37,6 +49,10 @@ variable "security_admins_group" {
   type = string
 }
 
+variable "operations_admins_group" {
+  type = string
+}
+
 variable "sre_group" {
   type = string
 }
@@ -45,11 +61,19 @@ variable "billing_admins_group" {
   type = string
 }
 
-variable "domain_identity_primary" {
+variable "external_users_os_login_group" {
   type = string
 }
 
-variable "domain_identity_secondary" {
+variable "application_1_admins_group" {
+  type = string
+}
+
+variable "application_1_developer_group" {
+  type = string
+}
+
+variable "billing_users_group" {
   type = string
 }
 

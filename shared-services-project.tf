@@ -16,18 +16,19 @@
 /******************************************
   "On Prem"
  *****************************************/
-//
-//module "on_prem_project" {
-//
-//  source = "github.com/john-hurringjr/test-modules/project-creation"
-//
-//  project_friendly_name     = "On Premise Sim"
-//  unique_shared_id          = var.unique_shared_id
-//  environment               = "test"
-//  unique_project_identifier = "on-prem"
-//  folder_id                 = google_folder.on_premise.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = "bu1"
-//  label_restrictions        = "none"
-//
-//}
+
+module "on_prem_project" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation"
+
+  project_friendly_name     = "On Premise Environment"
+  unique_shared_id          = var.unique_shared_id
+  environment               = "test"
+  unique_project_identifier = "op-1"
+  folder_id                 = google_folder.on_premise.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = "bu1"
+  label_restrictions        = "none"
+  project_admin_group_id    = var.operations_admins_group
+
+}
