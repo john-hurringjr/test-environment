@@ -20,6 +20,6 @@ steps:
       - |
         export TF_LOG=TRACE
         export TF_LOG_PATH=./terraform.log
-        terraform apply --auto-aprove
+        terraform apply -auto-aprove
   - name: gcr.io/cloud-builders/gsutil
     args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/']
