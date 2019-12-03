@@ -14,37 +14,49 @@
  */
 
 /******************************************
-  "On Prem"
+  Shared VPC Host Projects
  *****************************************/
 
-//module "on_prem_project" {
+//module "host_project_testing_1" {
 //
-//  source = "github.com/john-hurringjr/test-modules/project-creation"
+//  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
 //
-//  project_friendly_name     = "On Premise Environment"
+//  project_friendly_name     = "Shared VPC Host Testing"
 //  unique_shared_id          = var.unique_shared_id
 //  environment               = "test"
-//  unique_project_identifier = "op-4"
-//  folder_id                 = google_folder.on_premise.id
+//  unique_project_identifier = "host-1"
+//  folder_id                 = google_folder.shared_services.id
 //  billing_account_id        = var.billing_account_id
 //  label_business_unit       = "bu1"
 //  label_restrictions        = "none"
-//  project_admin_group_id    = var.operations_admins_group
+//  network_admin_group_id    = var.network_admins_group
+//  security_admin_group_id   = var.network_admins_group
 //
 //}
+
+
+/******************************************
+  Testing
+ *****************************************/
+
+//module "service_project_testing_1" {
 //
-//module "iam_testing_2" {
+//  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
 //
-//  source = "github.com/john-hurringjr/test-modules/project-creation"
-//
-//  project_friendly_name     = "IAM Testing"
-//  unique_shared_id          = var.unique_shared_id
-//  environment               = "test"
-//  unique_project_identifier = "iam-2"
-//  folder_id                 = google_folder.on_premise.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = "bu1"
-//  label_restrictions        = "none"
-//  project_admin_group_id    = var.operations_admins_group
+//  project_friendly_name       = "Service Project Testing"
+//  unique_shared_id            = var.unique_shared_id
+//  environment                 = "test"
+//  unique_project_identifier   = "serv-1"
+//  folder_id                   = google_folder.internal.id
+//  billing_account_id          = var.billing_account_id
+//  label_business_unit         = "bu1"
+//  label_restrictions          = "none"
+//  project_admin_group_id      = var.application_1_admins_group
+//  shared_vpc_host_project_id  = module.host_project_testing_1.project_id
 //
 //}
+
+
+/******************************************
+  "On Prem"
+ *****************************************/
