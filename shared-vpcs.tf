@@ -79,7 +79,7 @@ resource "google_compute_network" "dev_vpc" {
   routing_mode  = "GLOBAL"
 
   auto_create_subnetworks         = false
-
+  delete_default_routes_on_create = true
 }
 
 module "dev_vpc_us_east4_subnet_1" {
@@ -128,6 +128,22 @@ module "dev_vpc_firewall_allow_rfc1918_all" {
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
   network_name      = google_compute_network.dev_vpc.name
+
+}
+
+module "dev_vpc_private_apis_dns" {
+  source = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
+
+  project_id        = module.shared_vpc_host_project_dev.project_id
+  network_self_link = google_compute_network.dev_vpc.self_link
+
+}
+
+module "dev_vpc_private_apis_routing" {
+  source = "github.com/john-hurringjr/test-modules/networking/routing/private-apis"
+
+  project_id        = module.shared_vpc_host_project_dev.project_id
+  network_self_link = google_compute_network.dev_vpc.self_link
 
 }
 
