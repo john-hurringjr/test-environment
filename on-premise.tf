@@ -36,3 +36,46 @@ resource "google_project_iam_binding" "on_prem_owner" {
 /******************************************
   On Prem Network
  *****************************************/
+
+resource "google_compute_network" "on_prem_vpc" {
+  project       = module.shared_vpc_host_project_transit.project_id
+  name          = "on-prem-vpc"
+  routing_mode  = "GLOBAL"
+
+  auto_create_subnetworks = false
+
+}
+
+module "on_prem_vpc_us_east4_subnet" {
+
+  source = "github.com/john-hurringjr/test-modules/networking/subnet"
+
+  project_id        = google_project.on_premise.id
+  network_self_link = google_compute_network.on_prem_vpc.self_link
+  network_name      = google_compute_network.on_prem_vpc.name
+
+  region  = "us-east4"
+  cidr    = "10.0.0.0/20"
+
+  vpc_flow_log_interval = "INTERVAL_10_MIN"
+  vpc_flow_log_sampling = 0.6
+  subnet_number         = "1"
+
+}
+
+module "on_prem_vpc_us_central1_subnet" {
+
+  source = "github.com/john-hurringjr/test-modules/networking/subnet"
+
+  project_id        = google_project.on_premise.id
+  network_self_link = google_compute_network.on_prem_vpc.self_link
+  network_name      = google_compute_network.on_prem_vpc.name
+
+  region  = "us-central1"
+  cidr    = "10.0.32.0/20"
+
+  vpc_flow_log_interval = "INTERVAL_10_MIN"
+  vpc_flow_log_sampling = 0.6
+  subnet_number         = "1"
+
+}
