@@ -28,7 +28,7 @@ resource "google_compute_network" "transit_vpc" {
 
 module "transit_vpc_us_east4_subnet_1" {
 
-  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
+  source = "github.com/john-hurringjr/test-modules/networking/subnet"
 
   project_id        = module.shared_vpc_host_project_transit.project_id
   network_self_link = google_compute_network.transit_vpc.self_link
@@ -45,7 +45,7 @@ module "transit_vpc_us_east4_subnet_1" {
 
 module "transit_vpc_us_central1_subnet_1" {
 
-  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
+  source = "github.com/john-hurringjr/test-modules/networking/subnet"
 
   project_id        = module.shared_vpc_host_project_transit.project_id
   network_self_link = google_compute_network.transit_vpc.self_link
