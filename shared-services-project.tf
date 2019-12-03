@@ -52,7 +52,7 @@ module "service_project_testing_1" {
   label_business_unit         = "bu1"
   label_restrictions          = "none"
   project_admin_group_id      = var.application_1_admins_group
-  shared_vpc_host_project_id  = module.host_project_testing_1.outputs.project_id
+  shared_vpc_host_project_id  = module.host_project_testing_1.project_id
 
 }
 
