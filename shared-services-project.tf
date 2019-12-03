@@ -17,23 +17,22 @@
   Shared VPC Host Projects
  *****************************************/
 
-//module "host_project_testing_1" {
-//
-//  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
-//
-//  project_friendly_name     = "Shared VPC Host Testing"
-//  unique_shared_id          = var.unique_shared_id
-//  environment               = "test"
-//  unique_project_identifier = "host-1"
-//  folder_id                 = google_folder.shared_services.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = "bu1"
-//  label_restrictions        = "none"
-//  network_admin_group_id    = var.network_admins_group
-//  security_admin_group_id   = var.network_admins_group
-//
-//}
+module "shared_vpc_host_project_transit" {
 
+  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
+
+  project_friendly_name     = "Shared VPC Host Transit"
+  unique_shared_id          = var.unique_shared_id
+  environment               = "prod"
+  unique_project_identifier = "transit"
+  folder_id                 = google_folder.networking.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = ""
+  label_restrictions        = ""
+  network_admin_group_id    = var.network_admins_group
+  security_admin_group_id   = var.network_admins_group
+
+}
 
 /******************************************
   Testing

@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  Top Level Folders
+  Folders
  *****************************************/
 
 resource "google_folder" "shared_services" {
@@ -22,13 +22,12 @@ resource "google_folder" "shared_services" {
   parent        = "organizations/${var.organization_id}"
 }
 
-resource "google_folder" "internal" {
+resource "google_folder" "general_use" {
   display_name  = "General Use"
   parent        = "organizations/${var.organization_id}"
 }
 
-resource "google_folder" "on_premise" {
-  display_name  = "On Premise Simulation"
-  parent        = "organizations/${var.organization_id}"
+resource "google_folder" "networking" {
+  display_name  = "Networking"
+  parent        = google_folder.shared_services.id
 }
-
