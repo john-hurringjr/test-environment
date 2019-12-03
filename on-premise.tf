@@ -29,10 +29,10 @@ resource "google_project" "on_premise" {
 }
 
 resource "google_project_iam_binding" "on_prem_owner" {
-  members = ["group:${var.security_admins_group}"]
+  project = google_project.on_premise.id
+  members = ["group:${var.security_admins_group}", "serviceAccount${var.terraform_service_account}"]
   role    = "roles/owner"
 }
-
 
 /******************************************
   Org Policy Exception for External IP
