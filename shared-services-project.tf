@@ -23,7 +23,7 @@ module "shared_vpc_host_project_transit" {
 
   project_friendly_name     = "Shared VPC Host Transit"
   unique_shared_id          = var.unique_shared_id
-  environment               = "transit"
+  environment               = "trans"
   folder_id                 = google_folder.networking.id
   billing_account_id        = var.billing_account_id
   label_business_unit       = ""
@@ -66,27 +66,125 @@ module "shared_vpc_host_project_prod" {
 }
 
 /******************************************
-  Testing
+  Billing Export Project
  *****************************************/
 
-//module "service_project_testing_1" {
-//
-//  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-//
-//  project_friendly_name       = "Service Project Testing"
-//  unique_shared_id            = var.unique_shared_id
-//  environment                 = "test"
-//  unique_project_identifier   = "serv-1"
-//  folder_id                   = google_folder.internal.id
-//  billing_account_id          = var.billing_account_id
-//  label_business_unit         = "bu1"
-//  label_restrictions          = "none"
-//  project_admin_group_id      = var.application_1_admins_group
-//  shared_vpc_host_project_id  = module.host_project_testing_1.project_id
-//
-//}
+module "billing_export_project" {
 
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "Billing Export"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "prod"
+  unique_project_identifier   = "billing"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.billing_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+
+}
 
 /******************************************
-  "On Prem"
+  OS Images Projects
  *****************************************/
+
+# Dev, used to create approved images
+module "os_images_project_dev" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "OS Images - Dev"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "dev"
+  unique_project_identifier   = "osimage"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.operations_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_dev.project_id
+
+}
+
+# Prod, used to share
+module "os_images_project_prod" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "OS Images - Prod"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "prod"
+  unique_project_identifier   = "osimage"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.operations_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+
+}
+
+/******************************************
+  Forseti
+ *****************************************/
+
+module "forseti_project" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "Forseti Project"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "prod"
+  unique_project_identifier   = "forseti"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.security_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+
+}
+
+/******************************************
+  Org Log Sink Project
+ *****************************************/
+
+module "org_log_sink_project" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "Org Log Sink Project"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "prod"
+  unique_project_identifier   = "orgsink"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.security_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+
+}
+
+/******************************************
+  Monitoring Project
+ *****************************************/
+
+module "org_log_sink_project" {
+
+  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
+
+  project_friendly_name       = "Monitoring Project"
+  unique_shared_id            = var.unique_shared_id
+  environment                 = "prod"
+  unique_project_identifier   = "monitoring"
+  folder_id                   = google_folder.shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.security_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+
+}
