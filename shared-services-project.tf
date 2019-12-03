@@ -172,7 +172,7 @@ module "org_log_sink_project" {
   Monitoring Project
  *****************************************/
 
-module "org_log_sink_project" {
+module "monitoring_project" {
 
   source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
 
