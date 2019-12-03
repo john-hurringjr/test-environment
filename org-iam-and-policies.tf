@@ -45,3 +45,19 @@ module "org_policies" {
   organization_id           = var.organization_id
 
 }
+
+
+/******************************************
+  Org Policies - Folder - Trusted Image
+ *****************************************/
+
+resource "google_folder_organization_policy" "define_trusted_image_project" {
+  constraint  = "constraints/compute.trustedImageProjects"
+  folder      = google_folder.general_use.id
+
+  list_policy {
+    allow {
+      values = ["projects/${module.os_images_project_prod.project_id}",]
+    }
+  }
+}
