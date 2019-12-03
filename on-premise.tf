@@ -48,7 +48,7 @@ resource "google_compute_network" "on_prem_vpc" {
 
 module "on_prem_vpc_us_east4_subnet" {
 
-  source = "github.com/john-hurringjr/test-modules/networking/subnet"
+  source = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
 
   project_id        = google_project.on_premise.id
   network_self_link = google_compute_network.on_prem_vpc.self_link
@@ -65,7 +65,7 @@ module "on_prem_vpc_us_east4_subnet" {
 
 module "on_prem_vpc_us_central1_subnet" {
 
-  source = "github.com/john-hurringjr/test-modules/networking/subnet"
+  source = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
 
   project_id        = google_project.on_premise.id
   network_self_link = google_compute_network.on_prem_vpc.self_link
@@ -79,3 +79,7 @@ module "on_prem_vpc_us_central1_subnet" {
   subnet_number         = "1"
 
 }
+
+/******************************************
+  On Prem HA VPN with Transit VPC
+ *****************************************/
