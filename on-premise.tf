@@ -39,8 +39,8 @@ resource "google_project_iam_binding" "on_prem_owner" {
  *****************************************/
 
 resource "google_project_organization_policy" "on_prem_external_ip_exception" {
-  constraint  = "compute.vmExternalIpAccess"
-  project     = google_project.on_premise.id
+  constraint = "compute.vmExternalIpAccess"
+  project = google_project.on_premise.id
 
   list_policy {
     inherit_from_parent = false
@@ -48,6 +48,7 @@ resource "google_project_organization_policy" "on_prem_external_ip_exception" {
       all = true
     }
 
+  }
 }
 
 /******************************************
@@ -108,7 +109,7 @@ module "on_prem_vpc_firewall_allow_iap_all" {
 }
 
 module "on_prem_vpc_firewall_allow_rfc1918_all" {
-  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc-1918"
+  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918"
 
   project_id        = google_project.on_premise.id
   network_self_link = google_compute_network.on_prem_vpc.self_link

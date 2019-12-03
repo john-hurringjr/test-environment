@@ -123,7 +123,7 @@ module "dev_vpc_firewall_allow_iap_all" {
 }
 
 module "dev_vpc_firewall_allow_rfc1918_all" {
-  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc-1918"
+  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918"
 
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
