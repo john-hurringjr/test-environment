@@ -31,3 +31,13 @@ resource "google_folder" "networking" {
   display_name  = "Networking"
   parent        = google_folder.shared_services.id
 }
+
+/******************************************
+  Terraform Service Account Owner
+ *****************************************/
+
+resource "google_folder_iam_binding" "terraform_shared_services_owner" {
+  folder  = google_folder.shared_services.id
+  members = ["serviceAccount:${var.terraform_service_account}"]
+  role    = "roles/owner"
+}
