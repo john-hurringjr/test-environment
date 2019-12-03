@@ -33,6 +33,23 @@ resource "google_project_iam_binding" "on_prem_owner" {
   role    = "roles/owner"
 }
 
+
+/******************************************
+  Org Policy Exception for External IP
+ *****************************************/
+
+resource "google_project_organization_policy" "on_prem_external_ip_exception" {
+  constraint  = "compute.vmExternalIpAccess"
+  project     = google_project.on_premise.id
+
+  list_policy {
+    inherit_from_parent = false
+    allow {
+      all = true
+    }
+
+}
+
 /******************************************
   On Prem Network
  *****************************************/
@@ -77,6 +94,25 @@ module "on_prem_vpc_us_central1_subnet" {
   vpc_flow_log_interval = "INTERVAL_10_MIN"
   vpc_flow_log_sampling = 0.6
   subnet_number         = "1"
+
+}
+
+
+module "on_prem_vpc_firewall_allow_iap_all" {
+  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
+
+  project_id        = google_project.on_premise.id
+  network_self_link = google_compute_network.on_prem_vpc.self_link
+  network_name      = google_compute_network.on_prem_vpc.name
+
+}
+
+module "on_prem_vpc_firewall_allow_rfc1918_all" {
+  source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc-1918"
+
+  project_id        = google_project.on_premise.id
+  network_self_link = google_compute_network.on_prem_vpc.self_link
+  network_name      = google_compute_network.on_prem_vpc.name
 
 }
 
