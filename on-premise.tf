@@ -41,6 +41,13 @@ resource "google_project_service" "on_prem_project_enable_compute_api" {
   disable_on_destroy  = false
 }
 
+resource "google_project_service" "on_prem_project_enable_dns_api" {
+  depends_on          = [google_project.on_premise]
+  project             = google_project.on_premise.id
+  service             = "dns.googleapis.com"
+  disable_on_destroy  = false
+}
+
 /******************************************
   Org Policy Exception for External IP
  *****************************************/
