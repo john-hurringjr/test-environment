@@ -30,8 +30,22 @@ resource "google_project" "on_premise" {
 
 resource "google_project_iam_binding" "on_prem_owner" {
   project = google_project.on_premise.id
-  members = ["group:${var.security_admins_group}", "serviceAccount${var.terraform_service_account}"]
+  members = ["group:${var.security_admins_group}", "serviceAccount:${var.terraform_service_account}"]
   role    = "roles/owner"
+}
+
+resource "google_project_service" "on_prem_project_enable_compute_api" {
+  depends_on          = [google_project.on_premise]
+  project             = google_project.on_premise.id
+  service             = "compute.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "on_prem_project_enable_dns_api" {
+  depends_on          = [google_project.on_premise]
+  project             = google_project.on_premise.id
+  service             = "dns.googleapis.com"
+  disable_on_destroy  = false
 }
 
 /******************************************
@@ -56,7 +70,8 @@ resource "google_project_organization_policy" "on_prem_external_ip_exception" {
  *****************************************/
 
 resource "google_compute_network" "on_prem_vpc" {
-  project       = module.shared_vpc_host_project_transit.project_id
+  depends_on    = [google_project_service.on_prem_project_enable_compute_api]
+  project       = google_project.on_premise.project_id
   name          = "on-prem-vpc"
   routing_mode  = "GLOBAL"
 
@@ -97,7 +112,6 @@ module "on_prem_vpc_us_central1_subnet" {
   subnet_number         = "1"
 
 }
-
 
 module "on_prem_vpc_firewall_allow_iap_all" {
   source = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
