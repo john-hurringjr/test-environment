@@ -76,21 +76,21 @@ module "forseti_vpc_us_central1_subnet_1" {
   Forseti Install
  *****************************************/
 
-module "forseti_install" {
-  source  = "terraform-google-modules/forseti/google"
-  version = "~> 5.0.0"
-
-  gsuite_admin_email = var.gsuite_forseti_admin_email
-  domain             = var.domain_for_forseti
-  project_id         = module.forseti_project.project_id
-  org_id             = var.organization_id
-
-  bucket_cai_location     = "US"
-  storage_bucket_location = "US"
-  network                 = google_compute_network.forseti_vpc.self_link
-  network_project         = module.forseti_project.project_id
-  subnetwork              = module.forseti_vpc_us_central1_subnet_1.subnet_self_link
-  client_private          = true
-  cloudsql_private        = true
-
-}
+//module "forseti_install" {
+//  source  = "terraform-google-modules/forseti/google"
+//  version = "~> 5.0.0"
+//
+//  gsuite_admin_email = var.gsuite_forseti_admin_email
+//  domain             = var.domain_for_forseti
+//  project_id         = module.forseti_project.project_id
+//  org_id             = var.organization_id
+//
+//  bucket_cai_location     = "US"
+//  storage_bucket_location = "US"
+//  network                 = google_compute_network.forseti_vpc.self_link
+//  network_project         = module.forseti_project.project_id
+//  subnetwork              = module.forseti_vpc_us_central1_subnet_1.subnet_self_link
+//  client_private          = true
+//  cloudsql_private        = true
+//
+//}
