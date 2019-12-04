@@ -34,6 +34,13 @@ resource "google_project_iam_binding" "on_prem_owner" {
   role    = "roles/owner"
 }
 
+resource "google_project_service" "on_prem_project_enable_compute_api" {
+  depends_on          = [google_project.on_premise]
+  project             = google_project.on_premise.id
+  service             = "compute.googleapis.com"
+  disable_on_destroy  = false
+}
+
 /******************************************
   Org Policy Exception for External IP
  *****************************************/
@@ -56,6 +63,7 @@ resource "google_project_organization_policy" "on_prem_external_ip_exception" {
  *****************************************/
 
 resource "google_compute_network" "on_prem_vpc" {
+  depends_on    = [google_project_service.on_prem_project_enable_compute_api]
   project       = module.shared_vpc_host_project_transit.project_id
   name          = "on-prem-vpc"
   routing_mode  = "GLOBAL"
