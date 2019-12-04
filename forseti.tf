@@ -20,42 +20,42 @@ variable "domain_for_forseti" {}
   Forseti Project API Enablement
  *****************************************/
 
-resource "google_project_service" "forseti_project_enable_dns_api" {
-  depends_on          = [module.forseti_project]
-  project             = module.forseti_project.project_id
-  service             = "dns.googleapis.com"
-  disable_on_destroy  = false
-}
-
-/******************************************
-  Forseti Closed Network
- *****************************************/
-
-resource "google_compute_network" "forseti_vpc" {
-  project       = module.shared_vpc_host_project_dev.project_id
-  name          = "forseti-vpc"
-  routing_mode  = "GLOBAL"
-
-  auto_create_subnetworks         = false
-  delete_default_routes_on_create = true
-}
-
-module "forseti_vpc_us_central1_subnet_1" {
-  source = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
-
-  project_id        = module.forseti_project.project_id
-  network_self_link = google_compute_network.forseti_vpc.self_link
-  network_name      = google_compute_network.forseti_vpc.name
-
-  region  = "forseti"
-  cidr    = "192.168.0.0/30"
-
-  vpc_flow_log_interval = "INTERVAL_15_MIN"
-  vpc_flow_log_sampling = 0.2
-  subnet_number         = "1"
-
-}
-
+//resource "google_project_service" "forseti_project_enable_dns_api" {
+//  depends_on          = [module.forseti_project]
+//  project             = module.forseti_project.project_id
+//  service             = "dns.googleapis.com"
+//  disable_on_destroy  = false
+//}
+//
+///******************************************
+//  Forseti Closed Network
+// *****************************************/
+//
+//resource "google_compute_network" "forseti_vpc" {
+//  project       = module.shared_vpc_host_project_dev.project_id
+//  name          = "forseti-vpc"
+//  routing_mode  = "GLOBAL"
+//
+//  auto_create_subnetworks         = false
+//  delete_default_routes_on_create = true
+//}
+//
+//module "forseti_vpc_us_central1_subnet_1" {
+//  source = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
+//
+//  project_id        = module.forseti_project.project_id
+//  network_self_link = google_compute_network.forseti_vpc.self_link
+//  network_name      = google_compute_network.forseti_vpc.name
+//
+//  region  = "forseti"
+//  cidr    = "192.168.0.0/30"
+//
+//  vpc_flow_log_interval = "INTERVAL_15_MIN"
+//  vpc_flow_log_sampling = 0.2
+//  subnet_number         = "1"
+//
+//}
+//
 //module "forseti_vpc_private_apis_dns" {
 //  source = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
 //
@@ -71,11 +71,11 @@ module "forseti_vpc_us_central1_subnet_1" {
 //  network_self_link = google_compute_network.forseti_vpc.self_link
 //
 //}
-
-/******************************************
-  Forseti Install
- *****************************************/
-
+//
+///******************************************
+//  Forseti Install
+// *****************************************/
+//
 //module "forseti_install" {
 //  source  = "terraform-google-modules/forseti/google"
 //  version = "~> 5.0.0"
