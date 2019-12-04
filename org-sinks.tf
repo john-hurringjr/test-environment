@@ -19,7 +19,6 @@ variable "gcs_org_sink_bucket_name" {}
   BigQuery
  *****************************************/
 
-
 module "org_sink_bigquery" {
 
   source = "github.com/john-hurringjr/test-modules/org-sinks/bigquery"
