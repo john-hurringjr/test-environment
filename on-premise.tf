@@ -30,7 +30,7 @@ resource "google_project" "on_premise" {
 
 resource "google_project_iam_binding" "on_prem_owner" {
   project = google_project.on_premise.id
-  members = ["group:${var.security_admins_group}", "serviceAccount${var.terraform_service_account}"]
+  members = ["group:${var.security_admins_group}", "serviceAccount:${var.terraform_service_account}"]
   role    = "roles/owner"
 }
 
