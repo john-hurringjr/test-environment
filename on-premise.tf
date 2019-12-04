@@ -166,17 +166,3 @@ module "ha_vpn_on_prem_with_transit_vpc_east" {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
