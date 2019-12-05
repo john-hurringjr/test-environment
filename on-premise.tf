@@ -195,7 +195,7 @@ module "simple_nat_instance_us_east4" {
   subnet_self_link      = module.on_prem_vpc_us_east4_subnet.subnet_self_link
   zone                  = "us-east4-b"
   instance_name         = "nat-gateway-instance"
-  machine_type          = module.shared_vpc_host_project_transit.project_id
+  machine_type          = "n1-standard-4"
   instance_network_tag  = var.nat_instance_tag
 
 }
