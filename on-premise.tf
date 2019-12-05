@@ -138,8 +138,8 @@ module "on_prem_vpc_firewall_allow_rfc1918_all" {
 variable "vpn_on_prem_transit_east_shared_secret_tunnel_1" {}
 variable "vpn_on_prem_transit_east_shared_secret_tunnel_2" {}
 
-variable "vpn_on_prem_transit_west_shared_secret_tunnel_1" {}
-variable "vpn_on_prem_transit_west_shared_secret_tunnel_2" {}
+variable "vpn_on_prem_transit_central_shared_secret_tunnel_1" {}
+variable "vpn_on_prem_transit_central_shared_secret_tunnel_2" {}
 
 /******************************************
   On Prem HA VPN with Transit VPC - East
@@ -163,6 +163,57 @@ module "ha_vpn_on_prem_with_transit_vpc_east" {
 }
 
 
+module "ha_vpn_on_prem_with_transit_vpc_central" {
+  source = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
 
+  project_1_id              = google_project.on_premise.project_id
+  network_1_self_link       = google_compute_network.on_prem_vpc.self_link
+  network_1_name            = google_compute_network.on_prem_vpc.name
+  network_1_router_bgp_asn  = "4200000501"
+  project_2_id              = module.shared_vpc_host_project_transit.project_id
+  network_2_self_link       = google_compute_network.transit_vpc.self_link
+  network_2_name            = google_compute_network.transit_vpc.name
+  network_2_router_bgp_asn  = "4200000101"
+  shared_secret_tunnel_1    = var.vpn_on_prem_transit_central_shared_secret_tunnel_1
+  shared_secret_tunnel_2    = var.vpn_on_prem_transit_central_shared_secret_tunnel_2
+  region                    = "us-central1"
 
+}
 
+/******************************************
+  Set Up VM as NAT Gateway
+ *****************************************/
+
+module "simple_nat_instance_us_east4" {
+  source = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
+
+  project_id        = google_project.on_premise.project_id
+  subnet_self_link  = module.on_prem_vpc_us_east4_subnet.subnet_self_link
+  zone              = "us-east4-b"
+  instance_name     = "nat-gateway-instance"
+  machine_type      = module.shared_vpc_host_project_transit.project_id
+
+}
+
+resource "google_compute_route" "default_route_to_nat_instance" {
+
+  project           = google_project.on_premise.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "default-route-to-nat-instance"
+  network           = google_compute_network.on_prem_vpc.name
+  next_hop_instance = module.simple_nat_instance_us_east4.instance_self_link
+  priority          = 1000
+
+}
+
+resource "google_compute_route" "nat_instance_special_route_to_internet_gw" {
+
+  project           = google_project.on_premise.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "nat-instance-special-route"
+  network           = google_compute_network.on_prem_vpc.name
+  next_hop_gateway  = "default-internet-gateway"
+  priority          = 100
+  tags              = [module.simple_nat_instance_us_east4.instance_network_tag]
+
+}
