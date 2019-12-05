@@ -191,12 +191,12 @@ module "ha_vpn_on_prem_with_transit_vpc_central" {
 module "simple_nat_instance_us_east4" {
   source = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
 
-  project_id        = google_project.on_premise.project_id
-  subnet_self_link  = module.on_prem_vpc_us_east4_subnet.subnet_self_link
-  zone              = "us-east4-b"
-  instance_name     = "nat-gateway-instance"
-  machine_type      = module.shared_vpc_host_project_transit.project_id
-  nat
+  project_id            = google_project.on_premise.project_id
+  subnet_self_link      = module.on_prem_vpc_us_east4_subnet.subnet_self_link
+  zone                  = "us-east4-b"
+  instance_name         = "nat-gateway-instance"
+  machine_type          = module.shared_vpc_host_project_transit.project_id
+  instance_network_tag  = var.nat_instance_tag
 
 }
 
@@ -208,7 +208,6 @@ resource "google_compute_route" "default_route_to_nat_instance" {
   network               = google_compute_network.on_prem_vpc.name
   next_hop_instance     = module.simple_nat_instance_us_east4.instance_self_link
   priority              = 1000
-  instance_network_tag  = var.nat_instance_tag
 
 }
 
