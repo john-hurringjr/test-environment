@@ -145,24 +145,24 @@ variable "vpn_on_prem_transit_west_shared_secret_tunnel_2" {}
   On Prem HA VPN with Transit VPC - East
  *****************************************/
 
-//module "ha_vpn_on_prem_with_transit_vpc_east" {
-//  source = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
-//
-//  project_1_id              = google_project.on_premise.project_id
-//  network_1_self_link       = google_compute_network.on_prem_vpc.self_link
-//  network_1_name            = google_compute_network.on_prem_vpc.name
-//  network_1_router_bgp_asn  = "4200000500"
-//  project_2_id              = module.shared_vpc_host_project_transit.project_id
-//  network_2_self_link       = google_compute_network.transit_vpc.self_link
-//  network_2_name            = google_compute_network.transit_vpc.name
-//  network_2_router_bgp_asn  = "4200000100"
-//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_east_shared_secret_tunnel_1
-//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_east_shared_secret_tunnel_2
-//  region                    = "us-east4"
-//
-//}
-//
-//
+module "ha_vpn_on_prem_with_transit_vpc_east" {
+  source = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
+
+  project_1_id              = google_project.on_premise.project_id
+  network_1_self_link       = google_compute_network.on_prem_vpc.self_link
+  network_1_name            = google_compute_network.on_prem_vpc.name
+  network_1_router_bgp_asn  = "4200000500"
+  project_2_id              = module.shared_vpc_host_project_transit.project_id
+  network_2_self_link       = google_compute_network.transit_vpc.self_link
+  network_2_name            = google_compute_network.transit_vpc.name
+  network_2_router_bgp_asn  = "4200000100"
+  shared_secret_tunnel_1    = var.vpn_on_prem_transit_east_shared_secret_tunnel_1
+  shared_secret_tunnel_2    = var.vpn_on_prem_transit_east_shared_secret_tunnel_2
+  region                    = "us-east4"
+
+}
+
+
 
 
 
