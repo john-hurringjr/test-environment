@@ -162,7 +162,6 @@ module "ha_vpn_on_prem_with_transit_vpc_east" {
 
 }
 
-
 module "ha_vpn_on_prem_with_transit_vpc_central" {
   source = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
 
@@ -183,6 +182,7 @@ module "ha_vpn_on_prem_with_transit_vpc_central" {
 /******************************************
   Set Up VM as NAT Gateway
  *****************************************/
+
 
 module "simple_nat_instance_us_east4" {
   source = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
