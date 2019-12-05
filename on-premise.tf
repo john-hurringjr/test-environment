@@ -141,6 +141,10 @@ variable "vpn_on_prem_transit_east_shared_secret_tunnel_2" {}
 variable "vpn_on_prem_transit_central_shared_secret_tunnel_1" {}
 variable "vpn_on_prem_transit_central_shared_secret_tunnel_2" {}
 
+variable "nat_instance_tag" {
+  default = "allow-default-internet-gateway-access"
+}
+
 /******************************************
   On Prem HA VPN with Transit VPC - East
  *****************************************/
@@ -192,17 +196,19 @@ module "simple_nat_instance_us_east4" {
   zone              = "us-east4-b"
   instance_name     = "nat-gateway-instance"
   machine_type      = module.shared_vpc_host_project_transit.project_id
+  nat
 
 }
 
 resource "google_compute_route" "default_route_to_nat_instance" {
 
-  project           = google_project.on_premise.project_id
-  dest_range        = "0.0.0.0/0"
-  name              = "default-route-to-nat-instance"
-  network           = google_compute_network.on_prem_vpc.name
-  next_hop_instance = module.simple_nat_instance_us_east4.instance_self_link
-  priority          = 1000
+  project               = google_project.on_premise.project_id
+  dest_range            = "0.0.0.0/0"
+  name                  = "default-route-to-nat-instance"
+  network               = google_compute_network.on_prem_vpc.name
+  next_hop_instance     = module.simple_nat_instance_us_east4.instance_self_link
+  priority              = 1000
+  instance_network_tag  = var.nat_instance_tag
 
 }
 
@@ -214,6 +220,6 @@ resource "google_compute_route" "nat_instance_special_route_to_internet_gw" {
   network           = google_compute_network.on_prem_vpc.name
   next_hop_gateway  = "default-internet-gateway"
   priority          = 100
-  tags              = [module.simple_nat_instance_us_east4.instance_network_tag]
+  tags              = [var.nat_instance_tag, ]
 
 }
