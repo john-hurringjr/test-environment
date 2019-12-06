@@ -8,7 +8,7 @@ steps:
     waitFor: ['-']
   - name: gcr.io/cloud-builders/git
     dir: policy-library
-    args: ['clone', '-n', 'https://github.com/forseti-security/policy-library.git', '.']
+    args: ['clone', 'https://github.com/forseti-security/policy-library.git']
     waitFor: ['-']
   - name: gcr.io/cloud-builders/gsutil
     args: ['cp', 'gs://${_PLAN_BUCKET}/policy-library/*', './policy-library/policies/constraints/']
