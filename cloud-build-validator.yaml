@@ -13,12 +13,14 @@ steps:
     args:
       - plan
       - -out=terraform.tfplan
-  - name: gcr.io/${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}/terraform-validator
+  - name: hashicorp/terraform
+    entrypoint: sh
     args:
-      - convert
-      - terraform.tfplan
+      - -c
+      - |
+        terraform show -json ./terraform.tfplan > ./terraform.tfplan.json
   - name: gcr.io/${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}/terraform-validator
     args:
       - validate
-      - terraform.tfplan
+      - terraform.tfplan.json
       -  --policy-path=./policy-library/
