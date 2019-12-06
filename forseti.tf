@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-variable "gsuite_forseti_admin_email" {}
-variable "domain_for_forseti" {}
+//variable "gsuite_forseti_admin_email" {}
+//variable "domain_for_forseti" {}
 
 /******************************************
   Forseti Project API Enablement
