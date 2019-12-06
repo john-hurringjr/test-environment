@@ -11,7 +11,7 @@ steps:
     args: ['clone', 'https://github.com/forseti-security/policy-library.git']
     waitFor: ['-']
   - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', 'gs://${_PLAN_BUCKET}/policy-library/*', './policy-library/policies/constraints/']
+    args: ['cp', 'gs://${_PLAN_BUCKET}/policy-library/policies/*', './policy-library/policy-library/policies/constraints/']
   - name: hashicorp/terraform
     args:
       - init
@@ -30,4 +30,4 @@ steps:
       - validate
       - terraform.tfplan.json
       - --project=${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}
-      -  --policy-path=./policy-library/
+      -  --policy-path=./policy-library/policy-library/
