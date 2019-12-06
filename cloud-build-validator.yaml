@@ -23,4 +23,5 @@ steps:
     args:
       - validate
       - terraform.tfplan.json
+      - --project=${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}
       -  --policy-path=./policy-library/
