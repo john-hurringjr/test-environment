@@ -7,15 +7,19 @@ steps:
     args: ['cp', 'gs://${_PLAN_BUCKET}/backend/backend.tf', '.']
     waitFor: ['-']
   - name: gcr.io/cloud-builders/git
-    dir: validator/empty
+    dir: validator/library
     args: ['clone', 'https://github.com/forseti-security/policy-library.git']
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/git
+    dir: validator/defined-policies
+    args: ['clone', 'https://github.com/john-hurringjr/policies.git']
     waitFor: ['-']
   - name: hashicorp/terraform
     entrypoint: sh
     args:
       - -c
       - |
-        cp -r ./validator/policies-to-be-moved/ ./validator/empty/policy-library/policies/constraints/
+        cp -r ./validator/defined-policies/ ./validator/library/policy-library/policies/constraints/
   - name: hashicorp/terraform
     args:
       - init
