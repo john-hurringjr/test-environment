@@ -144,7 +144,15 @@ variable "gcs_org_sink_name" {
 /******************************************
   Billing Export Variables
  *****************************************/
-variable "billing_export_bigquery_dataset_location" {}
-variable "billing_export_bigquery_dataset_id" {}
-variable "billing_export_bigquery_dataset_friendly_name" {}
-variable "billing_export_bigquery_sink_name" {}
+variable "billing_export_bigquery_dataset_location" {
+  type = string
+}
+variable "billing_export_bigquery_dataset_id" {
+  type = string
+}
+variable "billing_export_bigquery_dataset_friendly_name" {
+  type = string
+}
+variable "billing_export_bigquery_sink_name" {
+  type = string
+}
