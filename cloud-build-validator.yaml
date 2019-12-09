@@ -1,0 +1,41 @@
+---
+steps:
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['cp', 'gs://${_PLAN_BUCKET}/variables/test-environment-variables.auto.tfvars', '.']
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['cp', 'gs://${_PLAN_BUCKET}/backend/backend.tf', '.']
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/git
+    dir: validator/library
+    args: ['clone', 'https://github.com/forseti-security/policy-library.git']
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/git
+    dir: validator/defined-policies
+    args: ['clone', 'https://github.com/john-hurringjr/policies.git']
+    waitFor: ['-']
+  - name: hashicorp/terraform
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        cp -r ./validator/defined-policies/ ./validator/library/policy-library/policies/constraints/
+  - name: hashicorp/terraform
+    args:
+      - init
+  - name: hashicorp/terraform
+    args:
+      - plan
+      - -out=terraform.tfplan
+  - name: hashicorp/terraform
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        terraform show -json ./terraform.tfplan > ./terraform.tfplan.json
+  - name: gcr.io/${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}/terraform-validator
+    args:
+      - validate
+      - terraform.tfplan.json
+      - --project=${_PROJECT_HOSTING_YOUR_VALIDATOR_IMAGE}
+      -  --policy-path=./validator/library/policy-library/
