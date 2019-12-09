@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  Variables to be used in multiple TF files
+  Variables
  *****************************************/
 
 variable "organization_id" {
@@ -87,3 +87,75 @@ variable "unique_shared_id" {
 
 variable "billing_account_id" {}
 
+/******************************************
+  Regions & Zones
+ *****************************************/
+
+variable "region_1" {
+  type    = string
+  default = "us-east4"
+}
+
+variable "region_2" {
+  type    = string
+  default = "us-central1"
+}
+
+variable "region_1_zone_1" {
+  type    = string
+  default = "us-east4-b"
+}
+
+variable "region_1_zone_2" {
+  type    = string
+  default = "us-east4-c"
+}
+
+variable "region_2_zone_1" {
+  type    = string
+  default = "us-central1-c"
+}
+
+variable "region_2_zone_2" {
+  type    = string
+  default = "us-central1-f"
+}
+
+/******************************************
+  On Premise Variables
+ *****************************************/
+
+variable "on_premise_project_id" {}
+
+variable "vpn_on_prem_transit_east_shared_secret_tunnel_1" {}
+variable "vpn_on_prem_transit_east_shared_secret_tunnel_2" {}
+
+variable "vpn_on_prem_transit_central_shared_secret_tunnel_1" {}
+variable "vpn_on_prem_transit_central_shared_secret_tunnel_2" {}
+
+variable "nat_instance_tag" {
+  default = "allow-default-internet-gateway-access"
+}
+
+/******************************************
+  Org Sink Variables
+ *****************************************/
+
+variable "gcs_org_sink_bucket_name" {
+  type = string
+}
+
+variable "bigquery_org_sink_name" {
+  type    = string
+  default = "bigquery-org-sink"
+}
+
+variable "bigquery_org_sink_data_set_id" {
+  type    = string
+  default = "org_sink"
+}
+
+variable "gcs_org_sink_name" {
+  type    = string
+  default = "gcs-org-sink"
+}

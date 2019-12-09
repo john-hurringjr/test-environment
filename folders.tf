@@ -32,6 +32,11 @@ resource "google_folder" "networking" {
   parent        = google_folder.shared_services.id
 }
 
+resource "google_folder" "on_prem" {
+  display_name  = "On Prem"
+  parent        = "organizations/${var.organization_id}"
+}
+
 /******************************************
   Terraform Service Account Owner
  *****************************************/
