@@ -22,8 +22,8 @@ resource "google_folder" "shared_services" {
   parent        = "organizations/${var.organization_id}"
 }
 
-resource "google_folder" "general_use" {
-  display_name  = "General Use"
+resource "google_folder" "business" {
+  display_name  = "Business"
   parent        = "organizations/${var.organization_id}"
 }
 
@@ -41,8 +41,8 @@ resource "google_folder" "on_prem" {
   Terraform Service Account Owner
  *****************************************/
 
-resource "google_folder_iam_binding" "terraform_shared_services_owner" {
+resource "google_folder_iam_binding" "terraform_shared_services_editor" {
   folder  = google_folder.shared_services.id
   members = ["serviceAccount:${var.terraform_service_account}"]
-  role    = "roles/owner"
+  role    = "roles/editor"
 }
