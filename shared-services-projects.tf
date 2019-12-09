@@ -18,11 +18,9 @@
  *****************************************/
 
 module "shared_vpc_host_project_transit" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
-
+  source                    = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
   project_friendly_name     = "Shared VPC Host Transit"
-  unique_shared_id          = var.unique_shared_id
+  unique_shared_id          = var.project_unique_shared_id
   environment               = "trans"
   folder_id                 = google_folder.networking.id
   billing_account_id        = var.billing_account_id
@@ -34,11 +32,9 @@ module "shared_vpc_host_project_transit" {
 }
 
 module "shared_vpc_host_project_dev" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
-
+  source                    = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
   project_friendly_name     = "Shared VPC Host Dev"
-  unique_shared_id          = var.unique_shared_id
+  unique_shared_id          = var.project_unique_shared_id
   environment               = "dev"
   folder_id                 = google_folder.networking.id
   billing_account_id        = var.billing_account_id
@@ -50,11 +46,9 @@ module "shared_vpc_host_project_dev" {
 }
 
 module "shared_vpc_host_project_prod" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
-
+  source                    = "github.com/john-hurringjr/test-modules/project-creation-hostprj"
   project_friendly_name     = "Shared VPC Host Prod"
-  unique_shared_id          = var.unique_shared_id
+  unique_shared_id          = var.project_unique_shared_id
   environment               = "prod"
   folder_id                 = google_folder.networking.id
   billing_account_id        = var.billing_account_id
@@ -70,11 +64,9 @@ module "shared_vpc_host_project_prod" {
  *****************************************/
 
 module "billing_export_project" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "Billing Export"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
   unique_project_identifier   = "billing"
   folder_id                   = google_folder.shared_services.id
@@ -83,7 +75,6 @@ module "billing_export_project" {
   label_restrictions          = ""
   project_admin_group_id      = var.billing_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-
 }
 
 /******************************************
@@ -92,11 +83,9 @@ module "billing_export_project" {
 
 # Dev, used to create approved images
 module "os_images_project_dev" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "OS Images - Dev"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "dev"
   unique_project_identifier   = "osimage"
   folder_id                   = google_folder.shared_services.id
@@ -105,16 +94,13 @@ module "os_images_project_dev" {
   label_restrictions          = ""
   project_admin_group_id      = var.operations_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_dev.project_id
-
 }
 
 # Prod, used to share
 module "os_images_project_prod" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "OS Images - Prod"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
   unique_project_identifier   = "osimage"
   folder_id                   = google_folder.shared_services.id
@@ -123,7 +109,6 @@ module "os_images_project_prod" {
   label_restrictions          = ""
   project_admin_group_id      = var.operations_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-
 }
 
 /******************************************
@@ -131,11 +116,9 @@ module "os_images_project_prod" {
  *****************************************/
 
 module "forseti_project" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "Forseti Project"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
   unique_project_identifier   = "forseti"
   folder_id                   = google_folder.shared_services.id
@@ -144,7 +127,6 @@ module "forseti_project" {
   label_restrictions          = ""
   project_admin_group_id      = var.security_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-
 }
 
 /******************************************
@@ -152,11 +134,9 @@ module "forseti_project" {
  *****************************************/
 
 module "org_log_sink_project" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "Org Log Sink Project"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
   unique_project_identifier   = "orgsink"
   folder_id                   = google_folder.shared_services.id
@@ -165,7 +145,6 @@ module "org_log_sink_project" {
   label_restrictions          = ""
   project_admin_group_id      = var.security_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-
 }
 
 /******************************************
@@ -173,11 +152,9 @@ module "org_log_sink_project" {
  *****************************************/
 
 module "monitoring_project" {
-
-  source = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
-
+  source                      = "github.com/john-hurringjr/test-modules/project-creation-serviceprj"
   project_friendly_name       = "Monitoring Project"
-  unique_shared_id            = var.unique_shared_id
+  unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
   unique_project_identifier   = "monitoring"
   folder_id                   = google_folder.shared_services.id
@@ -186,5 +163,4 @@ module "monitoring_project" {
   label_restrictions          = ""
   project_admin_group_id      = var.security_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-
 }

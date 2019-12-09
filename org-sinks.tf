@@ -13,22 +13,17 @@
  * limitations under the License.
  */
 
-variable "gcs_org_sink_bucket_name" {}
-
 /******************************************
   BigQuery
  *****************************************/
 
 module "org_sink_bigquery" {
-
-  source = "github.com/john-hurringjr/test-modules/org-sinks/bigquery"
-
+  source                          = "github.com/john-hurringjr/test-modules/org-sinks/bigquery"
   project_id                      = module.org_log_sink_project.project_id
   bigquery_dataset_friendly_name  = "Org Sink"
-  bigquery_dataset_id             = "org_sink"
-  sink_name                       = "bigquery-org-sink"
+  bigquery_dataset_id             = var.bigquery_org_sink_data_set_id
+  sink_name                       = var.bigquery_org_sink_name
   organization_id                 = var.organization_id
-
 }
 
 /******************************************
@@ -36,14 +31,11 @@ module "org_sink_bigquery" {
  *****************************************/
 
 module "org_sink_gcs" {
-
-  source = "github.com/john-hurringjr/test-modules/org-sinks/gcs"
-
+  source                       = "github.com/john-hurringjr/test-modules/org-sinks/gcs"
   project_id                   = module.org_log_sink_project.project_id
   gcs_bucket_name              = var.gcs_org_sink_bucket_name
   object_age_move_to_nearline  = 180
   object_age_move_to_coldline  = 365
-  sink_name                    = "gcs-org-sink"
+  sink_name                    = var.gcs_org_sink_name
   organization_id              = var.organization_id
-
 }

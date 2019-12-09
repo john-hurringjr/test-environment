@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  Variables to be used in multiple TF files
+  Variables
  *****************************************/
 
 variable "organization_id" {
@@ -32,6 +32,12 @@ variable "domain_identity_primary" {
 variable "domain_identity_secondary" {
   type = string
 }
+
+variable "project_unique_shared_id" {
+  type = string
+}
+
+variable "billing_account_id" {}
 
 /******************************************
   Variables of groups
@@ -78,12 +84,59 @@ variable "billing_users_group" {
 }
 
 /******************************************
-  Variables for project creation
+  Regions & Zones
  *****************************************/
 
-variable "unique_shared_id" {
+variable "region_1" {
+  type    = string
+}
+
+variable "region_2" {
+  type    = string
+}
+
+variable "region_1_zone_1" {
+  type    = string
+}
+
+variable "region_1_zone_2" {
+  type    = string
+}
+
+variable "region_2_zone_1" {
+  type    = string
+}
+
+variable "region_2_zone_2" {
+  type    = string
+}
+
+/******************************************
+  On Premise Variables
+ *****************************************/
+variable "on_premise_project_id" {}
+variable "vpn_on_prem_transit_region_1_shared_secret_tunnel_1" {}
+variable "vpn_on_prem_transit_region_1_shared_secret_tunnel_2" {}
+variable "vpn_on_prem_transit_region_2_shared_secret_tunnel_1" {}
+variable "vpn_on_prem_transit_region_2_shared_secret_tunnel_2" {}
+variable "nat_instance_tag" {}
+
+/******************************************
+  Org Sink Variables
+ *****************************************/
+
+variable "gcs_org_sink_bucket_name" {
   type = string
 }
 
-variable "billing_account_id" {}
+variable "bigquery_org_sink_name" {
+  type    = string
+}
 
+variable "bigquery_org_sink_data_set_id" {
+  type    = string
+}
+
+variable "gcs_org_sink_name" {
+  type    = string
+}

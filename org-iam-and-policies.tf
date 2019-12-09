@@ -18,8 +18,7 @@
  *****************************************/
 
 module "org_iam" {
-  source = "github.com/john-hurringjr/test-modules/org-iam"
-
+  source                        = "github.com/john-hurringjr/test-modules/org-iam"
   organization_admins_group     = var.organization_admins_group
   terraform_service_account     = var.terraform_service_account
   network_admins_group          = var.network_admins_group
@@ -30,7 +29,6 @@ module "org_iam" {
   organization_id               = var.organization_id
   billing_admins_group          = var.billing_admins_group
   external_user_os_login_group  = var.external_users_os_login_group
-
 }
 
 /******************************************
@@ -38,12 +36,10 @@ module "org_iam" {
  *****************************************/
 
 module "org_policies" {
-  source = "github.com/john-hurringjr/test-modules/org-policies"
-
+  source                    = "github.com/john-hurringjr/test-modules/org-policies"
   domain_identity_primary   = var.domain_identity_primary
   domain_identity_secondary = var.domain_identity_secondary
   organization_id           = var.organization_id
-
 }
 
 /******************************************
@@ -52,8 +48,7 @@ module "org_policies" {
 
 resource "google_folder_organization_policy" "define_trusted_image_project" {
   constraint  = "constraints/compute.trustedImageProjects"
-  folder      = google_folder.general_use.id
-
+  folder      = google_folder.business.id
   list_policy {
     allow {
       values = ["projects/${module.os_images_project_prod.project_id}",]
