@@ -140,3 +140,19 @@ variable "bigquery_org_sink_data_set_id" {
 variable "gcs_org_sink_name" {
   type    = string
 }
+
+/******************************************
+  Billing Export Variables
+ *****************************************/
+variable "billing_export_bigquery_dataset_location" {
+  type = string
+}
+variable "billing_export_bigquery_dataset_id" {
+  type = string
+}
+variable "billing_export_bigquery_dataset_friendly_name" {
+  type = string
+}
+variable "billing_export_bigquery_sink_name" {
+  type = string
+}
