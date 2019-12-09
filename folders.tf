@@ -41,8 +41,8 @@ resource "google_folder" "on_prem" {
   Terraform Service Account Owner
  *****************************************/
 
-resource "google_folder_iam_binding" "terraform_shared_services_editor" {
+resource "google_folder_iam_binding" "terraform_shared_services_owner" {
   folder  = google_folder.shared_services.id
   members = ["serviceAccount:${var.terraform_service_account}"]
-  role    = "roles/editor"
+  role    = "roles/owner"
 }
