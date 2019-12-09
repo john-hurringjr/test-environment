@@ -1,3 +1,1 @@
-provider "google" {
-  version = "~> 2"
-}
+provider "google" {}
