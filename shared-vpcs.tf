@@ -143,7 +143,7 @@ resource "google_compute_network_peering" "dev_vpc_to_transit_vpc" {
  *****************************************/
 
 resource "google_compute_network" "prod_vpc" {
-  project                         = module.shared_vpc_host_project_dev.project_id
+  project                         = module.shared_vpc_host_project_prod.project_id
   name                            = "prod-vpc"
   routing_mode                    = "GLOBAL"
   auto_create_subnetworks         = false
