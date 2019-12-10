@@ -61,6 +61,22 @@ variable "vpn_on_prem_transit_region_2_shared_secret_tunnel_2" {}
 
 variable "nat_instance_tag" {}
 
+variable "on_prem_vpc_region_1_cidr" {}
+variable "on_prem_vpc_region_2_cidr" {}
+variable "on_prem_vpc_flow_log_interval" {}
+variable "on_prem_vpc_flow_log_sampling" {}
+
+#HA VPN
+variable "on_prem_vpc_router_region_1_asn" {}
+variable "on_prem_vpc_router_region_2_asn" {}
+variable "transit_vpc_router_region_1_asn" {}
+variable "transit_vpc_router_region_2_asn" {}
+
+# Cloud NAT
+variable "on_prem_vpc_cloud_nat_region_1_router_asn" {}
+variable "on_prem_vpc_cloud_nat_region_2_router_asn" {}
+
+
 /******************************************
   Org Sink Variables
  *****************************************/
