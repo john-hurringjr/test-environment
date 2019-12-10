@@ -17,14 +17,14 @@
   Shared VPC Host - Transit
  *****************************************/
 
-//resource "google_compute_network" "transit_vpc" {
-//  project                         = module.shared_vpc_host_project_transit.project_id
-//  name                            = "transit-vpc"
-//  routing_mode                    = "GLOBAL"
-//  auto_create_subnetworks         = false
-//  delete_default_routes_on_create = true
-//}
-//
+resource "google_compute_network" "transit_vpc" {
+  project                         = module.shared_vpc_host_project_transit.project_id
+  name                            = "transit-vpc"
+  routing_mode                    = "GLOBAL"
+  auto_create_subnetworks         = false
+  delete_default_routes_on_create = true
+}
+
 //module "transit_vpc_region_1_subnet" {
 //  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
 //  project_id            = module.shared_vpc_host_project_transit.project_id
