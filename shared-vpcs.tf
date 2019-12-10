@@ -139,7 +139,7 @@ resource "google_compute_network_peering" "dev_vpc_to_transit_vpc" {
 }
 
 /******************************************
-  Shared VPC Host - Dev
+  Shared VPC Host - Prod
  *****************************************/
 
 resource "google_compute_network" "prod_vpc" {
@@ -201,10 +201,11 @@ module "prod_vpc_private_apis_routing" {
 }
 
 /******************************************
-  Peering - Dev & Transit
+  Peering - Prod & Transit
  *****************************************/
 
 resource "google_compute_network_peering" "transit_vpc_to_prod_vpc" {
+  depends_on            = [google_compute_network_peering.dev_vpc_to_transit_vpc, google_compute_network_peering.transit_vpc_to_dev_vpc]
   provider              = google-beta
   name                  = "transit-to-prod-peering"
   network               = google_compute_network.transit_vpc.id
@@ -213,6 +214,7 @@ resource "google_compute_network_peering" "transit_vpc_to_prod_vpc" {
 }
 
 resource "google_compute_network_peering" "prod_vpc_to_transit_vpc" {
+  depends_on            = [google_compute_network_peering.dev_vpc_to_transit_vpc, google_compute_network_peering.transit_vpc_to_dev_vpc]
   provider              = google-beta
   name                  = "prod-to-transit-peering"
   network               = google_compute_network.prod_vpc.id
