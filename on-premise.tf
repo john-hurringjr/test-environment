@@ -44,21 +44,6 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
   disable_on_destroy  = false
 }
 
-/******************************************
-  Org Policy Exception for External IP
- *****************************************/
-
-//resource "google_project_organization_policy" "on_prem_external_ip_exception" {
-//  constraint = "compute.vmExternalIpAccess"
-//  project = google_project.on_premise.id
-//  list_policy {
-//    inherit_from_parent = false
-//    allow {
-//      all = true
-//    }
-//  }
-//}
-//
 ///******************************************
 //  On Prem Network
 // *****************************************/
@@ -77,9 +62,9 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
 //  network_self_link     = google_compute_network.on_prem_vpc.self_link
 //  network_name          = google_compute_network.on_prem_vpc.name
 //  region                = var.region_1
-//  cidr                  = "10.0.0.0/20"
-//  vpc_flow_log_interval = "INTERVAL_10_MIN"
-//  vpc_flow_log_sampling = 0.6
+//  cidr                  = var.on_prem_vpc_region_1_cidr
+//  vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
+//  vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
 //  subnet_number         = "1"
 //}
 //
@@ -89,9 +74,9 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
 //  network_self_link     = google_compute_network.on_prem_vpc.self_link
 //  network_name          = google_compute_network.on_prem_vpc.name
 //  region                = var.region_2
-//  cidr                  = "10.0.32.0/20"
-//  vpc_flow_log_interval = "INTERVAL_10_MIN"
-//  vpc_flow_log_sampling = 0.6
+//  cidr                  = var.on_prem_vpc_region_2_cidr
+//  vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
+//  vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
 //  subnet_number         = "1"
 //}
 //
@@ -108,7 +93,6 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
 //  network_self_link = google_compute_network.on_prem_vpc.self_link
 //  network_name      = google_compute_network.on_prem_vpc.name
 //}
-//
 ///******************************************
 //  On Prem HA VPN with Transit VPC - Region 1
 // *****************************************/
@@ -118,13 +102,13 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
 //  project_1_id              = google_project.on_premise.project_id
 //  network_1_self_link       = google_compute_network.on_prem_vpc.self_link
 //  network_1_name            = google_compute_network.on_prem_vpc.name
-//  network_1_router_bgp_asn  = "4200000500"
+//  network_1_router_bgp_asn  = var.on_prem_vpc_router_region_1_asn
 //  project_2_id              = module.shared_vpc_host_project_transit.project_id
 //  network_2_self_link       = google_compute_network.transit_vpc.self_link
 //  network_2_name            = google_compute_network.transit_vpc.name
-//  network_2_router_bgp_asn  = "4200000100"
-//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_east_shared_secret_tunnel_1
-//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_east_shared_secret_tunnel_2
+//  network_2_router_bgp_asn  = var.transit_vpc_router_region_1_asn
+//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_1
+//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_2
 //  region                    = var.region_1
 //}
 //
@@ -133,14 +117,35 @@ resource "google_project_service" "on_prem_project_enable_dns_api" {
 //  project_1_id              = google_project.on_premise.project_id
 //  network_1_self_link       = google_compute_network.on_prem_vpc.self_link
 //  network_1_name            = google_compute_network.on_prem_vpc.name
-//  network_1_router_bgp_asn  = "4200000501"
+//  network_1_router_bgp_asn  = var.on_prem_vpc_router_region_2_asn
 //  project_2_id              = module.shared_vpc_host_project_transit.project_id
 //  network_2_self_link       = google_compute_network.transit_vpc.self_link
 //  network_2_name            = google_compute_network.transit_vpc.name
-//  network_2_router_bgp_asn  = "4200000101"
-//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_central_shared_secret_tunnel_1
-//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_central_shared_secret_tunnel_2
+//  network_2_router_bgp_asn  = var.transit_vpc_router_region_2_asn
+//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_1
+//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_2
 //  region                    = var.region_2
+//}
+//
+///******************************************
+//  Set Up Cloud NAT
+// *****************************************/
+//module "on_prem_cloud_nat_region_1" {
+//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+//  project_id              = google_project.on_premise.project_id
+//  network_self_link       = google_compute_network.on_prem_vpc.self_link
+//  network_name            = google_compute_network.on_prem_vpc.name
+//  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_1_router_asn
+//  nat_region              = var.region_1
+//}
+//
+//module "on_prem_cloud_nat_region_2" {
+//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+//  project_id              = google_project.on_premise.project_id
+//  network_self_link       = google_compute_network.on_prem_vpc.self_link
+//  network_name            = google_compute_network.on_prem_vpc.name
+//  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_2_router_asn
+//  nat_region              = var.region_2
 //}
 //
 ///******************************************
