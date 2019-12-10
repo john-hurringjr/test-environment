@@ -13,32 +13,6 @@
  * limitations under the License.
  */
 
-variable "transit_vpc_region_1_cidr" {
-  default = "192.168.0.0/28"
-}
-variable "transit_vpc_region_2_cidr" {
-  default = "192.168.192.0/28"
-}
-
-variable "development_vpc_region_1_cidr" {
-  default = "172.16.0.0/20"
-}
-variable "development_vpc_region_2_cidr" {
-  default = "172.16.16.0/20"
-}
-
-variable "production_vpc_region_1_cidr" {}
-variable "production_vpc_region_2_cidr" {}
-
-variable "shared_vpc_flow_log_interval" {
-  type    = string
-  default = "INTERVAL_10_MIN"
-}
-variable "shared_vpc_flow_log_sampling" {
-  type    = number
-  default = 0.6
-}
-
 /******************************************
   Shared VPC Host - Transit
  *****************************************/

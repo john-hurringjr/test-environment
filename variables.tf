@@ -16,143 +16,78 @@
 /******************************************
   Variables
  *****************************************/
-
-variable "organization_id" {
-  type = string
-}
-
-variable "terraform_service_account" {
-  type = string
-}
-
-variable "domain_identity_primary" {
-  type = string
-}
-
-variable "domain_identity_secondary" {
-  type = string
-}
-
-variable "project_unique_shared_id" {
-  type = string
-}
-
+variable "organization_id" {}
+variable "terraform_service_account" {}
+variable "domain_identity_primary" {}
+variable "domain_identity_secondary" {}
+variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
 
 /******************************************
   Variables of groups
  *****************************************/
-
-variable "organization_admins_group" {
-  type = string
-}
-
-variable "network_admins_group" {
-  type = string
-}
-
-variable "security_admins_group" {
-  type = string
-}
-
-variable "operations_admins_group" {
-  type = string
-}
-
-variable "sre_group" {
-  type = string
-}
-
-variable "billing_admins_group" {
-  type = string
-}
-
-variable "external_users_os_login_group" {
-  type = string
-}
-
-variable "application_1_admins_group" {
-  type = string
-}
-
-variable "application_1_developer_group" {
-  type = string
-}
-
-variable "billing_users_group" {
-  type = string
-}
+variable "organization_admins_group" {}
+variable "network_admins_group" {}
+variable "security_admins_group" {}
+variable "operations_admins_group" {}
+variable "sre_group" {}
+variable "billing_admins_group" {}
+variable "external_users_os_login_group" {}
+variable "application_1_admins_group" {}
+variable "application_1_developer_group" {}
+variable "billing_users_group" {}
 
 /******************************************
   Regions & Zones
  *****************************************/
+variable "region_1" {}
+variable "region_1_zone_1" {}
+variable "region_1_zone_2" {}
 
-variable "region_1" {
-  type    = string
-}
-
-variable "region_2" {
-  type    = string
-}
-
-variable "region_1_zone_1" {
-  type    = string
-}
-
-variable "region_1_zone_2" {
-  type    = string
-}
-
-variable "region_2_zone_1" {
-  type    = string
-}
-
-variable "region_2_zone_2" {
-  type    = string
-}
+variable "region_2" {}
+variable "region_2_zone_1" {}
+variable "region_2_zone_2" {}
 
 /******************************************
   On Premise Variables
  *****************************************/
 variable "on_premise_project_id" {}
+
 variable "vpn_on_prem_transit_region_1_shared_secret_tunnel_1" {}
 variable "vpn_on_prem_transit_region_1_shared_secret_tunnel_2" {}
+
 variable "vpn_on_prem_transit_region_2_shared_secret_tunnel_1" {}
 variable "vpn_on_prem_transit_region_2_shared_secret_tunnel_2" {}
+
 variable "nat_instance_tag" {}
 
 /******************************************
   Org Sink Variables
  *****************************************/
-
-variable "gcs_org_sink_bucket_name" {
-  type = string
-}
-
-variable "bigquery_org_sink_name" {
-  type    = string
-}
-
-variable "bigquery_org_sink_data_set_id" {
-  type    = string
-}
-
-variable "gcs_org_sink_name" {
-  type    = string
-}
+variable "gcs_org_sink_bucket_name" {}
+variable "bigquery_org_sink_name" {}
+variable "bigquery_org_sink_data_set_id" {}
+variable "gcs_org_sink_name" {}
 
 /******************************************
   Billing Export Variables
  *****************************************/
-variable "billing_export_bigquery_dataset_location" {
-  type = string
-}
-variable "billing_export_bigquery_dataset_id" {
-  type = string
-}
-variable "billing_export_bigquery_dataset_friendly_name" {
-  type = string
-}
-variable "billing_export_bigquery_sink_name" {
-  type = string
-}
+variable "billing_export_bigquery_dataset_location" {}
+variable "billing_export_bigquery_dataset_id" {}
+variable "billing_export_bigquery_dataset_friendly_name" {}
+variable "billing_export_bigquery_sink_name" {}
+
+/******************************************
+  Shared VPCs Variables
+ *****************************************/
+variable "transit_vpc_region_1_cidr" {}
+variable "transit_vpc_region_2_cidr" {}
+
+variable "development_vpc_region_1_cidr" {}
+variable "development_vpc_region_2_cidr" {}
+
+variable "production_vpc_region_1_cidr" {}
+variable "production_vpc_region_2_cidr" {}
+
+variable "shared_vpc_flow_log_interval" {}
+variable "shared_vpc_flow_log_sampling" {}
