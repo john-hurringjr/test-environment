@@ -11,7 +11,12 @@ steps:
       - init
   - name: hashicorp/terraform
     args:
+      - plan
+      - -out=terraform.tfplan
+  - name: hashicorp/terraform
+    args:
       - apply
       - -auto-aprove
+      - terraform.tfplan
 tags:
   - 'pull-apply'
