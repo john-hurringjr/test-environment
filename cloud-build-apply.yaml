@@ -12,6 +12,6 @@ steps:
   - name: hashicorp/terraform
     args:
       - apply
-      - --auto-aprove
+      - -auto-aprove
 tags:
   - 'pull-apply'
