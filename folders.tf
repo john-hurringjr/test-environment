@@ -38,11 +38,41 @@ resource "google_folder" "on_prem" {
 }
 
 /******************************************
+  VPC SC Folders
+ *****************************************/
+
+resource "google_folder" "vpc_service_controls" {
+  display_name  = "VPC Service Controls"
+  parent        = "organizations/${var.organization_id}"
+}
+
+resource "google_folder" "vpc_sc_shared_services" {
+  display_name  = "VPC Service Controls Shared Services"
+  parent        = google_folder.vpc_service_controls.id
+}
+
+resource "google_folder" "vpc_sc_business" {
+  display_name  = "VPC Service Controls Business"
+  parent        = google_folder.vpc_service_controls.id
+}
+
+resource "google_folder" "vpc_sc_networking" {
+  display_name  = "VPC Service Controls Networking"
+  parent        = google_folder.vpc_sc_shared_services.id
+}
+
+/******************************************
   Terraform Service Account Owner
  *****************************************/
 
-resource "google_folder_iam_member" "terraform_shared_services_owner" {
+resource "google_folder_iam_member" "terraform_shared_services_owner_shared_services" {
   folder  = google_folder.shared_services.id
+  member = "serviceAccount:${var.terraform_service_account}"
+  role    = "roles/owner"
+}
+
+resource "google_folder_iam_member" "terraform_shared_services_owner_vpc_sc" {
+  folder  = google_folder.vpc_service_controls.id
   member = "serviceAccount:${var.terraform_service_account}"
   role    = "roles/owner"
 }

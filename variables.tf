@@ -107,3 +107,15 @@ variable "production_vpc_region_2_cidr" {}
 
 variable "shared_vpc_flow_log_interval" {}
 variable "shared_vpc_flow_log_sampling" {}
+
+variable "dev_vpc_cloud_nat_region_1_router_asn" {}
+variable "dev_vpc_cloud_nat_region_2_router_asn" {}
+
+variable "prod_vpc_cloud_nat_region_1_router_asn" {}
+variable "prod_vpc_cloud_nat_region_2_router_asn" {}
+
+
+/******************************************
+  VPC Service Controls
+ *****************************************/
+variable "vpc_service_controls_unique_id" {}
