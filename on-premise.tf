@@ -153,31 +153,33 @@ module "on_prem_cloud_nat_region_2" {
   Set Up VM as NAT Gateway
  *****************************************/
 
-//module "simple_nat_instance_region_1" {
-//  source                = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
-//  project_id            = google_project.on_premise.project_id
-//  subnet_self_link      = module.on_prem_vpc_region_1_subnet.subnet_self_link
-//  zone                  = var.region_1_zone_1
-//  instance_name         = "nat-gateway-instance"
-//  machine_type          = "n1-standard-4"
-//  instance_network_tag  = var.nat_instance_tag
-//}
-//
-//resource "google_compute_route" "default_route_to_nat_instance" {
-//  project               = google_project.on_premise.project_id
-//  dest_range            = "0.0.0.0/0"
-//  name                  = "default-route-to-nat-instance"
-//  network               = google_compute_network.on_prem_vpc.name
-//  next_hop_instance     = module.simple_nat_instance_region_1.instance_self_link
-//  priority              = 1000
-//}
-//
-//resource "google_compute_route" "nat_instance_special_route_to_internet_gw" {
-//  project           = google_project.on_premise.project_id
-//  dest_range        = "0.0.0.0/0"
-//  name              = "nat-instance-special-route"
-//  network           = google_compute_network.on_prem_vpc.name
-//  next_hop_gateway  = "default-internet-gateway"
-//  priority          = 100
-//  tags              = [var.nat_instance_tag, ]
-//}
+module "simple_nat_instance_region_1" {
+  source                = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
+  project_id            = google_project.on_premise.project_id
+  subnet_self_link      = module.on_prem_vpc_region_1_subnet.subnet_self_link
+  zone                  = var.region_1_zone_1
+  instance_name         = "nat-gateway-instance"
+  machine_type          = "n1-standard-4"
+  instance_network_tag  = var.nat_instance_tag
+}
+
+resource "google_compute_route" "default_route_to_nat_instance" {
+  depends_on            = [module.simple_nat_instance_region_1]
+  project               = google_project.on_premise.project_id
+  dest_range            = "0.0.0.0/0"
+  name                  = "default-route-to-nat-instance"
+  network               = google_compute_network.on_prem_vpc.name
+  next_hop_instance     = module.simple_nat_instance_region_1.instance_self_link
+  priority              = 1000
+}
+
+resource "google_compute_route" "nat_instance_special_route_to_internet_gw" {
+  depends_on        = [module.simple_nat_instance_region_1]
+  project           = google_project.on_premise.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "nat-instance-special-route"
+  network           = google_compute_network.on_prem_vpc.name
+  next_hop_gateway  = "default-internet-gateway"
+  priority          = 100
+  tags              = [var.nat_instance_tag]
+}
