@@ -47,7 +47,7 @@ resource "google_folder" "vpc_service_controls" {
 }
 
 resource "google_folder" "vpc_sc_shared_services" {
-  display_name  = "VPC Service Controls Shared Services"
+  display_name  = "VPC Serv Ctl Shared Serv"
   parent        = google_folder.vpc_service_controls.id
 }
 
