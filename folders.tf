@@ -47,17 +47,17 @@ resource "google_folder" "vpc_service_controls" {
 }
 
 resource "google_folder" "vpc_sc_shared_services" {
-  display_name  = "VPC Serv Ctl Shared Serv"
+  display_name  = "VPC SC Shared Serv"
   parent        = google_folder.vpc_service_controls.id
 }
 
 resource "google_folder" "vpc_sc_business" {
-  display_name  = "VPC Service Controls Business"
+  display_name  = "VPC SC Business"
   parent        = google_folder.vpc_service_controls.id
 }
 
 resource "google_folder" "vpc_sc_networking" {
-  display_name  = "VPC Service Controls Networking"
+  display_name  = "VPC SC Networking"
   parent        = google_folder.vpc_sc_shared_services.id
 }
 
