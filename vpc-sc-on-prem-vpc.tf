@@ -117,7 +117,7 @@
 //  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_2_router_asn
 //  nat_region              = var.region_2
 //}
-//
+
 ///******************************************
 //  Set Up VM as NAT Gateway
 // *****************************************/

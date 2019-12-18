@@ -224,7 +224,7 @@
 //}
 //
 //resource "google_compute_network_peering" "vpc_sc_prod_vpc_to_transit_vpc" {
-//  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc]
+//  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_prod_vpc]
 //  provider              = google-beta
 //  name                  = "vpc-sc-prod-to-transit-peering"
 //  network               = google_compute_network.vpc_sc_prod_vpc.id
