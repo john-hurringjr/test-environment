@@ -20,3 +20,4 @@ steps:
     args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/']
 tags:
   - 'pull-apply-debug'
+timeout: 7200s

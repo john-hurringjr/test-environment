@@ -41,3 +41,4 @@ steps:
       -  --policy-path=./validator/library/policy-library/
 tags:
   - 'validator'
+timeout: 7200s
