@@ -13,16 +13,6 @@
  * limitations under the License.
  */
 
-# VPC Service Controls
-//variable "vpc_sc_transit_vpc_region_1_cidr" {}
-//variable "vpc_sc_transit_vpc_region_2_cidr" {}
-//
-//variable "vpc_sc_dev_vpc_region_1_cidr" {}
-//variable "vpc_sc_dev_vpc_region_2_cidr" {}
-//
-//variable "vpc_sc_prod_vpc_region_1_cidr" {}
-//variable "vpc_sc_prod_vpc_region_2_cidr" {}
-
 ///******************************************
 //  Shared VPC Host - Transit
 // *****************************************/
@@ -231,4 +221,4 @@
 //  peer_network          = google_compute_network.vpc_sc_transit_vpc.id
 //  import_custom_routes  = true
 //}
-
+//

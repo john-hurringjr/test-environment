@@ -118,10 +118,10 @@
 //  nat_region              = var.region_2
 //}
 
-///******************************************
-//  Set Up VM as NAT Gateway
-// *****************************************/
-//
+/******************************************
+  Set Up VM as NAT Gateway
+ *****************************************/
+
 //module "vpc_sc_simple_nat_instance_region_1" {
 //  source                = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
 //  project_id            = google_project.on_premise.project_id
