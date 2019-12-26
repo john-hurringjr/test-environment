@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-///******************************************
-//  On Prem Network VPC SC
-// *****************************************/
-//
+/******************************************
+  On Prem Network VPC SC
+ *****************************************/
+
 //resource "google_compute_network" "vpc_sc_on_prem_vpc" {
 //  depends_on                      = [google_project_service.on_prem_project_enable_compute_api]
 //  project                         = google_project.on_premise.project_id

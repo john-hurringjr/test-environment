@@ -71,8 +71,8 @@ resource "google_folder_iam_member" "terraform_shared_services_owner_shared_serv
   role    = "roles/owner"
 }
 
-//resource "google_folder_iam_member" "terraform_shared_services_owner_vpc_sc" {
-//  folder  = google_folder.vpc_service_controls.id
-//  member = "serviceAccount:${var.terraform_service_account}"
-//  role    = "roles/owner"
-//}
+resource "google_folder_iam_member" "terraform_shared_services_owner_vpc_sc" {
+  folder  = google_folder.vpc_service_controls.id
+  member = "serviceAccount:${var.terraform_service_account}"
+  role    = "roles/owner"
+}

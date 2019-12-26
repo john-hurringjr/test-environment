@@ -18,6 +18,7 @@
 // *****************************************/
 //
 //resource "google_compute_network" "vpc_sc_transit_vpc" {
+//  depends_on                      = [module.vpc_sc_shared_vpc_host_project_transit]
 //  project                         = module.vpc_sc_shared_vpc_host_project_transit.project_id
 //  name                            = "vpc-sc-transit-vpc"
 //  routing_mode                    = "GLOBAL"
@@ -61,6 +62,7 @@
 // *****************************************/
 //
 //resource "google_compute_network" "vpc_sc_dev_vpc" {
+//  depends_on                      = [module.vpc_sc_shared_vpc_host_project_dev]
 //  project                         = module.vpc_sc_shared_vpc_host_project_dev.project_id
 //  name                            = "vpc-sc-dev-vpc"
 //  routing_mode                    = "GLOBAL"
@@ -143,6 +145,7 @@
 // *****************************************/
 //
 //resource "google_compute_network" "vpc_sc_prod_vpc" {
+//  depends_on                      = [module.vpc_sc_shared_vpc_host_project_prod]
 //  project                         = module.vpc_sc_shared_vpc_host_project_prod.project_id
 //  name                            = "vpc-sc-prod-vpc"
 //  routing_mode                    = "GLOBAL"
@@ -221,4 +224,3 @@
 //  peer_network          = google_compute_network.vpc_sc_transit_vpc.id
 //  import_custom_routes  = true
 //}
-//
