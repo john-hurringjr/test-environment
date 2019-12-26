@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-///******************************************
-//  Shared VPC Host Projects
-// *****************************************/
-//
+/******************************************
+  Shared VPC Host Projects
+ *****************************************/
+
 //module "vpc_sc_shared_vpc_host_project_transit" {
 //  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
 //  project_friendly_name     = "VPC SC Shared VPC Host Transit"
