@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/******************************************
-  Shared VPC Host Projects
- *****************************************/
-
+//
+///******************************************
+//  Shared VPC Host Projects
+// *****************************************/
+//
 //module "vpc_sc_shared_vpc_host_project_transit" {
 //  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
 //  project_friendly_name     = "VPC SC Shared VPC Host Transit"
@@ -30,7 +30,7 @@
 //  security_admin_group_id   = var.network_admins_group
 //
 //}
-
+//
 //module "vpc_sc_shared_vpc_host_project_dev" {
 //  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
 //  project_friendly_name     = "VPC SC Shared VPC Host Dev"
@@ -45,20 +45,20 @@
 //
 //}
 //
-module "vpc_sc_shared_vpc_host_project_prod" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
-  project_friendly_name     = "VPC SC Shared VPC Host Prod"
-  unique_shared_id          = var.vpc_service_controls_unique_id
-  environment               = "prod"
-  folder_id                 = google_folder.vpc_sc_networking.id
-  billing_account_id        = var.billing_account_id
-  label_business_unit       = ""
-  label_restrictions        = ""
-  network_admin_group_id    = var.network_admins_group
-  security_admin_group_id   = var.network_admins_group
-
-}
-
+//module "vpc_sc_shared_vpc_host_project_prod" {
+//  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
+//  project_friendly_name     = "VPC SC Shared VPC Host Prod"
+//  unique_shared_id          = var.vpc_service_controls_unique_id
+//  environment               = "prod"
+//  folder_id                 = google_folder.vpc_sc_networking.id
+//  billing_account_id        = var.billing_account_id
+//  label_business_unit       = ""
+//  label_restrictions        = ""
+//  network_admin_group_id    = var.network_admins_group
+//  security_admin_group_id   = var.network_admins_group
+//
+//}
+//
 ///******************************************
 //  OS Images Projects
 // *****************************************/
@@ -92,25 +92,25 @@ module "vpc_sc_shared_vpc_host_project_prod" {
 //  project_admin_group_id      = var.operations_admins_group
 //  shared_vpc_host_project_id  = module.vpc_sc_shared_vpc_host_project_prod.project_id
 //}
-
-/******************************************
-  Forseti
- *****************************************/
-
-module "vpc_sc_forseti_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-service-restricted"
-  project_friendly_name       = "VPC SC Forseti Project"
-  unique_shared_id            = var.vpc_service_controls_unique_id
-  environment                 = "prod"
-  unique_project_identifier   = "forseti"
-  folder_id                   = google_folder.vpc_sc_shared_services.id
-  billing_account_id          = var.billing_account_id
-  label_business_unit         = ""
-  label_restrictions          = ""
-  project_admin_group_id      = var.security_admins_group
-  shared_vpc_host_project_id  = module.vpc_sc_shared_vpc_host_project_prod.project_id
-}
-
+//
+///******************************************
+//  Forseti
+// *****************************************/
+//
+//module "vpc_sc_forseti_project" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-service-restricted"
+//  project_friendly_name       = "VPC SC Forseti Project"
+//  unique_shared_id            = var.vpc_service_controls_unique_id
+//  environment                 = "prod"
+//  unique_project_identifier   = "forseti"
+//  folder_id                   = google_folder.vpc_sc_shared_services.id
+//  billing_account_id          = var.billing_account_id
+//  label_business_unit         = ""
+//  label_restrictions          = ""
+//  project_admin_group_id      = var.security_admins_group
+//  shared_vpc_host_project_id  = module.vpc_sc_shared_vpc_host_project_prod.project_id
+//}
+//
 ///******************************************
 //  Org Log Sink Project
 // *****************************************/
