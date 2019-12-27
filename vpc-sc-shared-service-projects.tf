@@ -45,19 +45,19 @@ module "vpc_sc_shared_vpc_host_project_transit" {
 //
 //}
 //
-//module "vpc_sc_shared_vpc_host_project_prod" {
-//  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
-//  project_friendly_name     = "VPC SC Shared VPC Host Prod"
-//  unique_shared_id          = var.vpc_service_controls_unique_id
-//  environment               = "prod"
-//  folder_id                 = google_folder.vpc_sc_networking.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = ""
-//  label_restrictions        = ""
-//  network_admin_group_id    = var.network_admins_group
-//  security_admin_group_id   = var.network_admins_group
-//
-//}
+module "vpc_sc_shared_vpc_host_project_prod" {
+  source                    = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-host"
+  project_friendly_name     = "VPC SC Shared VPC Host Prod"
+  unique_shared_id          = var.vpc_service_controls_unique_id
+  environment               = "prod"
+  folder_id                 = google_folder.vpc_sc_networking.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = ""
+  label_restrictions        = ""
+  network_admin_group_id    = var.network_admins_group
+  security_admin_group_id   = var.network_admins_group
+
+}
 
 ///******************************************
 //  OS Images Projects
