@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-/******************************************
-  Shared VPC Host - Transit
- *****************************************/
-
+///******************************************
+//  Shared VPC Host - Transit
+// *****************************************/
+//
 //resource "google_compute_network" "vpc_sc_transit_vpc" {
 //  depends_on                      = [module.vpc_sc_shared_vpc_host_project_transit]
 //  project                         = module.vpc_sc_shared_vpc_host_project_transit.project_id
