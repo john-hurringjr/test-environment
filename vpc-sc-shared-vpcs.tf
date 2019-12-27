@@ -26,8 +26,6 @@ resource "google_compute_network" "vpc_sc_transit_vpc" {
   delete_default_routes_on_create = true
 }
 
-
-
 module "vpc_sc_transit_vpc_region_1_subnet" {
   source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
   project_id            = module.vpc_sc_shared_vpc_host_project_transit.project_id
