@@ -56,7 +56,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
   title  = "restrict_all"
   status {
     restricted_services = ["storage.googleapis.com"]
-    access_levels = ["accessPolicies/${google_access_context_manager_access_policy.access_policy.id}/accessLevels/${google_access_context_manager_access_level.access_level.name}"]
+    access_levels = [google_access_context_manager_access_level.access_level.id ]
     resources = ["projects/${module.vpc_sc_forseti_project.project_number}"]
   }
 }
