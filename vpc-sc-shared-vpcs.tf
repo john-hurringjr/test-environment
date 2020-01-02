@@ -122,6 +122,7 @@ module "vpc_sc_dev_vpc_restricted_apis_routing" {
 
 /******************************************
   Peering - Dev & Transit
+  Uncomment below after creating networks. Will have conflict otherwise with route creation
  *****************************************/
 
 resource "google_compute_network_peering" "vpc_sc_transit_vpc_to_dev_vpc" {
@@ -205,6 +206,7 @@ module "vpc_sc_prod_vpc_restricted_apis_routing" {
 
 /******************************************
   Peering - Prod & Transit
+  Uncomment below after creating networks. Will have conflict otherwise with route creation
  *****************************************/
 
 resource "google_compute_network_peering" "vpc_sc_transit_vpc_to_prod_vpc" {
