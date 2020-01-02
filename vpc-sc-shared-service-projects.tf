@@ -77,19 +77,19 @@ module "vpc_sc_shared_vpc_host_project_prod" {
 //}
 //
 //# Prod, used to share
-//module "vpc_sc_os_images_project_prod" {
-//  source                      = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-service-restricted"
-//  project_friendly_name       = "VPC SC OS Images - Prod"
-//  unique_shared_id            = var.vpc_service_controls_unique_id
-//  environment                 = "prod"
-//  unique_project_identifier   = "osimage"
-//  folder_id                   = google_folder.vpc_sc_shared_services.id
-//  billing_account_id          = var.billing_account_id
-//  label_business_unit         = ""
-//  label_restrictions          = ""
-//  project_admin_group_id      = var.operations_admins_group
-//  shared_vpc_host_project_id  = module.vpc_sc_shared_vpc_host_project_prod.project_id
-//}
+module "vpc_sc_os_images_project_prod" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-service-restricted"
+  project_friendly_name       = "VPC SC OS Images - Prod"
+  unique_shared_id            = var.vpc_service_controls_unique_id
+  environment                 = "prod"
+  unique_project_identifier   = "osimage"
+  folder_id                   = google_folder.vpc_sc_shared_services.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.operations_admins_group
+  shared_vpc_host_project_id  = module.vpc_sc_shared_vpc_host_project_prod.project_id
+}
 //
 ///******************************************
 //  Forseti
