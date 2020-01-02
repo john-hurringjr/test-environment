@@ -17,27 +17,46 @@
   Acceess Context Manager Access Policy
  *****************************************/
 
-resource "google_access_context_manager_access_policy" "access-policy" {
+resource "google_access_context_manager_access_policy" "access_policy" {
   parent = "organizations/${var.organization_id}"
   title  = "access policy"
 }
+
+/*
+If above fails (Most likely because you already created a policy) you have two options:
+1) Import the Terraform Resource
+2) Add variables with Access Policy Name/Info and use those for future resources
+*/
 
 /******************************************
   Acceess Context Manager Access Level
  *****************************************/
 
-//resource "google_access_context_manager_access_level" "access-level" {
-//  parent = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}"
-//  name   = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}/accessLevels/chromeos_no_lock"
-//  title  = "chromeos_no_lock"
-//  basic {
-//    conditions {
-//      device_policy {
-//        require_screen_lock = false
-//        os_constraints {
-//          os_type = "DESKTOP_CHROME_OS"
-//        }
-//      }
-//    }
-//  }
-//}
+# Allows the TF service account we're using to manage resource in the perimeter
+# Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
+
+resource "google_access_context_manager_access_level" "access_level" {
+  parent = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}/accessLevels/allow_terraform_sa"
+  title  = "allow_terraform_sa"
+  basic {
+    conditions {
+      members = ["serviceAccount:${var.terraform_service_account}"]
+    }
+  }
+}
+
+/******************************************
+  Acceess Context Manager Perimeter (VPC Service Controls)
+ *****************************************/
+
+resource "google_access_context_manager_service_perimeter" "service_perimeter" {
+  parent = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}/servicePerimeters/restrict_all"
+  title  = "restrict_all"
+  status {
+    restricted_services = ["storage.googleapis.com"]
+    access_levels = ["accessPolicies/${google_access_context_manager_access_policy.access_policy.id}/accessLevels/${google_access_context_manager_access_level.access_level.name}"]
+    resources = ["projects/${module.vpc_sc_forseti_project.project_number}"]
+  }
+}
