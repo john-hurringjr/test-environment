@@ -17,9 +17,9 @@
   Acceess Context Manager Access Policy
  *****************************************/
 
-resource "google_access_context_manager_access_policy" "access_policy" {
+resource "google_access_context_manager_access_policy" "access_context_manager_access_policy" {
   parent = "organizations/${var.organization_id}"
-  title  = "access policy3"
+  title  = "access context manager access policy"
 }
 
 /*
@@ -36,8 +36,8 @@ If above fails (Most likely because you already created a policy) you have two o
 # Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
 
 resource "google_access_context_manager_access_level" "access_level" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}/accessLevels/allow_terraform_sa"
+  parent = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}/accessLevels/allow_terraform_sa"
   title  = "allow_terraform_sa"
   basic {
     conditions {
@@ -53,12 +53,15 @@ resource "google_access_context_manager_access_level" "access_level" {
 /*
 Services to add later:
 profiler.googleapis.com
-
+      "projects/${module.vpc_sc_monitoring_project.project_number}",
+      "projects/${module.vpc_sc_os_images_project_dev.project_number}",
+      "projects/${module.vpc_sc_os_images_project_prod.project_number}",
+      "projects/${module.vpc_sc_org_log_sink_project.project_number}",
 */
 
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}/servicePerimeters/restrict_all"
+  parent = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
     restricted_services = [
