@@ -54,7 +54,7 @@ resource "google_access_context_manager_access_level" "troubleshooting_access_le
   title  = "sec_admin_troubleshoot"
   basic {
     conditions {
-      members = ["group:${var.security_admins_group}"]
+      members = ["user:${var.vpc_sc_troubleshooting_user_id}"]
     }
   }
 }

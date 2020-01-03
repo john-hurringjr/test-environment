@@ -119,3 +119,5 @@ variable "prod_vpc_cloud_nat_region_2_router_asn" {}
   VPC Service Controls
  *****************************************/
 variable "vpc_service_controls_unique_id" {}
+
+variable "vpc_sc_troubleshooting_user_id" {}
