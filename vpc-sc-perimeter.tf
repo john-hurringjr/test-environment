@@ -17,15 +17,14 @@
   Acceess Context Manager Access Policy
  *****************************************/
 
-resource "google_access_context_manager_access_policy" "access_context_manager_access_policy" {
+resource "google_access_context_manager_access_policy" "acm_access_policy" {
   parent = "organizations/${var.organization_id}"
-  title  = "org access policy"
+  title  = "acm access policy"
 }
 
 /*
-If above fails (Most likely because you already created a policy) you have two options:
-1) Import the Terraform Resource
-2) Add variables with Access Policy Name/Info and use those for future resources
+Be very careful using the aboce block. If your org already has an access policy this will clear it out and make a new one
+Clearing out a policy like this will remove any access levels already created.
 */
 
 /******************************************
@@ -36,8 +35,8 @@ If above fails (Most likely because you already created a policy) you have two o
 # Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
 
 resource "google_access_context_manager_access_level" "access_level" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}/accessLevels/allow_terraform_sa"
+  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/allow_terraform_sa"
   title  = "allow_terraform_sa"
   basic {
     conditions {
@@ -60,8 +59,8 @@ profiler.googleapis.com
 */
 
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.access_context_manager_access_policy.name}/servicePerimeters/restrict_all"
+  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
     restricted_services = [
