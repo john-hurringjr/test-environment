@@ -19,7 +19,7 @@
 
 resource "google_access_context_manager_access_policy" "acm_access_policy" {
   parent = "organizations/${var.organization_id}"
-  title  = "acm access policy"
+  title  = "org acm access policy"
 }
 
 /*
@@ -34,13 +34,27 @@ Clearing out a policy like this will remove any access levels already created.
 # Allows the TF service account we're using to manage resource in the perimeter
 # Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
 
-resource "google_access_context_manager_access_level" "access_level" {
+resource "google_access_context_manager_access_level" "terraform_service_account_access_level" {
   parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
   name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/allow_terraform_sa"
   title  = "allow_terraform_sa"
   basic {
     conditions {
       members = ["serviceAccount:${var.terraform_service_account}"]
+    }
+  }
+}
+
+# May use the below Access Level for troubleshooting.
+# Terraform should clear it out from perimeter each time, but can add temporarily
+
+resource "google_access_context_manager_access_level" "troubleshooting_access_level_security_admins" {
+  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/sec_admin_troubleshoot"
+  title  = "sec_admin_troubleshoot"
+  basic {
+    conditions {
+      members = ["user:${var.vpc_sc_troubleshooting_user_id}"]
     }
   }
 }
@@ -52,10 +66,6 @@ resource "google_access_context_manager_access_level" "access_level" {
 /*
 Services to add later:
 profiler.googleapis.com
-      "projects/${module.vpc_sc_monitoring_project.project_number}",
-      "projects/${module.vpc_sc_os_images_project_dev.project_number}",
-      "projects/${module.vpc_sc_os_images_project_prod.project_number}",
-      "projects/${module.vpc_sc_org_log_sink_project.project_number}",
 */
 
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
@@ -73,7 +83,16 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "cloudtrace.googleapis.com", "tpu.googleapis.com",
       "videointelligence.googleapis.com",
     ]
-    access_levels = [google_access_context_manager_access_level.access_level.id ]
-    resources = ["projects/${module.vpc_sc_forseti_project.project_number}"]
+    access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
+    resources = [
+      "projects/${module.vpc_sc_forseti_project.project_number}",
+      "projects/${module.vpc_sc_monitoring_project.project_number}",
+      "projects/${module.vpc_sc_os_images_project_dev.project_number}",
+      "projects/${module.vpc_sc_os_images_project_prod.project_number}",
+      "projects/${module.vpc_sc_org_log_sink_project.project_number}",
+      "projects/${module.vpc_sc_shared_vpc_host_project_dev.project_number}",
+      "projects/${module.vpc_sc_shared_vpc_host_project_prod.project_number}",
+      "projects/${module.vpc_sc_shared_vpc_host_project_transit.project_number}",
+    ]
   }
 }
