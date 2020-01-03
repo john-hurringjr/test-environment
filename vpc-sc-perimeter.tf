@@ -19,7 +19,7 @@
 
 resource "google_access_context_manager_access_policy" "acm_access_policy" {
   parent = "organizations/${var.organization_id}"
-  title  = "acm access policy"
+  title  = "org acm access policy"
 }
 
 /*
