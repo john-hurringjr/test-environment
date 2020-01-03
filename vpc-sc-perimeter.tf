@@ -55,7 +55,16 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
   name   = "accessPolicies/${google_access_context_manager_access_policy.access_policy.name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
-    restricted_services = ["storage.googleapis.com"]
+    restricted_services = [
+      "storage.googleapis.com", "ml.googleapis.com", "bigquery.googleapis.com",
+      "bigtable.googleapis.com", "cloudasset.googleapis.com", "dataflow.googleapis.com", "dataproc.googleapis.com",
+      "dlp.googleapis.com", "cloudkms.googleapis.com", "language.googleapis.com", "pubsub.googleapis.com",
+      "meshca.googleapis.com", "spanner.googleapis.com", "sqladmin.googleapis.com", "vision.googleapis.com",
+      "containerregistry.googleapis.com", "container.googleapis.com", "gkeconnect.googleapis.com",
+      "gkehub.googleapis.com", "cloudresourcemanager.googleapis.com", "logging.googleapis.com",
+      "profiler.googleapis.com", "cloudtrace.googleapis.com", "tpu.googleapis.com",
+      "videointelligence.googleapis.com",
+    ]
     access_levels = [google_access_context_manager_access_level.access_level.id ]
     resources = ["projects/${module.vpc_sc_forseti_project.project_number}"]
   }
