@@ -78,12 +78,15 @@ variable "on_prem_vpc_cloud_nat_region_2_router_asn" {}
 
 
 /******************************************
-  Org Sink Variables
+  Org & Billing Sink Variables
  *****************************************/
 variable "gcs_org_sink_bucket_name" {}
 variable "bigquery_org_sink_name" {}
 variable "bigquery_org_sink_data_set_id" {}
 variable "gcs_org_sink_name" {}
+
+variable "gcs_billing_sink_name" {}
+variable "gcs_billing_sink_bucket_name" {}
 
 /******************************************
   Billing Export Variables

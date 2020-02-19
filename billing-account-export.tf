@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  BigQuery
+  Billing Details - BigQuery
  *****************************************/
 module "billing_log_sink_bigquery" {
   source                          = "github.com/john-hurringjr/test-modules/billing-export/bigquery"

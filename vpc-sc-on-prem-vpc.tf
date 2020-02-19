@@ -63,39 +63,6 @@ module "vpc_sc_on_prem_vpc_firewall_allow_rfc1918_all" {
   network_self_link = google_compute_network.vpc_sc_on_prem_vpc.self_link
   network_name      = google_compute_network.vpc_sc_on_prem_vpc.name
 }
-/******************************************
-  On Prem HA VPN with Transit VPC - Region 1
- *****************************************/
-
-//module "vpc_sc_ha_vpn_on_prem_with_transit_vpc_region_1" {
-//  source                    = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
-//  project_1_id              = google_project.on_premise.project_id
-//  network_1_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
-//  network_1_name            = google_compute_network.vpc_sc_on_prem_vpc.name
-//  network_1_router_bgp_asn  = var.on_prem_vpc_router_region_1_asn
-//  project_2_id              = module.vpc_sc_shared_vpc_host_project_transit.project_id
-//  network_2_self_link       = google_compute_network.vpc_sc_transit_vpc.self_link
-//  network_2_name            = google_compute_network.vpc_sc_transit_vpc.name
-//  network_2_router_bgp_asn  = var.transit_vpc_router_region_1_asn
-//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_1
-//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_2
-//  region                    = var.region_1
-//}
-//
-//module "vpc_sc_ha_vpn_on_prem_with_transit_vpc_region_2" {
-//  source                    = "github.com/john-hurringjr/test-modules/networking/vpn-ha-gcp"
-//  project_1_id              = google_project.on_premise.project_id
-//  network_1_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
-//  network_1_name            = google_compute_network.vpc_sc_on_prem_vpc.name
-//  network_1_router_bgp_asn  = var.on_prem_vpc_router_region_2_asn
-//  project_2_id              = module.vpc_sc_shared_vpc_host_project_transit.project_id
-//  network_2_self_link       = google_compute_network.vpc_sc_transit_vpc.self_link
-//  network_2_name            = google_compute_network.vpc_sc_transit_vpc.name
-//  network_2_router_bgp_asn  = var.transit_vpc_router_region_2_asn
-//  shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_1
-//  shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_2
-//  region                    = var.region_2
-//}
 
 /******************************************
   Set Up Cloud NAT
@@ -118,37 +85,3 @@ module "vpc_sc_on_prem_cloud_nat_region_2" {
   nat_region              = var.region_2
 }
 
-/******************************************
-  Set Up VM as NAT Gateway
- *****************************************/
-
-//module "vpc_sc_simple_nat_instance_region_1" {
-//  source                = "github.com/john-hurringjr/test-modules/gce-instances/simplenat"
-//  project_id            = google_project.on_premise.project_id
-//  subnet_self_link      = module.vpc_sc_on_prem_vpc_region_1_subnet.subnet_self_link
-//  zone                  = var.region_1_zone_1
-//  instance_name         = "nat-gateway-instance"
-//  machine_type          = "n1-standard-4"
-//  instance_network_tag  = var.nat_instance_tag
-//}
-//
-//resource "google_compute_route" "vpc_sc_default_route_to_nat_instance" {
-//  depends_on            = [module.vpc_sc_simple_nat_instance_region_1]
-//  project               = google_project.on_premise.project_id
-//  dest_range            = "0.0.0.0/0"
-//  name                  = "default-route-to-nat-instance"
-//  network               = google_compute_network.vpc_sc_on_prem_vpc.name
-//  next_hop_instance     = module.vpc_sc_simple_nat_instance_region_1.instance_self_link
-//  priority              = 1000
-//}
-//
-//resource "google_compute_route" "vpc_sc_nat_instance_special_route_to_internet_gw" {
-//  depends_on        = [module.vpc_sc_simple_nat_instance_region_1]
-//  project           = google_project.on_premise.project_id
-//  dest_range        = "0.0.0.0/0"
-//  name              = "nat-instance-special-route"
-//  network           = google_compute_network.vpc_sc_on_prem_vpc.name
-//  next_hop_gateway  = "default-internet-gateway"
-//  priority          = 100
-//  tags              = [var.nat_instance_tag]
-//}
