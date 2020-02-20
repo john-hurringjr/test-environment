@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  BigQuery
+  Org - BigQuery
  *****************************************/
 
 module "org_sink_bigquery" {
@@ -27,7 +27,7 @@ module "org_sink_bigquery" {
 }
 
 /******************************************
-  GCS
+  Org - GCS
  *****************************************/
 
 module "org_sink_gcs" {
@@ -38,5 +38,34 @@ module "org_sink_gcs" {
   object_age_move_to_coldline  = 365
   sink_name                    = var.gcs_org_sink_name
   organization_id              = var.organization_id
+}
+
+/******************************************
+  Billing - PubSub
+ *****************************************/
+
+module "billing_sink_pubsub" {
+  source                                 = "github.com/john-hurringjr/test-modules/billing-log-sink/pubsub"
+  project_id                             = module.org_log_sink_project.project_id
+  sink_pubsub_topic_name                 = var.billing_sink_pubsub_topic_name
+  sink_pubsub_subscription_name          = var.billing_sink_pubsub_subscription_name
+  sink_name                              = var.billing_pubsub_sink_name
+  sink_subscription_service_account_name = var.billing_sink_subscription_service_account_name
+  billing_account                        = var.billing_account_id
+
+}
+
+/******************************************
+  Billing - GCS
+ *****************************************/
+
+module "billing_sink_gcs" {
+  source                       = "github.com/john-hurringjr/test-modules/billing-log-sink/gcs"
+  project_id                   = module.org_log_sink_project.project_id
+  gcs_bucket_name              = var.gcs_billing_sink_bucket_name
+  object_age_move_to_nearline  = 180
+  object_age_move_to_coldline  = 365
+  sink_name                    = var.gcs_billing_sink_name
+  billing_account              = var.billing_account_id
 }
 
