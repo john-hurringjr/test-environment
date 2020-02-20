@@ -73,7 +73,7 @@ module "billing_sink_gcs" {
   Billing 2 - PubSub
  *****************************************/
 
-module "billing_sink_pubsub" {
+module "billing_2_sink_pubsub" {
   source                                 = "github.com/john-hurringjr/test-modules/billing-log-sink/pubsub"
   project_id                             = module.org_log_sink_project.project_id
   sink_pubsub_topic_name                 = var.billing_sink_pubsub_topic_name
@@ -88,7 +88,7 @@ module "billing_sink_pubsub" {
   Billing 2 - GCS
  *****************************************/
 
-module "billing_sink_gcs" {
+module "billing_2_sink_gcs" {
   source                       = "github.com/john-hurringjr/test-modules/billing-log-sink/gcs"
   project_id                   = module.org_log_sink_project.project_id
   gcs_bucket_name              = var.gcs_billing_sink_bucket_name
