@@ -22,6 +22,7 @@ variable "domain_identity_primary" {}
 variable "domain_identity_secondary" {}
 variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
+variable "billing_account_id_2" {}
 
 /******************************************
   Variables of groups
@@ -93,6 +94,13 @@ variable "billing_sink_pubsub_subscription_name" {}
 variable "billing_pubsub_sink_name" {}
 variable "billing_sink_subscription_service_account_name" {}
 
+variable "gcs_billing_2_sink_name" {}
+variable "gcs_billing_2_sink_bucket_name" {}
+
+variable "billing_2_sink_pubsub_topic_name" {}
+variable "billing_2_sink_pubsub_subscription_name" {}
+variable "billing_2_pubsub_sink_name" {}
+variable "billing_2_sink_subscription_service_account_name" {}
 
 /******************************************
   Billing Export Variables
