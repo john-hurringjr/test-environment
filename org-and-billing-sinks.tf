@@ -76,10 +76,10 @@ module "billing_sink_gcs" {
 module "billing_2_sink_pubsub" {
   source                                 = "github.com/john-hurringjr/test-modules/billing-log-sink/pubsub"
   project_id                             = module.org_log_sink_project.project_id
-  sink_pubsub_topic_name                 = var.billing_sink_pubsub_topic_name
-  sink_pubsub_subscription_name          = var.billing_sink_pubsub_subscription_name
-  sink_name                              = var.billing_pubsub_sink_name
-  sink_subscription_service_account_name = var.billing_sink_subscription_service_account_name
+  sink_pubsub_topic_name                 = var.billing_2_sink_pubsub_topic_name
+  sink_pubsub_subscription_name          = var.billing_2_sink_pubsub_subscription_name
+  sink_name                              = var.billing_2_pubsub_sink_name
+  sink_subscription_service_account_name = var.billing_2_sink_subscription_service_account_name
   billing_account                        = var.billing_account_id_2
 
 }
@@ -91,9 +91,9 @@ module "billing_2_sink_pubsub" {
 module "billing_2_sink_gcs" {
   source                       = "github.com/john-hurringjr/test-modules/billing-log-sink/gcs"
   project_id                   = module.org_log_sink_project.project_id
-  gcs_bucket_name              = var.gcs_billing_sink_bucket_name
+  gcs_bucket_name              = var.gcs_billing_2_sink_bucket_name
   object_age_move_to_nearline  = 180
   object_age_move_to_coldline  = 365
-  sink_name                    = var.gcs_billing_sink_name
+  sink_name                    = var.gcs_billing_2_sink_name
   billing_account              = var.billing_account_id_2
 }
