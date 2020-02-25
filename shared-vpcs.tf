@@ -49,12 +49,12 @@ module "transit_vpc_region_2_subnet" {
   subnet_number         = "1"
 }
 
-module "transit_vpc_firewall_deny_all_egress" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/deny-egress-all-port-proto"
-  project_id        = module.shared_vpc_host_project_transit.project_id
-  network_self_link = google_compute_network.transit_vpc.self_link
-  network_name      = google_compute_network.transit_vpc.name
-}
+//module "transit_vpc_firewall_deny_all_egress" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/deny-egress-all-port-proto"
+//  project_id        = module.shared_vpc_host_project_transit.project_id
+//  network_self_link = google_compute_network.transit_vpc.self_link
+//  network_name      = google_compute_network.transit_vpc.name
+//}
 
 /******************************************
   Shared VPC Host - Dev
