@@ -148,6 +148,7 @@ resource "google_compute_network_peering" "transit_vpc_to_dev_vpc" {
   network               = google_compute_network.transit_vpc.id
   peer_network          = google_compute_network.dev_vpc.id
   export_custom_routes  = true
+  import_custom_routes  = true
 }
 
 resource "google_compute_network_peering" "dev_vpc_to_transit_vpc" {
@@ -157,6 +158,7 @@ resource "google_compute_network_peering" "dev_vpc_to_transit_vpc" {
   network               = google_compute_network.dev_vpc.id
   peer_network          = google_compute_network.transit_vpc.id
   import_custom_routes  = true
+  export_custom_routes  = true
 }
 
 /******************************************
