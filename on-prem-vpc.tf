@@ -85,6 +85,8 @@ module "on_prem_cloud_nat_region_2" {
   nat_region              = var.region_2
 }
 
+#Add default route or cannot use nat
+
 /******************************************
   Set Up VM as NAT Gateway
  *****************************************/
