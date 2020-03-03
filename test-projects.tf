@@ -44,3 +44,17 @@ module "test_2_dev_project" {
   project_admin_group_id      = var.application_1_admins_group
   shared_vpc_host_project_id  = module.shared_vpc_host_project_dev.project_id
 }
+
+module "test_3_dev_project" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/shared-vpc-service-restricted"
+  project_friendly_name       = "Test 3"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "dev"
+  unique_project_identifier   = "test-3"
+  folder_id                   = google_folder.business.id
+  billing_account_id          = var.billing_account_id
+  label_business_unit         = ""
+  label_restrictions          = ""
+  project_admin_group_id      = var.application_1_admins_group
+  shared_vpc_host_project_id  = module.shared_vpc_host_project_dev.project_id
+}
