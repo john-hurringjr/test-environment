@@ -141,20 +141,20 @@ module "vpc_sc_dev_vpc_restricted_apis_routing" {
 /******************************************
   Cloud NAT - Dev - Temporary
  *****************************************/
-module "dev_vpc_cloud_nat_region_1" {
+module "vpc_sc_dev_vpc_cloud_nat_region_1" {
   source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-  project_id              = module.shared_vpc_host_project_dev.project_id
-  network_self_link       = google_compute_network.dev_vpc.self_link
-  network_name            = google_compute_network.dev_vpc.name
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
   cloud_router_asn_number = var.dev_vpc_cloud_nat_region_1_router_asn
   nat_region              = var.region_1
 }
 
-module "dev_vpc_cloud_nat_region_2" {
+module "vpc_sc_dev_vpc_cloud_nat_region_2" {
   source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-  project_id              = module.shared_vpc_host_project_dev.project_id
-  network_self_link       = google_compute_network.dev_vpc.self_link
-  network_name            = google_compute_network.dev_vpc.name
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
   cloud_router_asn_number = var.dev_vpc_cloud_nat_region_2_router_asn
   nat_region              = var.region_2
 }
