@@ -160,6 +160,7 @@ module "vpc_sc_dev_vpc_cloud_nat_region_2" {
 }
 
 resource "google_compute_route" "temp_default" {
+  project_id        = module.vpc_sc_shared_vpc_host_project_dev.project_id
   dest_range        = "0.0.0.0/0"
   name              = "temp-default-route"
   network           = google_compute_network.vpc_sc_dev_vpc.name
