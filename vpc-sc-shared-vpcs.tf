@@ -137,6 +137,36 @@ module "vpc_sc_dev_vpc_restricted_apis_routing" {
 
 
 
+
+/******************************************
+  Cloud NAT - Dev - Temporary
+ *****************************************/
+module "vpc_sc_dev_vpc_cloud_nat_region_1" {
+  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
+  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_1_router_asn
+  nat_region              = var.region_1
+}
+
+module "vpc_sc_dev_vpc_cloud_nat_region_2" {
+  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
+  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_2_router_asn
+  nat_region              = var.region_2
+}
+
+resource "google_compute_route" "temp_default" {
+  project           = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "temp-default-route"
+  network           = google_compute_network.vpc_sc_dev_vpc.name
+  next_hop_gateway  = "default-internet-gateway"
+}
+
 /******************************************
   Peering - Dev & Transit
   Uncomment below after creating networks. Will have conflict otherwise with route creation
