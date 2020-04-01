@@ -293,20 +293,20 @@ module "vpc_sc_prod_vpc_restricted_apis_routing" {
   Uncomment below after creating networks. Will have conflict otherwise with route creation
  *****************************************/
 
-resource "google_compute_network_peering" "vpc_sc_transit_vpc_to_prod_vpc" {
-  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc]
-  provider              = google-beta
-  name                  = "vpc-sc-transit-to-prod-peering"
-  network               = google_compute_network.vpc_sc_transit_vpc.id
-  peer_network          = google_compute_network.vpc_sc_prod_vpc.id
-  export_custom_routes  = true
-}
-
-resource "google_compute_network_peering" "vpc_sc_prod_vpc_to_transit_vpc" {
-  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_prod_vpc]
-  provider              = google-beta
-  name                  = "vpc-sc-prod-to-transit-peering"
-  network               = google_compute_network.vpc_sc_prod_vpc.id
-  peer_network          = google_compute_network.vpc_sc_transit_vpc.id
-  import_custom_routes  = true
-}
+//resource "google_compute_network_peering" "vpc_sc_transit_vpc_to_prod_vpc" {
+//  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc]
+//  provider              = google-beta
+//  name                  = "vpc-sc-transit-to-prod-peering"
+//  network               = google_compute_network.vpc_sc_transit_vpc.id
+//  peer_network          = google_compute_network.vpc_sc_prod_vpc.id
+//  export_custom_routes  = true
+//}
+//
+//resource "google_compute_network_peering" "vpc_sc_prod_vpc_to_transit_vpc" {
+//  depends_on            = [google_compute_network_peering.vpc_sc_dev_vpc_to_transit_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_dev_vpc, google_compute_network_peering.vpc_sc_transit_vpc_to_prod_vpc]
+//  provider              = google-beta
+//  name                  = "vpc-sc-prod-to-transit-peering"
+//  network               = google_compute_network.vpc_sc_prod_vpc.id
+//  peer_network          = google_compute_network.vpc_sc_transit_vpc.id
+//  import_custom_routes  = true
+//}
