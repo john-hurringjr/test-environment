@@ -259,7 +259,7 @@ Uncomment the option you wish to test
  *****************************************/
 
 
-Restrictedmodule "vpc_sc_prod_vpc_restricted_apis_dns" {
+module "vpc_sc_prod_vpc_restricted_apis_dns" {
   source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
   project_id        = module.vpc_sc_shared_vpc_host_project_prod.project_id
   network_self_link = google_compute_network.vpc_sc_prod_vpc.self_link
