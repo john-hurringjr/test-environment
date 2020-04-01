@@ -134,46 +134,46 @@ Uncomment the option you wish to test
   Option 2: Point all API calls to Private
  *****************************************/
 
-module "vpc_sc_dev_vpc_private_apis_dns" {
-  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
-  project_id        = module.vpc_sc_shared_vpc_host_project_dev.project_id
-  network_self_link = google_compute_network.vpc_sc_dev_vpc.self_link
-}
-
-module "vpc_sc_dev_vpc_private_apis_routing" {
-  source            = "github.com/john-hurringjr/test-modules/networking/routing/private-apis"
-  project_id        = module.vpc_sc_shared_vpc_host_project_dev.project_id
-  network_self_link = google_compute_network.vpc_sc_dev_vpc.self_link
-}
+//module "vpc_sc_dev_vpc_private_apis_dns" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
+//  project_id        = module.vpc_sc_shared_vpc_host_project_dev.project_id
+//  network_self_link = google_compute_network.vpc_sc_dev_vpc.self_link
+//}
+//
+//module "vpc_sc_dev_vpc_private_apis_routing" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/routing/private-apis"
+//  project_id        = module.vpc_sc_shared_vpc_host_project_dev.project_id
+//  network_self_link = google_compute_network.vpc_sc_dev_vpc.self_link
+//}
 
 /******************************************
   Cloud NAT - Dev - Temporary - To get dnsutils and tcpdump on image
  *****************************************/
-//module "vpc_sc_dev_vpc_cloud_nat_region_1" {
-//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-//  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
-//  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
-//  network_name            = google_compute_network.vpc_sc_dev_vpc.name
-//  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_1_router_asn
-//  nat_region              = var.region_1
-//}
-//
-//module "vpc_sc_dev_vpc_cloud_nat_region_2" {
-//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-//  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
-//  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
-//  network_name            = google_compute_network.vpc_sc_dev_vpc.name
-//  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_2_router_asn
-//  nat_region              = var.region_2
-//}
-//
-//resource "google_compute_route" "temp_default" {
-//  project           = module.vpc_sc_shared_vpc_host_project_dev.project_id
-//  dest_range        = "0.0.0.0/0"
-//  name              = "temp-default-route"
-//  network           = google_compute_network.vpc_sc_dev_vpc.name
-//  next_hop_gateway  = "default-internet-gateway"
-//}
+module "vpc_sc_dev_vpc_cloud_nat_region_1" {
+  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
+  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_1_router_asn
+  nat_region              = var.region_1
+}
+
+module "vpc_sc_dev_vpc_cloud_nat_region_2" {
+  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  project_id              = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.vpc_sc_dev_vpc.self_link
+  network_name            = google_compute_network.vpc_sc_dev_vpc.name
+  cloud_router_asn_number = var.dev_vpc_cloud_nat_region_2_router_asn
+  nat_region              = var.region_2
+}
+
+resource "google_compute_route" "temp_default" {
+  project           = module.vpc_sc_shared_vpc_host_project_dev.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "temp-default-route"
+  network           = google_compute_network.vpc_sc_dev_vpc.name
+  next_hop_gateway  = "default-internet-gateway"
+}
 
 /******************************************
   Peering - Dev & Transit
