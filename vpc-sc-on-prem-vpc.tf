@@ -36,7 +36,7 @@ module "vpc_sc_on_prem_vpc_region_1_subnet" {
   vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
   vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
   subnet_number         = "1"
-  private_google_access = "fasle"
+  private_google_access = "false"
 }
 
 module "vpc_sc_on_prem_vpc_region_2_subnet" {
@@ -49,7 +49,7 @@ module "vpc_sc_on_prem_vpc_region_2_subnet" {
   vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
   vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
   subnet_number         = "1"
-  private_google_access = "fasle"
+  private_google_access = "false"
 }
 
 module "vpc_sc_on_prem_vpc_firewall_allow_iap_all" {
