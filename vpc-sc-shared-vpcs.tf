@@ -17,45 +17,45 @@
   Shared VPC Host - Transit
  *****************************************/
 
-resource "google_compute_network" "vpc_sc_transit_vpc" {
-  depends_on                      = [module.vpc_sc_shared_vpc_host_project_transit]
-  project                         = module.vpc_sc_shared_vpc_host_project_transit.project_id
-  name                            = "vpc-sc-transit-vpc"
-  routing_mode                    = "GLOBAL"
-  auto_create_subnetworks         = false
-  delete_default_routes_on_create = true
-}
-
-module "vpc_sc_transit_vpc_region_1_subnet" {
-  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
-  project_id            = module.vpc_sc_shared_vpc_host_project_transit.project_id
-  network_self_link     = google_compute_network.vpc_sc_transit_vpc.self_link
-  network_name          = google_compute_network.vpc_sc_transit_vpc.name
-  region                = var.region_1
-  cidr                  = var.transit_vpc_region_1_cidr
-  vpc_flow_log_interval = var.shared_vpc_flow_log_interval
-  vpc_flow_log_sampling = var.shared_vpc_flow_log_sampling
-  subnet_number         = "1"
-}
-
-module "vpc_sc_transit_vpc_region_2_subnet" {
-  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
-  project_id            = module.vpc_sc_shared_vpc_host_project_transit.project_id
-  network_self_link     = google_compute_network.vpc_sc_transit_vpc.self_link
-  network_name          = google_compute_network.vpc_sc_transit_vpc.name
-  region                = var.region_2
-  cidr                  = var.transit_vpc_region_2_cidr
-  vpc_flow_log_interval = var.shared_vpc_flow_log_interval
-  vpc_flow_log_sampling = var.shared_vpc_flow_log_sampling
-  subnet_number         = "1"
-}
-
-module "vpc_sc_transit_vpc_firewall_deny_all_egress" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/deny-egress-all-port-proto"
-  project_id        = module.vpc_sc_shared_vpc_host_project_transit.project_id
-  network_self_link = google_compute_network.vpc_sc_transit_vpc.self_link
-  network_name      = google_compute_network.vpc_sc_transit_vpc.name
-}
+//resource "google_compute_network" "vpc_sc_transit_vpc" {
+//  depends_on                      = [module.vpc_sc_shared_vpc_host_project_transit]
+//  project                         = module.vpc_sc_shared_vpc_host_project_transit.project_id
+//  name                            = "vpc-sc-transit-vpc"
+//  routing_mode                    = "GLOBAL"
+//  auto_create_subnetworks         = false
+//  delete_default_routes_on_create = true
+//}
+//
+//module "vpc_sc_transit_vpc_region_1_subnet" {
+//  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
+//  project_id            = module.vpc_sc_shared_vpc_host_project_transit.project_id
+//  network_self_link     = google_compute_network.vpc_sc_transit_vpc.self_link
+//  network_name          = google_compute_network.vpc_sc_transit_vpc.name
+//  region                = var.region_1
+//  cidr                  = var.transit_vpc_region_1_cidr
+//  vpc_flow_log_interval = var.shared_vpc_flow_log_interval
+//  vpc_flow_log_sampling = var.shared_vpc_flow_log_sampling
+//  subnet_number         = "1"
+//}
+//
+//module "vpc_sc_transit_vpc_region_2_subnet" {
+//  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
+//  project_id            = module.vpc_sc_shared_vpc_host_project_transit.project_id
+//  network_self_link     = google_compute_network.vpc_sc_transit_vpc.self_link
+//  network_name          = google_compute_network.vpc_sc_transit_vpc.name
+//  region                = var.region_2
+//  cidr                  = var.transit_vpc_region_2_cidr
+//  vpc_flow_log_interval = var.shared_vpc_flow_log_interval
+//  vpc_flow_log_sampling = var.shared_vpc_flow_log_sampling
+//  subnet_number         = "1"
+//}
+//
+//module "vpc_sc_transit_vpc_firewall_deny_all_egress" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/deny-egress-all-port-proto"
+//  project_id        = module.vpc_sc_shared_vpc_host_project_transit.project_id
+//  network_self_link = google_compute_network.vpc_sc_transit_vpc.self_link
+//  network_name      = google_compute_network.vpc_sc_transit_vpc.name
+//}
 
 /******************************************
   Shared VPC Host - Dev
