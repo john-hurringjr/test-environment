@@ -36,6 +36,7 @@ module "vpc_sc_on_prem_vpc_region_1_subnet" {
   vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
   vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
   subnet_number         = "1"
+  private_google_access = "fasle"
 }
 
 module "vpc_sc_on_prem_vpc_region_2_subnet" {
@@ -48,6 +49,7 @@ module "vpc_sc_on_prem_vpc_region_2_subnet" {
   vpc_flow_log_interval = var.on_prem_vpc_flow_log_interval
   vpc_flow_log_sampling = var.on_prem_vpc_flow_log_sampling
   subnet_number         = "1"
+  private_google_access = "fasle"
 }
 
 module "vpc_sc_on_prem_vpc_firewall_allow_iap_all" {
@@ -67,21 +69,36 @@ module "vpc_sc_on_prem_vpc_firewall_allow_rfc1918_all" {
 /******************************************
   Set Up Cloud NAT
  *****************************************/
-module "vpc_sc_on_prem_cloud_nat_region_1" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-  project_id              = google_project.on_premise.project_id
-  network_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
-  network_name            = google_compute_network.vpc_sc_on_prem_vpc.name
-  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_1_router_asn
-  nat_region              = var.region_1
+//module "vpc_sc_on_prem_cloud_nat_region_1" {
+//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+//  project_id              = google_project.on_premise.project_id
+//  network_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
+//  network_name            = google_compute_network.vpc_sc_on_prem_vpc.name
+//  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_1_router_asn
+//  nat_region              = var.region_1
+//}
+//
+//module "vpc_sc_on_prem_cloud_nat_region_2" {
+//  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+//  project_id              = google_project.on_premise.project_id
+//  network_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
+//  network_name            = google_compute_network.vpc_sc_on_prem_vpc.name
+//  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_2_router_asn
+//  nat_region              = var.region_2
+//}
+
+/******************************************
+  Set Up Cloud DNS
+ *****************************************/
+
+module "vpc_sc_on_prem_vpc_private_apis_dns" {
+  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
+  project_id        = google_project.on_premise.project_id
+  network_self_link = google_compute_network.vpc_sc_on_prem_vpc.self_link
 }
 
-module "vpc_sc_on_prem_cloud_nat_region_2" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-  project_id              = google_project.on_premise.project_id
-  network_self_link       = google_compute_network.vpc_sc_on_prem_vpc.self_link
-  network_name            = google_compute_network.vpc_sc_on_prem_vpc.name
-  cloud_router_asn_number = var.on_prem_vpc_cloud_nat_region_2_router_asn
-  nat_region              = var.region_2
-}
-
+//module "vpc_sc_on_prem_vpc_restricted_apis_dns" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
+//  project_id        = google_project.on_premise.project_id
+//  network_self_link = google_compute_network.vpc_sc_on_prem_vpc.self_link
+//}
