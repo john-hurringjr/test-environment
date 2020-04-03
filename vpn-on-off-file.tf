@@ -114,6 +114,7 @@ module "vpc_sc_ha_vpn_on_prem_with_dev_vpc_region_1" {
   shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_1
   shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_1_shared_secret_tunnel_2
   region                    = var.region_1
+  custom_range              = "199.36.153.8/30" #Restricted: 199.36.153.4/30 OR Private: 199.36.153.8/30
 }
 
 module "vpc_sc_ha_vpn_on_prem_with_dev_vpc_region_2" {
@@ -129,4 +130,5 @@ module "vpc_sc_ha_vpn_on_prem_with_dev_vpc_region_2" {
   shared_secret_tunnel_1    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_1
   shared_secret_tunnel_2    = var.vpn_on_prem_transit_region_2_shared_secret_tunnel_2
   region                    = var.region_2
+  custom_range              = "199.36.153.8/30" #Restricted: 199.36.153.4/30 OR Private: 199.36.153.8/30
 }
