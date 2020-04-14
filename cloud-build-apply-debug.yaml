@@ -17,7 +17,7 @@ steps:
         terraform init
         terraform apply -auto-approve || exit 0
   - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/']
+    args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/terraform-${_BUILD_ID}.log']
 tags:
   - 'pull-apply-debug'
 timeout: 7200s
