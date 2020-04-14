@@ -83,7 +83,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "cloudtrace.googleapis.com", "tpu.googleapis.com",
       "videointelligence.googleapis.com",
     ]
-    access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
+    # access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
     resources = [
       "projects/${module.vpc_sc_forseti_project.project_number}",
       "projects/${module.vpc_sc_monitoring_project.project_number}",
