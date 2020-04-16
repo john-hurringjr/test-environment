@@ -40,7 +40,7 @@ resource "google_folder_organization_policy" "test_folder_location_restriction" 
 
   list_policy {
     allow {
-      values = ["us-locations"]
+      values = ["in:us-locations"]
     }
   }
 
