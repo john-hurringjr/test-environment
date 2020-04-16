@@ -33,3 +33,15 @@ module "test_folder_iam_module" {
   terraform_resource_creator_service_account  = var.terraform_service_account
   folder_id                                   = google_folder.test_folder.id
 }
+
+resource "google_folder_organization_policy" "test_folder_location_restriction" {
+  constraint  = "constraints/gcp.resourceLocations"
+  folder      = google_folder.test_folder.id
+
+  list_policy {
+    allow {
+      values = ["us-locations"]
+    }
+  }
+
+}
