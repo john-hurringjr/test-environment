@@ -52,7 +52,7 @@ resource "google_folder_organization_policy" "test_folder_vpc_host" {
 
   list_policy {
     allow {
-      values = [module.shared_vpc_host_project_dev.project_id]
+      values = ["projects/${module.shared_vpc_host_project_dev.project_id}"]
     }
   }
 
