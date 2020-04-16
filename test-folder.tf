@@ -40,7 +40,19 @@ resource "google_folder_organization_policy" "test_folder_location_restriction" 
 
   list_policy {
     allow {
-      values = ["us-locations"]
+      values = ["in:us-locations"]
+    }
+  }
+
+}
+
+resource "google_folder_organization_policy" "test_folder_vpc_host" {
+  constraint  = "constraints/compute.restrictSharedVpcHostProjects"
+  folder      = google_folder.test_folder.id
+
+  list_policy {
+    allow {
+      values = ["projects/${module.shared_vpc_host_project_dev.project_id}"]
     }
   }
 
