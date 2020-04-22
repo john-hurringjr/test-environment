@@ -14,46 +14,46 @@
  */
 
 
-/******************************************
-  Folder Creation
- *****************************************/
-
-resource "google_folder" "test_folder" {
-  display_name  = "Test"
-  parent        = "organizations/${var.organization_id}"
-}
-
-/******************************************
-  Folder IAM
- *****************************************/
-
-module "test_folder_iam_module" {
-  source                                      = "github.com/john-hurringjr/test-modules/folder-iam/vpc-sc-two-service-accounts"
-  terraform_project_creator_service_account   = var.terraform_service_account
-  terraform_resource_creator_service_account  = var.terraform_service_account
-  folder_id                                   = google_folder.test_folder.id
-}
-
-resource "google_folder_organization_policy" "test_folder_location_restriction" {
-  constraint  = "constraints/gcp.resourceLocations"
-  folder      = google_folder.test_folder.id
-
-  list_policy {
-    allow {
-      values = ["in:us-locations"]
-    }
-  }
-
-}
-
-resource "google_folder_organization_policy" "test_folder_vpc_host" {
-  constraint  = "constraints/compute.restrictSharedVpcHostProjects"
-  folder      = google_folder.test_folder.id
-
-  list_policy {
-    allow {
-      values = ["projects/${module.shared_vpc_host_project_dev.project_id}"]
-    }
-  }
-
-}
+///******************************************
+//  Folder Creation
+// *****************************************/
+//
+//resource "google_folder" "test_folder" {
+//  display_name  = "Test"
+//  parent        = "organizations/${var.organization_id}"
+//}
+//
+///******************************************
+//  Folder IAM
+// *****************************************/
+//
+//module "test_folder_iam_module" {
+//  source                                      = "github.com/john-hurringjr/test-modules/folder-iam/vpc-sc-two-service-accounts"
+//  terraform_project_creator_service_account   = var.terraform_service_account
+//  terraform_resource_creator_service_account  = var.terraform_service_account
+//  folder_id                                   = google_folder.test_folder.id
+//}
+//
+//resource "google_folder_organization_policy" "test_folder_location_restriction" {
+//  constraint  = "constraints/gcp.resourceLocations"
+//  folder      = google_folder.test_folder.id
+//
+//  list_policy {
+//    allow {
+//      values = ["in:us-locations"]
+//    }
+//  }
+//
+//}
+//
+//resource "google_folder_organization_policy" "test_folder_vpc_host" {
+//  constraint  = "constraints/compute.restrictSharedVpcHostProjects"
+//  folder      = google_folder.test_folder.id
+//
+//  list_policy {
+//    allow {
+//      values = ["projects/${module.shared_vpc_host_project_dev.project_id}"]
+//    }
+//  }
+//
+//}
