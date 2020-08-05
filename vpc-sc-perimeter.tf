@@ -85,7 +85,6 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
     ]
     access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
     resources = [
-      "projects/${module.vpc_sc_forseti_project.project_number}",
       "projects/${module.vpc_sc_monitoring_project.project_number}",
       "projects/${module.vpc_sc_os_images_project_dev.project_number}",
       "projects/${module.vpc_sc_os_images_project_prod.project_number}",
@@ -93,7 +92,6 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "projects/${module.vpc_sc_shared_vpc_host_project_dev.project_number}",
       "projects/${module.vpc_sc_shared_vpc_host_project_prod.project_number}",
       "projects/${module.vpc_sc_shared_vpc_host_project_transit.project_number}",
-      "projects/${module.vpc_sc_test_project_dev_1.project_number}",
     ]
   }
 }
