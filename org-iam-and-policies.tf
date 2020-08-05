@@ -24,8 +24,6 @@ module "org_iam" {
   network_admins_group          = var.network_admins_group
   security_admins_group         = var.security_admins_group
   sre_group                     = var.sre_group
-  domain_identity_primary       = var.domain_identity_primary
-  domain_identity_secondary     = var.domain_identity_secondary
   organization_id               = var.organization_id
   billing_admins_group          = var.billing_admins_group
   external_user_os_login_group  = var.external_users_os_login_group
@@ -37,8 +35,6 @@ module "org_iam" {
 
 module "org_policies" {
   source                    = "github.com/john-hurringjr/test-modules//org-policies?ref=master"
-  domain_identity_primary   = var.domain_identity_primary
-  domain_identity_secondary = var.domain_identity_secondary
   organization_id           = var.organization_id
 }
 
