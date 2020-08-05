@@ -36,6 +36,7 @@ module "org_iam" {
 module "org_policies" {
   source                    = "github.com/john-hurringjr/test-modules//org-policies?ref=master"
   organization_id           = var.organization_id
+  domain_identities         = var.domain_identities
 }
 
 
