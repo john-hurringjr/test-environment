@@ -111,23 +111,23 @@ module "os_images_project_prod" {
   shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
 }
 
-/******************************************
-  Forseti
- *****************************************/
-
-module "forseti_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
-  project_friendly_name       = "Forseti Project"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "prod"
-  unique_project_identifier   = "forseti"
-  folder_id                   = google_folder.shared_services.id
-  billing_account_id          = var.billing_account_id
-  label_business_unit         = ""
-  label_restrictions          = ""
-  project_admin_group_id      = var.security_admins_group
-  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
-}
+///******************************************
+//  Forseti
+// *****************************************/
+//
+//module "forseti_project" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+//  project_friendly_name       = "Forseti Project"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "prod"
+//  unique_project_identifier   = "forseti"
+//  folder_id                   = google_folder.shared_services.id
+//  billing_account_id          = var.billing_account_id
+//  label_business_unit         = ""
+//  label_restrictions          = ""
+//  project_admin_group_id      = var.security_admins_group
+//  shared_vpc_host_project_id  = module.shared_vpc_host_project_prod.project_id
+//}
 
 /******************************************
   Org Log Sink Project
