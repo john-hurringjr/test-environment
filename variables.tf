@@ -18,8 +18,7 @@
  *****************************************/
 variable "organization_id" {}
 variable "terraform_service_account" {}
-variable "domain_identity_primary" {}
-variable "domain_identity_secondary" {}
+variable "domain_identities" {}
 variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
 variable "billing_account_id_2" {}
