@@ -46,7 +46,7 @@ module "org_policies" {
 
 resource "google_folder_organization_policy" "define_trusted_image_project" {
   constraint  = "constraints/compute.trustedImageProjects"
-  folder      = google_folder.business.id
+  folder      = google_folder.business_trusted_image.id
   list_policy {
     allow {
       values = ["projects/${module.os_images_project_prod.project_id}",]

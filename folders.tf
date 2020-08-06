@@ -27,6 +27,21 @@ resource "google_folder" "business" {
   parent        = "organizations/${var.organization_id}"
 }
 
+resource "google_folder" "business_no_restrictions" {
+  display_name  = "No Restrictions"
+  parent        = google_folder.business.id
+}
+
+resource "google_folder" "business_trusted_image" {
+  display_name  = "Trusted Image"
+  parent        = google_folder.business.id
+}
+
+resource "google_folder" "business_location_usa" {
+  display_name  = "Location USA"
+  parent        = google_folder.business.id
+}
+
 resource "google_folder" "networking" {
   display_name  = "Networking"
   parent        = google_folder.shared_services.id
