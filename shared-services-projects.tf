@@ -152,7 +152,7 @@ module "monitoring_project" {
  *****************************************/
 
 module "kms_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access/kms"
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
   project_friendly_name       = "KMS Project"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
