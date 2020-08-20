@@ -52,6 +52,11 @@ resource "google_folder" "on_prem" {
   parent        = "organizations/${var.organization_id}"
 }
 
+resource "google_folder" "test_folder_admin" {
+  display_name  = "Folder Admin Test"
+  parent        = "organizations/${var.organization_id}"
+}
+
 /******************************************
   VPC SC Folders
  *****************************************/
