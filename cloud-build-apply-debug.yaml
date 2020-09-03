@@ -1,7 +1,7 @@
 ---
 steps:
   - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', 'gs://${_PLAN_BUCKET}/variables/test-environment-variables.auto.tfvars', '.']
+    args: ['cp', 'gs://${_PLAN_BUCKET}/variables/01-shared-services-variables.auto.tfvars', '.']
     waitFor: ['-']
   - name: gcr.io/cloud-builders/gsutil
     args: ['cp', 'gs://${_PLAN_BUCKET}/backend/backend.tf', '.']
