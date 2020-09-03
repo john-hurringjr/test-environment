@@ -13,6 +13,7 @@ steps:
     args:
       - init
   - name: hashicorp/terraform
+    dir: './${_FOLDER}/'
     args:
       - plan
 tags:
