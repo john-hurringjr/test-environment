@@ -14,10 +14,25 @@
  */
 
 /******************************************
-  Variables
+  Folders
  *****************************************/
-variable "organization_id" {}
-variable "terraform_service_account" {}
-variable "domain_identities" {}
-variable "project_unique_shared_id" {}
-variable "billing_account_id" {}
+
+resource "google_folder" "iam_top_level" {
+  display_name  = "IAM Testing"
+  parent        = "organizations/${var.organization_id}"
+}
+
+resource "google_folder" "no_domain_restricted_sharing" {
+  display_name  = "No Domain Restricted Sharing"
+  parent        = google_folder.iam_top_level.id
+}
+
+resource "google_folder" "empty_iam_projects" {
+  display_name  = "Empty IAM Projects"
+  parent        = google_folder.iam_top_level.id
+}
+
+resource "google_folder" "conditional_access_testing" {
+  display_name  = "Empty IAM Projects"
+  parent        = google_folder.iam_top_level.id
+}
