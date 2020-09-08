@@ -33,6 +33,6 @@ resource "google_folder" "empty_iam_projects" {
 }
 
 resource "google_folder" "conditional_access_testing" {
-  display_name  = "Empty IAM Projects"
+  display_name  = "Conditional Access Testing"
   parent        = google_folder.iam_top_level.id
 }
