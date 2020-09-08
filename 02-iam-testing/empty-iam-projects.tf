@@ -24,5 +24,6 @@ resource "google_project" "empty_iam_1" {
 }
 
 module "empty_iam_1_policy" {
-  project_id = google_project.empty_iam_1.project_id
+  source      = "github.com/john-hurringjr/iam-modules/test/empty/project"
+  project_id  = google_project.empty_iam_1.project_id
 }
