@@ -22,3 +22,8 @@ resource "google_project" "empty_iam_1" {
   folder_id       = google_folder.empty_iam_projects.id
   billing_account = var.billing_account_id
 }
+
+module "empty_iam_1_policy" {
+  source      = "github.com/john-hurringjr/iam-modules/test/empty/project"
+  project_id  = google_project.empty_iam_1.project_id
+}
