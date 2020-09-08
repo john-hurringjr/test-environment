@@ -1,13 +1,12 @@
 ---
 steps:
   - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', 'gs://${_PLAN_BUCKET}/variables/test-environment-variables.auto.tfvars', '.']
-    waitFor: ['-']
-  - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', 'gs://${_PLAN_BUCKET}/backend/backend.tf', '.']
+    dir: './${_FOLDER}/'
+    args: ['cp', 'gs://${_GCS_BUCKET}/${_FOLDER}/*', '.']
     waitFor: ['-']
   - name: hashicorp/terraform
     entrypoint: sh
+    dir: './${_FOLDER}/'
     env:
       - 'TF_LOG=TRACE'
       - 'TF_LOG_PATH=./terraform.log'
@@ -17,7 +16,8 @@ steps:
         terraform init
         terraform apply -auto-approve || exit 0
   - name: gcr.io/cloud-builders/gsutil
-    args: ['cp', './terraform.log', 'gs://${_PLAN_BUCKET}/errorlogs/terraform-$BUILD_ID.log']
+    dir: './${_FOLDER}/'
+    args: ['cp', './terraform.log', 'gs://${_GCS_BUCKET}/00-error-logs/terraform-errors-$BUILD_ID.log']
 tags:
-  - 'pull-apply-debug'
+  - 'apply-debug'
 timeout: 7200s
