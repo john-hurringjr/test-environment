@@ -17,7 +17,7 @@
  *****************************************/
 
 resource "google_project" "empty_iam_1" {
-  name            = "IaC Project"
+  name            = "${var.project_unique_shared_id}-empty-iam-1"
   project_id      = "${var.project_unique_shared_id}-empty-iam-1"
   folder_id       = google_folder.empty_iam_projects.id
   billing_account = var.billing_account_id
