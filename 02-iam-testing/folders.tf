@@ -36,3 +36,8 @@ resource "google_folder" "conditional_access_testing" {
   display_name  = "Conditional Access Testing"
   parent        = google_folder.iam_top_level.id
 }
+
+resource "google_folder" "service_agent_testing_projects" {
+  display_name  = "Service Agent Projects"
+  parent        = google_folder.iam_top_level.id
+}
