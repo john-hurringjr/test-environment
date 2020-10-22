@@ -17,16 +17,3 @@
   Cloud KMS Project - Service Project
  *****************************************/
 
-//module "test_kms_project_dev" {
-//  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
-//  project_friendly_name       = "KMS Dev"
-//  unique_shared_id            = var.project_unique_shared_id
-//  environment                 = "dev"
-//  unique_project_identifier   = "kms1"
-//  folder_id                   = google_folder.business_no_restrictions.id
-//  billing_account_id          = var.billing_account_id
-//  label_business_unit         = ""
-//  label_restrictions          = ""
-//  project_admin_group_id      = var.application_1_developer_group
-//  shared_vpc_host_project_id  = module.shared_vpc_host_project_dev.project_id
-//}
