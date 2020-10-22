@@ -16,7 +16,7 @@
   Apply to empty IAM project for testing (Project 1)
  *****************************************/
 
-module "test_custom_role" {
-  source      = "github.com/john-hurringjr/iam-modules/test/custom-roles/all-permissions-project"
-  project_id  = google_project.empty_iam_1.project_id
-}
+//module "test_custom_role" {
+//  source      = "github.com/john-hurringjr/iam-modules/test/custom-roles/all-permissions-project"
+//  project_id  = google_project.empty_iam_1.project_id
+//}
