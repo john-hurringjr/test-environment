@@ -35,8 +35,8 @@ resource "google_project_service" "dataflow_enable_api_1" {
  *****************************************/
 
 resource "google_project" "functions_1" {
-  name            = "${var.project_unique_shared_id}-dataflow-1"
-  project_id      = "${var.project_unique_shared_id}-dataflow-1"
+  name            = "${var.project_unique_shared_id}-functions-1"
+  project_id      = "${var.project_unique_shared_id}-functions-1"
   folder_id       = google_folder.service_agent_testing_projects.id
   billing_account = var.billing_account_id
 }
@@ -53,8 +53,8 @@ resource "google_project_service" "cloudfunctions_enale_api_1" {
  *****************************************/
 
 resource "google_project" "composer_1" {
-  name            = "${var.project_unique_shared_id}-dataflow-1"
-  project_id      = "${var.project_unique_shared_id}-dataflow-1"
+  name            = "${var.project_unique_shared_id}-composer-1"
+  project_id      = "${var.project_unique_shared_id}-composer-1"
   folder_id       = google_folder.service_agent_testing_projects.id
   billing_account = var.billing_account_id
 }
