@@ -20,12 +20,12 @@
 
 data "google_iam_policy" "org_perm_folder_policy_data" {
 
-  binding {
-    members = [
-      "serviceAccount:${var.terraform_service_account}",
-    ]
-    role = "roles/orgpolicy.policyAdmin"
-  }
+//  binding {
+//    members = [
+//      "serviceAccount:${var.terraform_service_account}",
+//    ]
+//    role = "roles/orgpolicy.policyAdmin"
+//  }
 
   binding {
     members = [
