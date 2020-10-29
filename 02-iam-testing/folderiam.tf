@@ -90,12 +90,12 @@ data "google_iam_policy" "org_perm_folder_policy_data" {
     role = "roles/threatdetection.viewer"
   }
 
-  binding {
-    members = [
-      "serviceAccount:${var.terraform_service_account}",
-    ]
-    role = "roles/billing.creator"
-  }
+//  binding {
+//    members = [
+//      "serviceAccount:${var.terraform_service_account}",
+//    ]
+//    role = "roles/billing.creator"
+//  }
 
   binding {
     members = [
