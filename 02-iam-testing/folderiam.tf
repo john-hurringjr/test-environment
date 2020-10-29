@@ -76,12 +76,12 @@ data "google_iam_policy" "org_perm_folder_policy_data" {
     role = "roles/securitycenter.sourcesViewer"
   }
 
-  binding {
-    members = [
-      "serviceAccount:${var.terraform_service_account}",
-    ]
-    role = "roles/cloudsupport.viewer"
-  }
+//  binding {
+//    members = [
+//      "serviceAccount:${var.terraform_service_account}",
+//    ]
+//    role = "roles/cloudsupport.viewer"
+//  }
 
   binding {
     members = [
