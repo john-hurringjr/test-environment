@@ -97,12 +97,12 @@ data "google_iam_policy" "org_perm_folder_policy_data" {
 //    role = "roles/billing.creator"
 //  }
 
-  binding {
-    members = [
-      "serviceAccount:${var.terraform_service_account}",
-    ]
-    role = "roles/compute.osLoginExternalUser"
-  }
+//  binding {
+//    members = [
+//      "serviceAccount:${var.terraform_service_account}",
+//    ]
+//    role = "roles/compute.osLoginExternalUser"
+//  }
 
   binding {
     members = [
