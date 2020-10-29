@@ -41,12 +41,12 @@ data "google_iam_policy" "org_perm_folder_policy_data" {
     role = "roles/resourcemanager.organizationAdmin"
   }
 
-  binding {
-    members = [
-      "serviceAccount:${var.terraform_service_account}",
-    ]
-    role = "roles/resourcemanager.organizationViewer"
-  }
+//  binding {
+//    members = [
+//      "serviceAccount:${var.terraform_service_account}",
+//    ]
+//    role = "roles/resourcemanager.organizationViewer"
+//  }
 
   binding {
     members = [
