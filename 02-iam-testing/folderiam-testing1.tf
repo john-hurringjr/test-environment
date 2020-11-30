@@ -110,7 +110,7 @@ data "google_iam_policy" "org_perm_folder_policy_data" {
   Apply Shared Services IAM Policy
  *****************************************/
 
-resource "google_folder_iam_policy" "folder_iam" {
+resource "google_folder_iam_policy" "org_perm_folder_iam" {
   folder      = google_folder.org_perm_folder_testing.id
   policy_data = data.google_iam_policy.org_perm_folder_policy_data.policy_data
 }

@@ -46,3 +46,8 @@ resource "google_folder" "org_perm_folder_testing" {
   display_name  = "Org Permissions"
   parent        = google_folder.iam_top_level.id
 }
+
+resource "google_folder" "scc_folder_perm_testing" {
+  display_name  = "Security Command Center"
+  parent        = google_folder.iam_top_level.id
+}
