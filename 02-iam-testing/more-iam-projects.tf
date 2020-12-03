@@ -19,6 +19,6 @@
 resource "google_project" "testing_iam_1" {
   name            = "${var.project_unique_shared_id}-${var.testing_iam_1_prj_id}"
   project_id      = "${var.project_unique_shared_id}-${var.testing_iam_1_prj_id}"
-  folder_id       = google_folder.empty_iam_projects.id
+  folder_id       = google_folder.testing_iam_1_folder.id
   billing_account = var.billing_account_id
 }
