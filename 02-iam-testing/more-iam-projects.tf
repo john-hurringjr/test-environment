@@ -12,20 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /******************************************
-  Variables
- *****************************************/
-variable "organization_id" {}
-variable "terraform_service_account" {}
-variable "domain_identities" {}
-variable "project_unique_shared_id" {}
-variable "billing_account_id" {}
-
-
-/******************************************
-  Testing IAM Projects
+  Project 1
  *****************************************/
 
-variable "testing_iam_1_prj_id" {}
-variable "testing_iam_1_folder" {}
+resource "google_project" "testing_iam_1" {
+  name            = "${var.project_unique_shared_id}-${var.testing_iam_1_prj_id}"
+  project_id      = "${var.project_unique_shared_id}-${var.testing_iam_1_prj_id}"
+  folder_id       = google_folder.empty_iam_projects.id
+  billing_account = var.billing_account_id
+}
