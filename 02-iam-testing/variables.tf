@@ -29,3 +29,5 @@ variable "billing_account_id" {}
 
 variable "testing_iam_1_prj_id" {}
 variable "testing_iam_1_folder" {}
+
+variable "testing_iam_2_folder" {}

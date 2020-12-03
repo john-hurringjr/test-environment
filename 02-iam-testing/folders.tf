@@ -56,3 +56,8 @@ resource "google_folder" "testing_iam_1_folder" {
   display_name  = var.testing_iam_1_folder
   parent        = google_folder.iam_top_level.id
 }
+
+resource "google_folder" "testing_iam_2_folder" {
+  display_name  = var.testing_iam_2_folder
+  parent        = google_folder.iam_top_level.id
+}
