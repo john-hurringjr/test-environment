@@ -16,41 +16,41 @@
   HFW Folder Level
  *****************************************/
 
-//resource "google_compute_organization_security_policy" "test_folder_hfw_policy_1" {
-//  provider = google-beta
-//
-//  display_name = "hfw-test-1"
-//  parent       = google_folder.hfw_testing_top_level.id
-//}
-//
-//resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_1_rule_1" {
-//  provider = google-beta
-//
-//  policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
-//  action = "deny"
-//
-//  direction = "INGRESS"
-//
-//  match {
-//    config {
-//      src_ip_ranges = ["0.0.0.0/0"]
-//      layer4_config {
-//        ip_protocol = "tcp"
-//      }
-//      layer4_config {
-//        ip_protocol = "udp"
-//      }
-//    }
-//  }
-//
-//  priority = 100
-//
-//}
-//
-//resource "google_compute_organization_security_policy_association" "test_folder_hfw_policy_1_applied" {
-//  provider = google-beta
-//
-//  name = "test-hfw-1"
-//  attachment_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.parent
-//  policy_id     = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
-//}
+resource "google_compute_organization_security_policy" "test_folder_hfw_policy_1" {
+  provider = google-beta
+
+  display_name = "hfw-test-1"
+  parent       = google_folder.hfw_testing_top_level.id
+}
+
+resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_1_rule_1" {
+  provider = google-beta
+
+  policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
+  action = "deny"
+
+  direction = "INGRESS"
+
+  match {
+    config {
+      src_ip_ranges = ["0.0.0.0/0"]
+      layer4_config {
+        ip_protocol = "tcp"
+      }
+      layer4_config {
+        ip_protocol = "udp"
+      }
+    }
+  }
+
+  priority = 100
+
+}
+
+resource "google_compute_organization_security_policy_association" "test_folder_hfw_policy_1_applied" {
+  provider = google-beta
+
+  name = "test-hfw-1"
+  attachment_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.parent
+  policy_id     = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
+}
