@@ -20,4 +20,3 @@ resource "google_folder" "hfw_testing_top_level" {
   display_name  = "HFW Testing"
   parent        = "organizations/${var.organization_id}"
 }
-
