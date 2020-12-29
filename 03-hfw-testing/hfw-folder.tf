@@ -75,7 +75,7 @@ resource "google_compute_organization_security_policy_rule" "test_folder_hfw_pol
   policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
   action = "goto_next"
 
-  direction = "ENGRESS"
+  direction = "EGRESS"
 
   match {
     config {
@@ -123,7 +123,7 @@ resource "google_compute_organization_security_policy_rule" "test_folder_hfw_pol
   policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
   action = "deny"
 
-  direction = "ENGRESS"
+  direction = "EGRESS"
 
   match {
     config {
