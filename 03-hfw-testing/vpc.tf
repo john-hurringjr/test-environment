@@ -77,15 +77,3 @@ module "vpc_firewall_allow_rfc1918_all" {
   network_self_link = google_compute_network.vpc.self_link
   network_name      = google_compute_network.vpc.name
 }
-
-/******************************************
-  Set Up Cloud NAT
- *****************************************/
-module "cloud_nat_region_1" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
-  project_id              = google_project.testing_hfw_1.project_id
-  network_self_link       = google_compute_network.vpc.self_link
-  network_name            = google_compute_network.vpc.name
-  cloud_router_asn_number = var.region_1_router_asn
-  nat_region              = var.region_1
-}
