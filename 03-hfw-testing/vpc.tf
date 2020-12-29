@@ -21,7 +21,7 @@ variable "vpc_name" {
 }
 
 variable "region_1" {
-  default = "us-east4"
+  default = "us-central1"
 }
 
 variable "sub_1_cidr" {
