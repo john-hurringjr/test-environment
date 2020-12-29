@@ -23,27 +23,49 @@ resource "google_compute_organization_security_policy" "test_folder_hfw_policy_1
   parent       = google_folder.hfw_testing_top_level.id
 }
 
-//resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_iap_ssh_next" {
-//  provider = google-beta
-//
-//  policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
-//  action = "goto_next"
-//
-//  direction = "INGRESS"
-//
-//  match {
-//    config {
-//      src_ip_ranges = ["35.235.240.0/20"]
-//      layer4_config {
-//        ip_protocol = "tcp"
-//        ports        = ["22"]
-//      }
-//    }
-//  }
-//
-//  priority = 50
-//
-//}
+resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_iap_ssh_next" {
+  provider = google-beta
+
+  policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
+  action = "goto_next"
+
+  direction = "INGRESS"
+
+  match {
+    config {
+      src_ip_ranges = ["35.235.240.0/20"]
+      layer4_config {
+        ip_protocol = "tcp"
+        ports        = ["22"]
+      }
+    }
+  }
+
+  priority = 50
+
+}
+
+resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_restrictedvip_next" {
+  provider = google-beta
+
+  policy_id = google_compute_organization_security_policy.test_folder_hfw_policy_1.id
+  action = "goto_next"
+
+  direction = "EGRESS"
+
+  match {
+    config {
+      dest_ip_ranges = ["199.36.153.4/30"]
+      layer4_config {
+        ip_protocol = "tcp"
+        ports        = ["443"]
+      }
+    }
+  }
+
+  priority = 45
+
+}
 
 resource "google_compute_organization_security_policy_rule" "test_folder_hfw_policy_rfcingress_next" {
   provider = google-beta
