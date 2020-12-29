@@ -36,7 +36,7 @@ resource "google_compute_organization_security_policy_rule" "test_folder_hfw_pol
       src_ip_ranges = ["35.235.240.0/20"]
       layer4_config {
         ip_protocol = "tcp"
-        port        = "22"
+        ports        = "22"
       }
     }
   }
