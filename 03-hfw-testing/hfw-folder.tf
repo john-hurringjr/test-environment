@@ -79,7 +79,7 @@ resource "google_compute_organization_security_policy_rule" "test_folder_hfw_pol
 
   match {
     config {
-      src_ip_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+      dest_ip_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
       layer4_config {
         ip_protocol = "tcp"
       }
@@ -127,7 +127,7 @@ resource "google_compute_organization_security_policy_rule" "test_folder_hfw_pol
 
   match {
     config {
-      src_ip_ranges = ["0.0.0.0/0"]
+      dest_ip_ranges = ["0.0.0.0/0"]
       layer4_config {
         ip_protocol = "tcp"
       }
