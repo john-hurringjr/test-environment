@@ -59,17 +59,6 @@ resource "google_access_context_manager_access_level" "troubleshooting_access_le
   }
 }
 
-resource "google_access_context_manager_access_level" "test_domain_1" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/test_domain_1"
-  title  = "test_domain_1"
-  basic {
-    conditions {
-      members = ["domain:${var.domain_identities[0]}"]
-    }
-  }
-}
-
 /******************************************
   Acceess Context Manager Perimeter (VPC Service Controls)
  *****************************************/
