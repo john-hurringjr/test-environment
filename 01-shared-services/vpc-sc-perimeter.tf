@@ -63,25 +63,71 @@ resource "google_access_context_manager_access_level" "troubleshooting_access_le
   Acceess Context Manager Perimeter (VPC Service Controls)
  *****************************************/
 
-/*
-Services to add later:
-profiler.googleapis.com
-*/
-
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
   parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
   name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
     restricted_services = [
-      "storage.googleapis.com", "ml.googleapis.com", "bigquery.googleapis.com",
-      "bigtable.googleapis.com", "cloudasset.googleapis.com", "dataflow.googleapis.com", "dataproc.googleapis.com",
-      "dlp.googleapis.com", "cloudkms.googleapis.com", "language.googleapis.com", "pubsub.googleapis.com",
-      "meshca.googleapis.com", "spanner.googleapis.com", "sqladmin.googleapis.com", "vision.googleapis.com",
-      "containerregistry.googleapis.com", "container.googleapis.com", "gkeconnect.googleapis.com",
-      "gkehub.googleapis.com", "cloudresourcemanager.googleapis.com", "logging.googleapis.com",
-      "cloudtrace.googleapis.com", "tpu.googleapis.com",
+      "accessapproval.googleapis.com",
+      "notebooks.googleapis.com",
+      "ml.googleapis.com",
+      "meshca.googleapis.com",
+      "apigee.googleapis.com",
+      "apigeeconnect.googleapis.com",
+      "artifactregistry.googleapis.com",
+      "automl.googleapis.com",
+      "bigquery.googleapis.com",
+      "bigquerydatatransfer.googleapis.com",
+      "binaryauthorization.googleapis.com",
+      "privateca.googleapis.com",
+      "cloudasset.googleapis.com",
+      "bigtable.googleapis.com",
+      "cloudbuild.googleapis.com",
+      "composer.googleapis.com",
+      "datafusion.googleapis.com",
+      "dlp.googleapis.com",
+      "cloudfunctions.googleapis.com",
+      "healthcare.googleapis.com",
+      "cloudkms.googleapis.com",
+      "logging.googleapis.com",
+      "monitoring.googleapis.com",
+      "cloudprofiler.googleapis.com",
+      "spanner.googleapis.com",
+      "sqladmin.googleapis.com",
+      "storage.googleapis.com",
+      "tpu.googleapis.com",
+      "cloudtrace.googleapis.com",
+      "vision.googleapis.com",
+      "compute.googleapis.com",
+      "containeranalysis.googleapis.com",
+      "containerregistry.googleapis.com",
+      "datacatalog.googleapis.com",
+      "dataflow.googleapis.com",
+      "dataproc.googleapis.com",
+      "metastore.googleapis.com",
+      "gameservices.googleapis.com",
+      "container.googleapis.com",
+      "gkeconnect.googleapis.com",
+      "gkehub.googleapis.com",
+      "iaptunnel.googleapis.com",
+      "managedidentities.googleapis.com",
+      "redis.googleapis.com",
+      "language.googleapis.com",
+      "oslogin.googleapis.com",
+      "pubsub.googleapis.com",
+      "pubsublite.googleapis.com",
+      "cloudresourcemanager.googleapis.com",
+      "secretmanager.googleapis.com",
+      "vpcaccess.googleapis.com",
+      "servicecontrol.googleapis.com",
+      "servicedirectory.googleapis.com",
+      "speech.googleapis.com",
+      "storagetransfer.googleapis.com",
+      "texttospeech.googleapis.com",
+      "translate.googleapis.com",
       "videointelligence.googleapis.com",
+      "osconfig.googleapis.com"
     ]
     access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
     resources = [
