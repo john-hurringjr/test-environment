@@ -42,7 +42,7 @@ resource "google_access_context_manager_access_level" "allow_all_ips_us_access_l
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
   parent = "accessPolicies/${var.access_policy_name}"
   name   = "accessPolicies/${var.access_policy_name}/servicePerimeters/limited_testing"
-  title  = "restrict_all"
+  title  = "limited_testing"
   status {
     restricted_services = [
       "accessapproval.googleapis.com",
