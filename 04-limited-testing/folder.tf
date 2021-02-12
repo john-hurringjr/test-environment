@@ -14,11 +14,10 @@
  */
 
 /******************************************
-  Variables
+  Folders
  *****************************************/
-variable "organization_id" {}
-variable "terraform_service_account" {}
-variable "project_unique_shared_id" {}
-variable "billing_account_id" {}
-variable "folder_id" {}
-variable "group_id" {}
+
+resource "google_folder" "limited_testing" {
+  display_name  = "Limited Testing"
+  parent        = "organizations/${var.organization_id}"
+}
