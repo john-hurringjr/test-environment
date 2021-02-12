@@ -22,3 +22,4 @@ variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
 variable "folder_id" {}
 variable "group_id" {}
+variable "access_policy_name" {}
