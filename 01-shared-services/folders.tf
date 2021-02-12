@@ -28,7 +28,7 @@ resource "google_folder" "shared_services" {
 }
 
 resource "google_folder" "business" {
-  display_name  = "Business"
+  display_name  = "Business Folder"
   parent        = google_folder.enterprise.id
 }
 
