@@ -14,39 +14,20 @@
  */
 
 /******************************************
-  Access Context Manager Access Policy
- *****************************************/
-
-resource "google_access_context_manager_access_policy" "acm_access_policy" {
-  parent = "organizations/${var.organization_id}"
-  title  = "org acm access policy"
-}
-
-/*
-Be very careful using the above block. If your org already has an access policy this will clear it out and make a new one
-Clearing out a policy like this will remove any access levels already created.
-*/
-
-// Exporting the name for use in other deploys
-
-output "acm_access_policy_name" {
-  value = google_access_context_manager_access_policy.acm_access_policy.name
-}
-
-/******************************************
   Access Context Manager Access Level
  *****************************************/
 
 # Allows the TF service account we're using to manage resource in the perimeter
 # Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
 
-resource "google_access_context_manager_access_level" "terraform_service_account_access_level" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/allow_terraform_sa"
-  title  = "allow_terraform_sa"
+resource "google_access_context_manager_access_level" "allow_all_ips_us_access_level" {
+  parent = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}"
+  name   = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}/accessLevels/allow_all_ips_us"
+  title  = "allow_all_ips_us"
   basic {
     conditions {
-      members = ["serviceAccount:${var.terraform_service_account}"]
+      ip_subnetworks = ["0.0.0.0/0"]
+      regions = ["US"]
     }
   }
 }
@@ -54,29 +35,13 @@ resource "google_access_context_manager_access_level" "terraform_service_account
 # May use the below Access Level for troubleshooting.
 # Terraform should clear it out from perimeter each time, but can add temporarily
 
-resource "google_access_context_manager_access_level" "troubleshooting_access_level_security_admins" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/accessLevels/sec_admin_troubleshoot"
-  title  = "sec_admin_troubleshoot"
-  basic {
-    conditions {
-      members = ["user:${var.vpc_sc_troubleshooting_user_id}"]
-    }
-  }
-}
-
-// Exporting the name for use in other deploys
-output "acm_access_level_tf_sa_id" {
-  value = google_access_context_manager_access_level.terraform_service_account_access_level.id
-}
-
 /******************************************
   Access Context Manager Perimeter (VPC Service Controls)
  *****************************************/
 
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.acm_access_policy.name}/servicePerimeters/restrict_all"
+  parent = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}"
+  name   = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
     restricted_services = [
@@ -140,15 +105,10 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "videointelligence.googleapis.com",
       "osconfig.googleapis.com"
     ]
-    access_levels = [google_access_context_manager_access_level.terraform_service_account_access_level.id]
+    access_levels = [data.terraform_remote_state.rs01_shared_services.acm_access_level_tf_sa_id, google_access_context_manager_access_level.allow_all_ips_us_access_level.id]
     resources = [
-      "projects/${module.vpc_sc_monitoring_project.project_number}",
-      "projects/${module.vpc_sc_os_images_project_dev.project_number}",
-      "projects/${module.vpc_sc_os_images_project_prod.project_number}",
-      "projects/${module.vpc_sc_org_log_sink_project.project_number}",
-      "projects/${module.vpc_sc_shared_vpc_host_project_dev.project_number}",
-      "projects/${module.vpc_sc_shared_vpc_host_project_prod.project_number}",
-      "projects/${module.vpc_sc_shared_vpc_host_project_transit.project_number}",
+//      "projects/${module.}",
+//      "projects/${module.}",
     ]
   }
 }
