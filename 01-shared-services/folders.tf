@@ -17,14 +17,19 @@
   Folders
  *****************************************/
 
+resource "google_folder" "enterprise" {
+  display_name  = "Enterprise"
+  parent        = "organizations/${var.organization_id}"
+}
+
 resource "google_folder" "shared_services" {
   display_name  = "Shared Services"
-  parent        = "organizations/${var.organization_id}"
+  parent        = google_folder.enterprise.id
 }
 
 resource "google_folder" "business" {
   display_name  = "Business"
-  parent        = "organizations/${var.organization_id}"
+  parent        = google_folder.enterprise.id
 }
 
 resource "google_folder" "business_no_restrictions" {
@@ -49,12 +54,7 @@ resource "google_folder" "networking" {
 
 resource "google_folder" "on_prem" {
   display_name  = "On Prem"
-  parent        = "organizations/${var.organization_id}"
-}
-
-resource "google_folder" "test_folder_admin" {
-  display_name  = "Folder Admin Test"
-  parent        = "organizations/${var.organization_id}"
+  parent        = google_folder.enterprise.id
 }
 
 /******************************************
@@ -63,7 +63,7 @@ resource "google_folder" "test_folder_admin" {
 
 resource "google_folder" "vpc_service_controls" {
   display_name  = "VPC Service Controls"
-  parent        = "organizations/${var.organization_id}"
+  parent        = google_folder.enterprise.id
 }
 
 resource "google_folder" "vpc_sc_shared_services" {
