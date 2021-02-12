@@ -111,6 +111,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "projects/${module.project_limited_testing_2.project_number}",
       "projects/${module.project_limited_testing_3.project_number}",
       "projects/${module.project_limited_testing_4.project_number}",
+      "projects/${module.project_limited_testing_5.project_number}",
     ]
   }
 }
