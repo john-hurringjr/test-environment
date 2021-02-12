@@ -21,8 +21,8 @@
 # Without this, we couldn't create VPCs or other resources inside VPC SC Perimter
 
 resource "google_access_context_manager_access_level" "allow_all_ips_us_access_level" {
-  parent = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}"
-  name   = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}/accessLevels/allow_all_ips_us"
+  parent = "accessPolicies/${var.access_policy_name}"
+  name   = "accessPolicies/${var.access_policy_name}/accessLevels/allow_all_ips_us"
   title  = "allow_all_ips_us"
   basic {
     conditions {
@@ -40,8 +40,8 @@ resource "google_access_context_manager_access_level" "allow_all_ips_us_access_l
  *****************************************/
 
 resource "google_access_context_manager_service_perimeter" "service_perimeter" {
-  parent = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}"
-  name   = "accessPolicies/${data.terraform_remote_state.rs01_shared_services.acm_access_policy_name}/servicePerimeters/restrict_all"
+  parent = "accessPolicies/${var.access_policy_name}"
+  name   = "accessPolicies/${var.access_policy_name}/servicePerimeters/restrict_all"
   title  = "restrict_all"
   status {
     restricted_services = [
@@ -105,7 +105,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
       "videointelligence.googleapis.com",
       "osconfig.googleapis.com"
     ]
-    access_levels = [data.terraform_remote_state.rs01_shared_services.acm_access_level_tf_sa_id, google_access_context_manager_access_level.allow_all_ips_us_access_level.id]
+    access_levels = [google_access_context_manager_access_level.allow_all_ips_us_access_level.id]
     resources = [
 //      "projects/${module.}",
 //      "projects/${module.}",
