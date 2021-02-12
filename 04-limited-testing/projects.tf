@@ -14,16 +14,61 @@
  */
 
 /******************************************
-  Projects
+  Project 1
  *****************************************/
 
-module "first_project_limited_testing" {
+module "project_limited_testing_1" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
   project_friendly_name       = "Test 1"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
-  unique_project_identifier   = "limited"
+  unique_project_identifier   = "mm-prj-1"
+  folder_id                   = var.folder_id
+  billing_account_id          = var.billing_account_id
+}
+
+/******************************************
+  Project 2
+ *****************************************/
+
+module "project_limited_testing_2" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+  project_friendly_name       = "Test 2"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "test"
+  project_admin_group_id      = var.group_id
+  unique_project_identifier   = "sm-prj-1"
+  folder_id                   = var.folder_id
+  billing_account_id          = var.billing_account_id
+}
+
+/******************************************
+  Project 3
+ *****************************************/
+
+module "project_limited_testing_3" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+  project_friendly_name       = "Test 3"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "test"
+  project_admin_group_id      = var.group_id
+  unique_project_identifier   = "vj-prj-1"
+  folder_id                   = var.folder_id
+  billing_account_id          = var.billing_account_id
+}
+
+/******************************************
+  Project 4
+ *****************************************/
+
+module "project_limited_testing_4" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+  project_friendly_name       = "Test 4"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "test"
+  project_admin_group_id      = var.group_id
+  unique_project_identifier   = "nm-prj-1"
   folder_id                   = var.folder_id
   billing_account_id          = var.billing_account_id
 }
