@@ -107,8 +107,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter" {
     ]
     access_levels = [google_access_context_manager_access_level.allow_all_ips_us_access_level.id]
     resources = [
-//      "projects/${module.}",
-//      "projects/${module.}",
+      "projects/${module.first_project_limited_testing.project_id}",
     ]
   }
 }

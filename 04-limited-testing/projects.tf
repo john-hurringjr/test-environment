@@ -17,13 +17,13 @@
   Projects
  *****************************************/
 
-//module "first_project_limited_testing" {
-//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-//  project_friendly_name       = "Test 1"
-//  unique_shared_id            = var.project_unique_shared_id
-//  environment                 = "test"
-//  project_admin_group_id      = var.group_id
-//  unique_project_identifier   = "limited"
-//  folder_id                   = var.folder_id
-//  billing_account_id          = var.billing_account_id
-//}
+module "first_project_limited_testing" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+  project_friendly_name       = "Test 1"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "test"
+  project_admin_group_id      = var.group_id
+  unique_project_identifier   = "limited"
+  folder_id                   = var.folder_id
+  billing_account_id          = var.billing_account_id
+}
