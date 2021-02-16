@@ -94,7 +94,7 @@ module "project_limited_testing_5" {
 
 module "project_limited_testing_6" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 6 - JH"
+  project_friendly_name       = "Test 6 -JH"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
