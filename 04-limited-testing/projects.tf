@@ -87,3 +87,18 @@ module "project_limited_testing_5" {
   folder_id                   = var.folder_id
   billing_account_id          = var.billing_account_id
 }
+
+/******************************************
+  Project 6
+ *****************************************/
+
+module "project_limited_testing_5" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+  project_friendly_name       = "Test 6"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "test"
+  project_admin_group_id      = var.group_id
+  unique_project_identifier   = "jh-prj-1"
+  folder_id                   = var.folder_id
+  billing_account_id          = var.billing_account_id
+}
