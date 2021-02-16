@@ -19,7 +19,7 @@
 
 module "project_limited_testing_1" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 1"
+  project_friendly_name       = "Test 1 - MM"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -34,7 +34,7 @@ module "project_limited_testing_1" {
 
 module "project_limited_testing_2" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 2"
+  project_friendly_name       = "Test 2 - SM"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -49,7 +49,7 @@ module "project_limited_testing_2" {
 
 module "project_limited_testing_3" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 3"
+  project_friendly_name       = "Test 3 - VJ"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -64,7 +64,7 @@ module "project_limited_testing_3" {
 
 module "project_limited_testing_4" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 4"
+  project_friendly_name       = "Test 4 - NM"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -79,7 +79,7 @@ module "project_limited_testing_4" {
 
 module "project_limited_testing_5" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 5"
+  project_friendly_name       = "Test 5 - ZD"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -94,7 +94,7 @@ module "project_limited_testing_5" {
 
 module "project_limited_testing_6" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 6"
+  project_friendly_name       = "Test 6 - JH"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "test"
   project_admin_group_id      = var.group_id
@@ -102,3 +102,4 @@ module "project_limited_testing_6" {
   folder_id                   = var.folder_id
   billing_account_id          = var.billing_account_id
 }
+
