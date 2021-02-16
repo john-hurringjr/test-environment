@@ -92,7 +92,7 @@ module "project_limited_testing_5" {
   Project 6
  *****************************************/
 
-module "project_limited_testing_5" {
+module "project_limited_testing_6" {
   source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
   project_friendly_name       = "Test 6"
   unique_shared_id            = var.project_unique_shared_id
