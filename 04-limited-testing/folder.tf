@@ -40,6 +40,8 @@ resource "google_folder_organization_policy" "folder_location_restriction" {
 
 }
 
+resource "goo" "" {}
+
 
 # Allow Cloud NAT usage
 //resource "google_organization_policy" "gce_allow_cloud_nat_usage" {
