@@ -20,3 +20,5 @@ variable "organization_id" {}
 variable "terraform_service_account" {}
 variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
+
+variable "security_test_prj_id" {}
