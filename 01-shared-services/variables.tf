@@ -118,6 +118,10 @@ variable "transit_vpc_region_2_cidr" {}
 variable "development_vpc_region_1_cidr" {}
 variable "development_vpc_region_2_cidr" {}
 
+variable "development_vpc_region_1_gke_primary_cidr" {}
+variable "development_vpc_region_1_gke_alias_gke_pod_cidr" {}
+variable "development_vpc_region_1_gke_alias_gke_service_cidr" {}
+
 variable "production_vpc_region_1_cidr" {}
 variable "production_vpc_region_2_cidr" {}
 

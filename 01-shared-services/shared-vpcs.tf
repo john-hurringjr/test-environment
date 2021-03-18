@@ -95,6 +95,23 @@ module "dev_vpc_cloud_nat_region_2" {
   nat_region              = var.region_2
 }
 
+/******************************************
+  GKE Subnet - Dev
+ *****************************************/
+
+module "dev_vpc_region_2_gke_subnet_1" {
+  source                  = "github.com/john-hurringjr/test-modules/networking/subnet/gke"
+  project_id              = module.shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.dev_vpc.self_link
+  network_name            = google_compute_network.dev_vpc.name
+  region                  = var.region_1
+  primary_cidr            = var.development_vpc_region_1_gke_primary_cidr
+  alias_gke_pod_cidr      = var.development_vpc_region_1_gke_alias_gke_pod_cidr
+  alias_gke_service_cidr  = var.development_vpc_region_1_gke_alias_gke_service_cidr
+  vpc_flow_log_interval   = "INTERVAL_5_SEC"
+  vpc_flow_log_sampling   = 1
+  subnet_number           = "gke-1"
+}
 
 /******************************************
   Shared VPC Host - Prod
