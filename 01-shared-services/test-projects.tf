@@ -20,6 +20,7 @@
 module "us_only_test_prj_1" {
   source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service?ref=master"
   project_friendly_name       = "Test - US Only - GKE"
+  billing_account_id          = var.billing_account_id
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "dev"
   unique_project_identifier   = "us-gke-test-1"
