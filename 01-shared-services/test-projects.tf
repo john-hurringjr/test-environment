@@ -18,7 +18,7 @@
  *****************************************/
 
 module "us_only_test_prj_1" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service?ref=master"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service?ref=master"
   project_friendly_name       = "Test - US Only - GKE"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "dev"
