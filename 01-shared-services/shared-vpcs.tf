@@ -25,7 +25,7 @@ resource "google_compute_network" "dev_vpc" {
 }
 
 module "dev_vpc_region_1_subnet_1" {
-  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
+  source                = "github.com/john-hurringjr/test-modules//networking/subnet/generic?ref=master"
   project_id            = module.shared_vpc_host_project_dev.project_id
   network_self_link     = google_compute_network.dev_vpc.self_link
   network_name          = google_compute_network.dev_vpc.name
@@ -37,7 +37,7 @@ module "dev_vpc_region_1_subnet_1" {
 }
 
 module "dev_vpc_region_2_subnet_1" {
-  source                = "github.com/john-hurringjr/test-modules/networking/subnet/generic"
+  source                = "github.com/john-hurringjr/test-modules//networking/subnet/generic?ref=master"
   project_id            = module.shared_vpc_host_project_dev.project_id
   network_self_link     = google_compute_network.dev_vpc.self_link
   network_name          = google_compute_network.dev_vpc.name
@@ -49,27 +49,27 @@ module "dev_vpc_region_2_subnet_1" {
 }
 
 module "dev_vpc_firewall_allow_iap_all" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
+  source            = "github.com/john-hurringjr/test-modules//networking/firewall-rules/all/allow-ingress-iap?ref=master"
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
   network_name      = google_compute_network.dev_vpc.name
 }
 
 module "dev_vpc_firewall_allow_rfc1918_all" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918"
+  source            = "github.com/john-hurringjr/test-modules//networking/firewall-rules/all/allow-ingress-rfc1918?ref=master"
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
   network_name      = google_compute_network.dev_vpc.name
 }
 
 module "dev_vpc_private_apis_dns" {
-  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-private-apis"
+  source            = "github.com/john-hurringjr/test-modules//networking/dns/internal-private-apis?ref=master"
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
 }
 
 module "dev_vpc_private_apis_routing" {
-  source            = "github.com/john-hurringjr/test-modules/networking/routing/private-apis"
+  source            = "github.com/john-hurringjr/test-modules//networking/routing/private-apis?ref=master"
   project_id        = module.shared_vpc_host_project_dev.project_id
   network_self_link = google_compute_network.dev_vpc.self_link
 }
@@ -78,7 +78,7 @@ module "dev_vpc_private_apis_routing" {
   Cloud NAT - Dev
  *****************************************/
 module "dev_vpc_cloud_nat_region_1" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
   project_id              = module.shared_vpc_host_project_dev.project_id
   network_self_link       = google_compute_network.dev_vpc.self_link
   network_name            = google_compute_network.dev_vpc.name
@@ -87,7 +87,7 @@ module "dev_vpc_cloud_nat_region_1" {
 }
 
 module "dev_vpc_cloud_nat_region_2" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/nat/auto-ip-all-region-subnets"
+  source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
   project_id              = module.shared_vpc_host_project_dev.project_id
   network_self_link       = google_compute_network.dev_vpc.self_link
   network_name            = google_compute_network.dev_vpc.name
@@ -95,6 +95,23 @@ module "dev_vpc_cloud_nat_region_2" {
   nat_region              = var.region_2
 }
 
+/******************************************
+  GKE Subnet - Dev
+ *****************************************/
+
+module "dev_vpc_region_2_gke_subnet_1" {
+  source                  = "github.com/john-hurringjr/test-modules//networking/subnet/gke?ref=master"
+  project_id              = module.shared_vpc_host_project_dev.project_id
+  network_self_link       = google_compute_network.dev_vpc.self_link
+  network_name            = google_compute_network.dev_vpc.name
+  region                  = var.region_1
+  primary_cidr            = var.development_vpc_region_1_gke_primary_cidr
+  alias_gke_pod_cidr      = var.development_vpc_region_1_gke_alias_gke_pod_cidr
+  alias_gke_service_cidr  = var.development_vpc_region_1_gke_alias_gke_service_cidr
+  vpc_flow_log_interval   = "INTERVAL_5_SEC"
+  vpc_flow_log_sampling   = 1
+  subnet_number           = "gke-1"
+}
 
 /******************************************
   Shared VPC Host - Prod

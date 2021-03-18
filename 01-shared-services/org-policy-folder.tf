@@ -14,16 +14,29 @@
  */
 
 /******************************************
-  Test Service Project
+  Folder Policies
  *****************************************/
 
-module "us_only_test_prj_1" {
-  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service?ref=master"
-  project_friendly_name       = "Test - US Only - GKE"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "dev"
-  unique_project_identifier   = "us-gke-test-1"
-  folder_id                   = google_folder.vpc_sc_networking.id
-  project_admin_group_id      = var.test_us_only_service_prj_group
-  shared_vpc_host_project_id = module.shared_vpc_host_project_dev.project_id
+# Restrict to USA Locations Only
+resource "google_folder_organization_policy" "prod_bu_1_folder_location_restriction" {
+  constraint  = "constraints/gcp.resourceLocations"
+  folder      = google_folder.business_location_usa.id
+
+  list_policy {
+    allow {
+      values = ["in:us-locations"]
+    }
+  }
+
+}
+
+# Shared Services, Allow NAT
+resource "google_folder_organization_policy" "allow_nat_for_shared_services" {
+  constraint  = "constraints/compute.restrictCloudNATUsage"
+  folder      = google_folder.shared_services.id
+
+  restore_policy {
+    default = true
+  }
+
 }

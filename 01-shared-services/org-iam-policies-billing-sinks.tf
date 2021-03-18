@@ -18,7 +18,7 @@
  *****************************************/
 
 module "org_iam" {
-  source                        = "github.com/john-hurringjr/test-modules/org-iam/group-access-allowed"
+  source                        = "github.com/john-hurringjr/test-modules//org-iam//group-access-allowed?ref=master"
   organization_admins_group     = var.organization_admins_group
   terraform_service_account     = var.terraform_service_account
   network_admins_group          = var.network_admins_group
@@ -59,7 +59,7 @@ resource "google_folder_organization_policy" "define_trusted_image_project" {
  *****************************************/
 
 module "org_sink_bigquery" {
-  source                          = "github.com/john-hurringjr/test-modules/org-sinks/bigquery"
+  source                          = "github.com/john-hurringjr/test-modules//org-sinks/bigquery?ref=master"
   project_id                      = module.org_log_sink_project.project_id
   bigquery_dataset_friendly_name  = "Org Sink"
   bigquery_dataset_id             = var.bigquery_org_sink_data_set_id
@@ -72,7 +72,7 @@ module "org_sink_bigquery" {
  *****************************************/
 
 module "org_sink_gcs" {
-  source                       = "github.com/john-hurringjr/test-modules/org-sinks/gcs"
+  source                       = "github.com/john-hurringjr/test-modules//org-sinks/gcs?ref=master"
   project_id                   = module.org_log_sink_project.project_id
   gcs_bucket_name              = var.gcs_org_sink_bucket_name
   object_age_move_to_nearline  = 180
@@ -86,7 +86,7 @@ module "org_sink_gcs" {
  *****************************************/
 
 module "billing_sink_pubsub" {
-  source                                 = "github.com/john-hurringjr/test-modules/billing-log-sink/pubsub"
+  source                                 = "github.com/john-hurringjr/test-modules//billing-log-sink/pubsub?ref=master"
   project_id                             = module.org_log_sink_project.project_id
   sink_pubsub_topic_name                 = var.billing_sink_pubsub_topic_name
   sink_pubsub_subscription_name          = var.billing_sink_pubsub_subscription_name
@@ -101,7 +101,7 @@ module "billing_sink_pubsub" {
  *****************************************/
 
 module "billing_sink_gcs" {
-  source                       = "github.com/john-hurringjr/test-modules/billing-log-sink/gcs"
+  source                       = "github.com/john-hurringjr/test-modules//billing-log-sink/gcs?ref=master"
   project_id                   = module.org_log_sink_project.project_id
   gcs_bucket_name              = var.gcs_billing_sink_bucket_name
   object_age_move_to_nearline  = 180
@@ -130,7 +130,7 @@ module "billing_sink_gcs" {
  *****************************************/
 
 module "billing_2_sink_gcs" {
-  source                       = "github.com/john-hurringjr/test-modules/billing-log-sink/gcs"
+  source                       = "github.com/john-hurringjr/test-modules//billing-log-sink/gcs?ref=master"
   project_id                   = module.org_log_sink_project.project_id
   gcs_bucket_name              = var.gcs_billing_2_sink_bucket_name
   object_age_move_to_nearline  = 180

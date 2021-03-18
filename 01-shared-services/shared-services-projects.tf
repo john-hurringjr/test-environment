@@ -18,7 +18,7 @@
  *****************************************/
 
 module "shared_vpc_host_project_transit" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "Shared VPC Host Transit"
   unique_shared_id          = var.project_unique_shared_id
   environment               = "trans"
@@ -32,7 +32,7 @@ module "shared_vpc_host_project_transit" {
 }
 
 module "shared_vpc_host_project_dev" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "Shared VPC Host Dev"
   unique_shared_id          = var.project_unique_shared_id
   environment               = "dev"
@@ -46,7 +46,7 @@ module "shared_vpc_host_project_dev" {
 }
 
 module "shared_vpc_host_project_prod" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "Shared VPC Host Prod"
   unique_shared_id          = var.project_unique_shared_id
   environment               = "prod"
@@ -64,7 +64,7 @@ module "shared_vpc_host_project_prod" {
  *****************************************/
 
 module "billing_export_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "Billing Export"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
@@ -83,7 +83,7 @@ module "billing_export_project" {
 
 # Dev, used to create approved images
 module "os_images_project_dev" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "OS Images - Dev"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "dev"
@@ -98,7 +98,7 @@ module "os_images_project_dev" {
 
 # Prod, used to share
 module "os_images_project_prod" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "OS Images - Prod"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
@@ -116,7 +116,7 @@ module "os_images_project_prod" {
  *****************************************/
 
 module "org_log_sink_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "Org Log Sink Project"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
@@ -134,7 +134,7 @@ module "org_log_sink_project" {
  *****************************************/
 
 module "monitoring_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "Monitoring Project"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
@@ -152,7 +152,7 @@ module "monitoring_project" {
  *****************************************/
 
 module "kms_project" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "KMS Project"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "prod"
@@ -188,7 +188,7 @@ module "kms_project" {
  *****************************************/
 
 module "vpc_sc_shared_vpc_host_project_transit" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "VPC SC Shared VPC Host Transit"
   unique_shared_id          = var.vpc_service_controls_unique_id
   environment               = "trans"
@@ -201,7 +201,7 @@ module "vpc_sc_shared_vpc_host_project_transit" {
 }
 
 module "vpc_sc_shared_vpc_host_project_dev" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "VPC SC Shared VPC Host Dev"
   unique_shared_id          = var.vpc_service_controls_unique_id
   environment               = "dev"
@@ -215,7 +215,7 @@ module "vpc_sc_shared_vpc_host_project_dev" {
 }
 
 module "vpc_sc_shared_vpc_host_project_prod" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "VPC SC Shared VPC Host Prod"
   unique_shared_id          = var.vpc_service_controls_unique_id
   environment               = "prod"
@@ -233,7 +233,7 @@ module "vpc_sc_shared_vpc_host_project_prod" {
 
 # Dev, used to create approved images
 module "vpc_sc_os_images_project_dev" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "VPC SC OS Images - Dev"
   unique_shared_id            = var.vpc_service_controls_unique_id
   environment                 = "dev"
@@ -248,7 +248,7 @@ module "vpc_sc_os_images_project_dev" {
 
 # Prod, used to share
 module "vpc_sc_os_images_project_prod" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service-restricted"
+  source                      = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-service-restricted?ref=master"
   project_friendly_name       = "VPC SC OS Images - Prod"
   unique_shared_id            = var.vpc_service_controls_unique_id
   environment                 = "prod"
