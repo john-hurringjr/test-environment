@@ -18,7 +18,7 @@
  *****************************************/
 
 module "org_iam" {
-  source                        = "github.com/john-hurringjr/test-modules/org-iam//group-access-allowed?ref=master"
+  source                        = "github.com/john-hurringjr/test-modules//org-iam//group-access-allowed?ref=master"
   organization_admins_group     = var.organization_admins_group
   terraform_service_account     = var.terraform_service_account
   network_admins_group          = var.network_admins_group
