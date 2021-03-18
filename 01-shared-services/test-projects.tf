@@ -14,6 +14,16 @@
  */
 
 /******************************************
-  Cloud KMS Project - Service Project
+  Test Service Project
  *****************************************/
 
+module "us_only_test_prj_1" {
+  source                      = "github.com/john-hurringjr/test-modules/project-creation/archive-old-modules/shared-vpc-service?ref=master"
+  project_friendly_name       = "Test - US Only - GKE"
+  unique_shared_id            = var.project_unique_shared_id
+  environment                 = "dev"
+  unique_project_identifier   = "us-gke-test-1"
+  folder_id                   = google_folder.vpc_sc_networking.id
+  project_admin_group_id      = var.test_us_only_service_prj_group
+  shared_vpc_host_project_id = module.shared_vpc_host_project_dev.project_id
+}

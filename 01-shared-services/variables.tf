@@ -37,6 +37,8 @@ variable "application_1_admins_group" {}
 variable "application_1_developer_group" {}
 variable "billing_users_group" {}
 
+variable "test_us_only_service_prj_group" {}
+
 /******************************************
   Regions & Zones
  *****************************************/

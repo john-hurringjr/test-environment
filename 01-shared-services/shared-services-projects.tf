@@ -32,7 +32,7 @@ module "shared_vpc_host_project_transit" {
 }
 
 module "shared_vpc_host_project_dev" {
-  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master?ref=master"
+  source                    = "github.com/john-hurringjr/test-modules//project-creation/archive-old-modules/shared-vpc-host?ref=master"
   project_friendly_name     = "Shared VPC Host Dev"
   unique_shared_id          = var.project_unique_shared_id
   environment               = "dev"
