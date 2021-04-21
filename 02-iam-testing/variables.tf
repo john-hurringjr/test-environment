@@ -22,6 +22,8 @@ variable "domain_identities" {}
 variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
 
+variable "security_viewer" {}
+
 
 /******************************************
   Testing IAM Projects
