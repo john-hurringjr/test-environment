@@ -26,6 +26,13 @@ data "google_iam_policy" "scc_folder_policy_data" {
     role = "roles/securitycenter.adminViewer"
   }
 
+  binding {
+    members = [
+      "user:${var.security_viewer}",
+    ]
+    role = "roles/browser"
+  }
+
 }
 
 /******************************************
