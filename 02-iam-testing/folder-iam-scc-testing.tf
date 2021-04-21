@@ -34,5 +34,5 @@ data "google_iam_policy" "scc_folder_policy_data" {
 
 resource "google_folder_iam_policy" "scc_folder_iam" {
   folder      = google_folder.scc_folder_perm_testing.id
-  policy_data = data.google_iam_policy.org_perm_folder_policy_data.policy_data
+  policy_data = data.google_iam_policy.scc_folder_policy_data.policy_data
 }
