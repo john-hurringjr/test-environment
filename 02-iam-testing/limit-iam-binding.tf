@@ -24,6 +24,16 @@ resource "google_project" "limit_iam_binding_1" {
   billing_account = var.billing_account_id
 }
 
+resource "google_project" "limit_iam_binding_2" {
+  name            = "${var.project_unique_shared_id}-limit-iam-binding"
+  project_id      = "${var.project_unique_shared_id}-limit-iam-binding-2"
+  folder_id       = google_folder.conditional_access_testing.id
+  billing_account = var.billing_account_id
+}
+
+
+
+
 
 /******************************************
   IAM Policy
@@ -34,18 +44,35 @@ resource "google_project" "limit_iam_binding_1" {
 //  project     = google_project.limit_iam_binding_1.project_id
 //}
 
-resource "google_project_iam_binding" "test_limited_iam_admin_permissions" {
-  project = google_project.limit_iam_binding_1.project_id
-  members = [
-    "group:${var.limited_iam_bindings_group}",
-  ]
-  role = "roles/resourcemanager.projectIamAdmin"
+//resource "google_project_iam_binding" "test_limited_iam_admin_permissions" {
+//  project = google_project.limit_iam_binding_1.project_id
+//  members = [
+//    "group:${var.limited_iam_bindings_group}",
+//  ]
+//  role = "roles/resourcemanager.projectIamAdmin"
+//
+//  condition {
+//    title       = "Test to limit IAM bindings permissions"
+//    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
+//  }
+//}
 
-  condition {
-    title       = "Test to limit IAM bindings permissions"
-    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/billing.admin', 'roles/billing.user', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
-  }
+
+resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
+    folder = google_folder.conditional_access_testing.id
+    members = [
+      "group:${var.limited_iam_bindings_group}",
+    ]
+    role = "roles/resourcemanager.projectIamAdmin"
+
+    condition {
+      title       = "Test to limit IAM bindings permissions"
+      expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
+    }
 }
+
+
+
 
 //
 //
