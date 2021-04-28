@@ -19,7 +19,7 @@
 
 resource "google_tags_tag_key" "noownerforyou_key" {
   provider      = google-beta
-  parent        = google_folder.conditional_access_testing.id
+  parent        = "organizations/${var.organization_id}"
   short_name    = "noownerforyou"
   description   = "restrict owner role"
 }
