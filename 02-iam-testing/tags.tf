@@ -34,7 +34,7 @@ resource "google_tags_tag_value" "noownerforyou_value" {
 
 resource "google_tags_tag_binding" "noownerforyou_binding" {
   provider      = google-beta
-  parent = "//cloudresourcemanager.googleapis.com/folders/${google_folder.conditional_access_testing.id}"
+  parent = "//cloudresourcemanager.googleapis.com/${google_folder.conditional_access_testing.id}"
   tag_value = "tagValues/${google_tags_tag_value.noownerforyou_value.name}"
 }
 
