@@ -29,7 +29,7 @@ resource "google_tags_tag_value" "noownerforyou_value" {
   provider      = google-beta
   parent = "tagKeys/${google_tags_tag_key.noownerforyou_key.name}"
   short_name = "true"
-  description = "You're not allowed to have an owner."
+  description = "Not allowed to have an owner."
 }
 
 resource "google_tags_tag_binding" "noownerforyou_binding" {
