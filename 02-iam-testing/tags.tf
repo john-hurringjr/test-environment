@@ -18,7 +18,7 @@
  *****************************************/
 
 resource "google_tags_tag_key" "noownerforyou_key" {
-  provider      = "google-beta"
+  provider      = google-beta
   parent        = "folder/${google_folder.conditional_access_testing.id}"
   short_name    = "noownerforyou"
   description   = "don't allow owner role"
@@ -26,21 +26,21 @@ resource "google_tags_tag_key" "noownerforyou_key" {
 
 
 resource "google_tags_tag_value" "noownerforyou_value" {
-  provider      = "google-beta"
+  provider      = google-beta
   parent = "tagKeys/${google_tags_tag_key.noownerforyou_key.name}"
   short_name = "true"
   description = "You're not allowed to have an owner."
 }
 
 resource "google_tags_tag_binding" "noownerforyou_binding" {
-  provider      = "google-beta"
+  provider      = google-beta
   parent = "//cloudresourcemanager.googleapis.com/folders/${google_folder.conditional_access_testing.id}"
-  tag_value = "tagValues/${google_tags_tag_value.value.name}"
+  tag_value = "tagValues/${google_tags_tag_value.noownerforyou_value.name}"
 }
 
 
 resource "google_tags_tag_value_iam_binding" "noownerforyou_binding" {
-  provider      = "google-beta"
+  provider      = google-beta
   tag_value = google_tags_tag_value.noownerforyou_value.name
   role = "roles/owner"
   members = [
