@@ -58,18 +58,18 @@ resource "google_project" "limit_iam_binding_2" {
 //}
 
 
-resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
-    folder = google_folder.conditional_access_testing.id
-    members = [
-      "group:${var.limited_iam_bindings_group}",
-    ]
-    role = "roles/resourcemanager.projectIamAdmin"
-
-    condition {
-      title       = "Test to limit IAM bindings permissions"
-      expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
-    }
-}
+//resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
+//    folder = google_folder.conditional_access_testing.id
+//    members = [
+//      "group:${var.limited_iam_bindings_group}",
+//    ]
+//    role = "roles/resourcemanager.projectIamAdmin"
+//
+//    condition {
+//      title       = "Test to limit IAM bindings permissions"
+//      expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
+//    }
+//}
 
 
 
