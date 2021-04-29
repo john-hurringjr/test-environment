@@ -71,7 +71,6 @@ resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
     }
 }
 
-
 //
 //
 ///******************************************
