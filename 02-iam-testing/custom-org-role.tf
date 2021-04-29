@@ -36,8 +36,8 @@ resource "google_organization_iam_custom_role" "custom_billing_role" {
   Test Apply to Billing Account
  *****************************************/
 
-//resource "google_billing_account_iam_member" "test_apply_custom_to_billing" {
-//  billing_account_id = var.billing_account_id
-//  member              = "group:${var.limited_iam_bindings_group}"
-//  role                = ""
-//}
+resource "google_billing_account_iam_member" "test_apply_custom_to_billing" {
+  billing_account_id = var.billing_account_id
+  member              = "group:${var.limited_iam_bindings_group}"
+  role                = google_organization_iam_custom_role.custom_billing_role.id
+}
