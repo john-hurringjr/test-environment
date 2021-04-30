@@ -75,7 +75,7 @@ resource "google_project_iam_binding" "test_limited_iam_admin_permissions" {
 
 resource "google_service_account" "limited_iam_or_test" {
   project = google_project.limit_iam_binding_1.project_id
-  account_id = "limited_iam_or_test"
+  account_id = "limited-iam-or-test"
 }
 
 //resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
