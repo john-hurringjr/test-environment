@@ -18,7 +18,6 @@
  *****************************************/
 variable "organization_id" {}
 variable "terraform_service_account" {}
-variable "project_unique_shared_id" {}
 variable "billing_account_id" {}
 variable "access_policy_name" {}
 variable "my_id" {}
