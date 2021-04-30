@@ -32,9 +32,6 @@ resource "google_project" "limit_iam_binding_2" {
 }
 
 
-
-
-
 /******************************************
   IAM Policy
  *****************************************/
@@ -91,6 +88,54 @@ resource "google_service_account" "limited_iam_or_test" {
 //  }
 //
 //}
+
+resource "google_project_iam_member" "bigquery_admin_1" {
+  project = "iamtest-limit-iam-binding"
+  member  = "user:jhurring@google.com"
+  role    = "roles/bigquery.admin"
+}
+
+resource "google_project_iam_member" "cloudbuild_builder_1" {
+  project = "iamtest-limit-iam-binding"
+  member  = "user:jhurring@google.com"
+  role    = "roles/cloudbuild.builds.builder"
+}
+
+resource "google_project_iam_member" "bigquery_admin_2" {
+  project = "iamtest-limit-iam-binding"
+  member  = "group:gcp-org-admins@jchtest.joonix.net"
+  role    = "roles/bigquery.admin"
+}
+
+resource "google_project_iam_member" "cloudbuild_builder_2" {
+  project = "iamtest-limit-iam-binding"
+  member  = "group:gcp-org-admins@jchtest.joonix.net"
+  role    = "roles/cloudbuild.builds.builder"
+}
+
+resource "google_project_iam_member" "bigquery_admin_3" {
+  project = "iamtest-limit-iam-binding"
+  member  = "group:gcp-sre-admins@jchtest.joonix.net"
+  role    = "roles/bigquery.admin"
+}
+
+resource "google_project_iam_member" "cloudbuild_builder_3" {
+  project = "iamtest-limit-iam-binding"
+  member  = "group:gcp-sre-admins@jchtest.joonix.net"
+  role    = "roles/cloudbuild.builds.builder"
+}
+
+resource "google_project_iam_member" "bigquery_admin_4" {
+  project = "iamtest-limit-iam-binding"
+  member  = "serviceAccount:960436513467@cloudbuild.gserviceaccount.com"
+  role    = "roles/bigquery.admin"
+}
+
+resource "google_project_iam_member" "cloudbuild_builder_4" {
+  project = "iamtest-limit-iam-binding"
+  member  = "serviceAccount:960436513467@cloudbuild.gserviceaccount.com"
+  role    = "roles/cloudbuild.builds.builder"
+}
 
 //
 //
