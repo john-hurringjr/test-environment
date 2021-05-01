@@ -35,7 +35,7 @@ module "shared_vpc_host_project" {
   Service Prj
  *****************************************/
 module "shared_vpc_service_project" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
+  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-service"
   project_friendly_name       = "Shared Perimeter - Service"
   unique_shared_id            = var.project_unique_shared_id
   environment                 = "srvs"
