@@ -89,6 +89,27 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       enable_restriction = false
     }
 
+    egress_policies {
+      egress_from {
+        identities = ["serviceAccount:${google_service_account.terraform_test_service_account_1.email}"]
+      }
+
+      egress_to {
+        resources = [
+          "projects/${module.shared_vpc_service_project.project_number}",
+          "projects/${module.target_project.project_number}"
+        ]
+        operations {
+          service_name ="*"
+          method_selectors {
+            method =""
+          }
+        }
+      }
+
+    }
+
+
     access_levels = [
       google_access_context_manager_access_level.allow_tf_and_me.id,
     ]
