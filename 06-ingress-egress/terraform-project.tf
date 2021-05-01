@@ -103,6 +103,7 @@ module "tf_nat" {
 }
 
 resource "google_compute_route" "default_tf_route" {
+  project           = module.tf_project.project_id
   dest_range        = "0.0.0.0/0"
   name              = "tf-default"
   network           = google_compute_network.tf_project_vpc.name
