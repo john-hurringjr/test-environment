@@ -17,15 +17,15 @@
   Shared VPC Host
  *****************************************/
 
-module "tf_project" {
-  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access/shared-vpc-host"
-  project_friendly_name     = "TF Project"
-  unique_shared_id          = var.project_unique_shared_id
-  environment               = "tf"
-  folder_id                 = google_folder.ingress_egress.id
-  billing_account_id        = var.billing_account_id
-  label_business_unit       = "tf-prj"
-  label_restrictions        = "none"
-  network_viewer_group_id   = var.network_admins_group
-  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_tf_perimeter.name
-}
+//module "tf_project" {
+//  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
+//  project_friendly_name     = "TF Project"
+//  unique_shared_id          = var.project_unique_shared_id
+//  environment               = "tf"
+//  folder_id                 = google_folder.ingress_egress.id
+//  billing_account_id        = var.billing_account_id
+//  label_business_unit       = "tf-prj"
+//  label_restrictions        = "none"
+//  network_viewer_group_id   = var.network_admins_group
+//  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_tf_perimeter.name
+//}
