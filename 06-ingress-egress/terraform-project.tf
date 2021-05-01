@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  Shared VPC Host
+  TF VPC Host
  *****************************************/
 
 module "tf_project" {
@@ -31,7 +31,7 @@ module "tf_project" {
 }
 
 /******************************************
-  Restricted Shared VPC Host - Prod - VPC and Subnets
+  TF VPC and Subnets
  *****************************************/
 # Network
 resource "google_compute_network" "tf_project_vpc" {
@@ -43,69 +43,69 @@ resource "google_compute_network" "tf_project_vpc" {
 }
 
 # Subnets
-module "tf_vpc_subnet_1" {
-  source                  = "github.com/john-hurringjr/test-modules/networking/subnet/gke"
-  project_id              = module.tf_project.project_id
-  network_self_link       = google_compute_network.tf_project_vpc.self_link
-  network_name            = google_compute_network.tf_project_vpc.name
-  region                  = var.region
-  primary_cidr            = "10.0.0.0/19"
-  alias_gke_pod_cidr      = "10.2.0.0/18"
-  alias_gke_service_cidr  = "10.1.0.0/19"
-  vpc_flow_log_interval   = "INTERVAL_5_MIN"
-  vpc_flow_log_sampling   = 0.8
-  subnet_number           = "1"
-}
-
-/******************************************
-  Restricted Shared VPC Host - Prod - DNS & Routing
- *****************************************/
-module "restricted_prod_vpc_restricted_apis_dns" {
-  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
-  project_id        = module.tf_project.project_id
-  network_self_link = google_compute_network.tf_project_vpc.self_link
-}
-
-module "restricted_prod_vpc_restricted_apis_routing" {
-  source            = "github.com/john-hurringjr/test-modules/networking/routing/restricted-apis"
-  project_id        = module.tf_project.project_id
-  network_self_link = google_compute_network.tf_project_vpc.self_link
-}
-
-/******************************************
-  Restricted Shared VPC Host - Non-Prod - Firewalls
- *****************************************/
-# Allows ingress on 22, 3389, 443 on all VMs from all rfc1918
-module "restricted_non_prod_vpc_firewall_allow_ingress_rfc1918_limited" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918-limited"
-  project_id        = module.tf_project.project_id
-  network_self_link = google_compute_network.tf_project_vpc.self_link
-  network_name      = google_compute_network.tf_project_vpc.name
-}
-
-module "restricted_on_prem_vpc_prod_firewall_allow_iap_all" {
-  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
-  project_id        = module.tf_project.project_id
-  network_self_link = google_compute_network.tf_project_vpc.self_link
-  network_name      = google_compute_network.tf_project_vpc.name
-}
-
-/******************************************
-  Cloud NAT
- *****************************************/
-module "tf_nat" {
-  source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
-  project_id              = module.tf_project.project_id
-  network_self_link       = google_compute_network.tf_project_vpc.self_link
-  network_name            = google_compute_network.tf_project_vpc.name
-  cloud_router_asn_number = 4200000500
-  nat_region              = var.region
-}
-
-resource "google_compute_route" "default_tf_route" {
-  project           = module.tf_project.project_id
-  dest_range        = "0.0.0.0/0"
-  name              = "tf-default"
-  network           = google_compute_network.tf_project_vpc.name
-  next_hop_gateway  = "default-internet-gateway"
-}
+//module "tf_vpc_subnet_1" {
+//  source                  = "github.com/john-hurringjr/test-modules/networking/subnet/gke"
+//  project_id              = module.tf_project.project_id
+//  network_self_link       = google_compute_network.tf_project_vpc.self_link
+//  network_name            = google_compute_network.tf_project_vpc.name
+//  region                  = var.region
+//  primary_cidr            = "10.0.0.0/19"
+//  alias_gke_pod_cidr      = "10.2.0.0/18"
+//  alias_gke_service_cidr  = "10.1.0.0/19"
+//  vpc_flow_log_interval   = "INTERVAL_5_MIN"
+//  vpc_flow_log_sampling   = 0.8
+//  subnet_number           = "1"
+//}
+//
+///******************************************
+//  TF VPC DNS & Routing
+// *****************************************/
+//module "tf_vpc_private_apis_dns" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
+//  project_id        = module.tf_project.project_id
+//  network_self_link = google_compute_network.tf_project_vpc.self_link
+//}
+//
+//module "tf_vpc_private_apis_routing" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/routing/restricted-apis"
+//  project_id        = module.tf_project.project_id
+//  network_self_link = google_compute_network.tf_project_vpc.self_link
+//}
+//
+///******************************************
+//  TF VPC Firewalls
+// *****************************************/
+//# Allows ingress on 22, 3389, 443 on all VMs from all rfc1918
+//module "tf_vpc_firewall_allow_ingress_rfc1918_limited" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918-limited"
+//  project_id        = module.tf_project.project_id
+//  network_self_link = google_compute_network.tf_project_vpc.self_link
+//  network_name      = google_compute_network.tf_project_vpc.name
+//}
+//
+//module "tf_vpc_prod_firewall_allow_iap_all" {
+//  source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
+//  project_id        = module.tf_project.project_id
+//  network_self_link = google_compute_network.tf_project_vpc.self_link
+//  network_name      = google_compute_network.tf_project_vpc.name
+//}
+//
+///******************************************
+//  TFVPC Cloud NAT
+// *****************************************/
+//module "tf_nat" {
+//  source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
+//  project_id              = module.tf_project.project_id
+//  network_self_link       = google_compute_network.tf_project_vpc.self_link
+//  network_name            = google_compute_network.tf_project_vpc.name
+//  cloud_router_asn_number = 4200000500
+//  nat_region              = var.region
+//}
+//
+//resource "google_compute_route" "default_tf_route" {
+//  project           = module.tf_project.project_id
+//  dest_range        = "0.0.0.0/0"
+//  name              = "tf-default"
+//  network           = google_compute_network.tf_project_vpc.name
+//  next_hop_gateway  = "default-internet-gateway"
+//}

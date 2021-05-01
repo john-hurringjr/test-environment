@@ -32,7 +32,7 @@ module "shared_vpc_host_project" {
 }
 
 /******************************************
-  Restricted Shared VPC Host - Prod - VPC and Subnets
+  Shared - VPC and Subnets
  *****************************************/
 # Network
 resource "google_compute_network" "shared_project_vpc" {
@@ -59,7 +59,7 @@ module "shared_vpc_subnet_1" {
 }
 
 /******************************************
-  Restricted Shared VPC Host - Prod - DNS & Routing
+  Shared - DNS & Routing
  *****************************************/
 module "shared_vpc_restricted_apis_dns" {
   source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
@@ -74,7 +74,7 @@ module "shared_vpc_restricted_apis_routing" {
 }
 
 /******************************************
-  Restricted Shared VPC Host - Non-Prod - Firewalls
+  Shared - Firewalls
  *****************************************/
 # Allows ingress on 22, 3389, 443 on all VMs from all rfc1918
 module "shared_vpc_firewall_allow_ingress_rfc1918_limited" {
@@ -92,7 +92,7 @@ module "shared_vpc_prod_firewall_allow_iap_all" {
 }
 
 /******************************************
-  Cloud NAT
+  Shared Cloud NAT
  *****************************************/
 module "shared_nat" {
   source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
