@@ -25,13 +25,13 @@ resource "google_folder" "ingress_egress" {
   Folder IAM
  *****************************************/
 
-resource "google_folder_iam_member" "tf_owner" {
+resource "google_folder_iam_member" "tf_owner_sa" {
   folder = google_folder.ingress_egress.id
   member = "serviceAccount:${var.terraform_service_account}"
   role = "roles/owner"
 }
 
-resource "google_folder_iam_member" "tf_owner" {
+resource "google_folder_iam_member" "tf_owner_me" {
   folder = google_folder.ingress_egress.id
   member = "user:${var.my_id}"
   role = "roles/owner"
