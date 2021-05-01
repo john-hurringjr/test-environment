@@ -91,6 +91,39 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       google_access_context_manager_access_level.allow_tf_and_me.id,
     ]
 
+    egress_policies {
+      egress_from {
+        identity_type = "ANY_IDENTITY"
+      }
+
+      egress_to {
+        resources = ["projects/${module.shared_vpc_host_project.project_number}"]
+        operations {
+          service_name ="compute.googleapis.com"
+          method_selectors {
+            method ="*"
+          }
+        }
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   # The below is required so we can dynamically add new projects to perimeter
