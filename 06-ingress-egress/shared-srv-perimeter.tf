@@ -20,7 +20,11 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
   name   = "accessPolicies/${var.access_policy_name}/servicePerimeters/shared_srvs"
   title  = "shared_srvs"
   status {
-    restricted_services = ["RESTRICTED-SERVICES"]
+    vpc_accessible_services {
+      enable_restriction = true
+      allowed_services = ["RESTRICTED-SERVICES"]
+    }
+
     access_levels = [
       google_access_context_manager_access_level.allow_tf_and_me.id,
     ]
