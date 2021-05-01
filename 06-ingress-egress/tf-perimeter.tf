@@ -85,6 +85,11 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       "osconfig.googleapis.com"
     ]
 
+    vpc_accessible_services {
+      enable_restriction = true
+      allowed_services = ["RESTRICTED-SERVICES"]
+    }
+
     access_levels = [
       google_access_context_manager_access_level.allow_tf_and_me.id,
     ]
