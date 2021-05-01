@@ -44,5 +44,5 @@ module "shared_vpc_service_project" {
   unique_project_identifier   = "shrd-srvs-prj"
   project_viewer_group        = var.network_admins_group
   service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_target.name
-  shared_vpc_host_project_id  = module.shared_vpc_host_project.outputs.project_id
+  shared_vpc_host_project_id  = module.shared_vpc_host_project.project_id
 }
