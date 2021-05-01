@@ -88,9 +88,30 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       allowed_services = ["RESTRICTED-SERVICES"]
     }
 
+    egress_policies {
+      egress_from {
+        identity_type = "ANY_IDENTITY"
+      }
+
+      egress_to {
+        resources = [module.shared_vpc_service_project.project_number, ]
+        operations {
+          service_name ="*"
+          method_selectors {
+            method ="*"
+          }
+        }
+      }
+
+
+    }
+
     access_levels = [
       google_access_context_manager_access_level.allow_tf_and_me.id,
     ]
+
+
+
 
   }
 
