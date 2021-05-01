@@ -20,7 +20,7 @@
 
 module "shared_vpc_host_project" {
   source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access/shared-vpc-host"
-  project_friendly_name     = "Shared VPC Host - Prod"
+  project_friendly_name     = "Shared VPC Host"
   unique_shared_id          = var.project_unique_shared_id
   environment               = "srvs"
   folder_id                 = google_folder.ingress_egress.id
