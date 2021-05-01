@@ -1,0 +1,18 @@
+---
+steps:
+  - name: gcr.io/cloud-builders/gsutil
+    dir: './${_FOLDER}/'
+    args: ['cp', 'gs://${_GCS_BUCKET}/${_FOLDER}/*', '.']
+    waitFor: ['-']
+  - name: hashicorp/terraform
+    dir: './${_FOLDER}/'
+    args:
+      - init
+  - name: hashicorp/terraform
+    dir: './${_FOLDER}/'
+    args:
+      - destroy
+      - -auto-approve
+tags:
+  - 'destroy'
+timeout: 7200s
