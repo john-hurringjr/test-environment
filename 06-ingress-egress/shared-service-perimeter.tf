@@ -94,23 +94,6 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       }
 
       egress_to {
-        resources = ["projects/${module.shared_vpc_service_project.project_number}", ]
-        operations {
-          service_name ="*"
-          method_selectors {
-            method =""
-          }
-        }
-      }
-
-    }
-
-    egress_policies {
-      egress_from {
-        identity_type = "ANY_IDENTITY"
-      }
-
-      egress_to {
         resources = ["projects/${module.shared_vpc_service_project_2.project_number}", ]
         operations {
           service_name ="compute.googleapis.com"
