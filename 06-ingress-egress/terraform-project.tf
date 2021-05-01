@@ -99,5 +99,13 @@ module "tf_nat" {
   network_self_link       = google_compute_network.tf_project_vpc.self_link
   network_name            = google_compute_network.tf_project_vpc.name
   cloud_router_asn_number = 4200000500
-  nat_region                  = var.region
+  nat_region              = var.region
+}
+
+resource "google_compute_route" "default_tf_route" {
+  project           = module.tf_project.project_id
+  dest_range        = "0.0.0.0/0"
+  name              = "tf-default"
+  network           = google_compute_network.tf_project_vpc.name
+  next_hop_gateway  = "default-internet-gateway"
 }
