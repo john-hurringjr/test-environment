@@ -17,15 +17,15 @@
  *****************************************/
 
 # Allow TF account to set up test config and my ID
-//resource "google_access_context_manager_access_level" "allow_tf_and_me" {
-//  parent = "accessPolicies/${var.access_policy_name}"
-//  name   = "accessPolicies/${var.access_policy_name}/accessLevels/allow_tf_and_me"
-//  title  = "allow_tf_and_me"
-//  basic {
-//    conditions {
-//      members = [
-//        "user:${var.my_id}", "serviceAccount:${var.terraform_service_account}"
-//      ]
-//    }
-//  }
-//}
+resource "google_access_context_manager_access_level" "allow_tf_and_me" {
+  parent = "accessPolicies/${var.access_policy_name}"
+  name   = "accessPolicies/${var.access_policy_name}/accessLevels/allow_tf_and_me"
+  title  = "allow_tf_and_me"
+  basic {
+    conditions {
+      members = [
+        "user:${var.my_id}", "serviceAccount:${var.terraform_service_account}"
+      ]
+    }
+  }
+}

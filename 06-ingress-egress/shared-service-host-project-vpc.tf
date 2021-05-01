@@ -18,15 +18,15 @@
   Shared VPC Host
  *****************************************/
 
-//module "shared_vpc_host_project" {
-//  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
-//  project_friendly_name     = "Shared VPC Host"
-//  unique_shared_id          = var.project_unique_shared_id
-//  environment               = "srvs"
-//  folder_id                 = google_folder.ingress_egress.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = "shared-services"
-//  label_restrictions        = "none"
-//  network_viewer_group_id   = var.network_admins_group
-//  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_shared_srvs.name
-//}
+module "shared_vpc_host_project" {
+  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
+  project_friendly_name     = "Shared VPC Host"
+  unique_shared_id          = var.project_unique_shared_id
+  environment               = "srvs"
+  folder_id                 = google_folder.ingress_egress.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = "shared-services"
+  label_restrictions        = "none"
+  network_viewer_group_id   = var.network_admins_group
+  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_shared_srvs.name
+}
