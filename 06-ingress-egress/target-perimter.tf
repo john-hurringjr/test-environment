@@ -111,6 +111,26 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
     ingress_policies {
       ingress_from {
         sources {
+          resources = ["projects/${module.shared_vpc_host_project.project_number}"]
+        }
+        identities = ["serviceAccount:${google_service_account.git_service_account_1.email}"]
+      }
+
+      ingress_to {
+        resources = ["*"]
+        operations {
+          service_name = "*"
+          method_selectors {
+            method = ""
+          }
+        }
+      }
+    }
+
+
+    ingress_policies {
+      ingress_from {
+        sources {
           resources = ["projects/${module.tf_project.project_number}"]
         }
         identities = ["serviceAccount:${google_service_account.terraform_test_service_account_1.email}"]
