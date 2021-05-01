@@ -45,7 +45,7 @@ resource "google_compute_network" "tf_project_vpc" {
 # Subnets
 module "tf_vpc_subnet_1" {
   source                  = "github.com/john-hurringjr/test-modules/networking/subnet/gke"
-  project                         = module.tf_project.project_id
+  project_id              = module.tf_project.project_id
   network_self_link       = google_compute_network.tf_project_vpc.self_link
   network_name            = google_compute_network.tf_project_vpc.name
   region                  = "us-central1"
@@ -62,13 +62,13 @@ module "tf_vpc_subnet_1" {
  *****************************************/
 module "restricted_prod_vpc_restricted_apis_dns" {
   source            = "github.com/john-hurringjr/test-modules/networking/dns/internal-restricted-apis"
-  project_id                        = module.tf_project.project_id
+  project_id        = module.tf_project.project_id
   network_self_link = google_compute_network.tf_project_vpc.self_link
 }
 
 module "restricted_prod_vpc_restricted_apis_routing" {
   source            = "github.com/john-hurringjr/test-modules/networking/routing/restricted-apis"
-  project_id                        = module.tf_project.project_id
+  project_id        = module.tf_project.project_id
   network_self_link = google_compute_network.tf_project_vpc.self_link
 }
 
@@ -78,14 +78,14 @@ module "restricted_prod_vpc_restricted_apis_routing" {
 # Allows ingress on 22, 3389, 443 on all VMs from all rfc1918
 module "restricted_non_prod_vpc_firewall_allow_ingress_rfc1918_limited" {
   source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-rfc1918-limited"
-  project_id                        = module.tf_project.project_id
+  project_id        = module.tf_project.project_id
   network_self_link = google_compute_network.tf_project_vpc.self_link
   network_name      = google_compute_network.tf_project_vpc.name
 }
 
 module "restricted_on_prem_vpc_prod_firewall_allow_iap_all" {
   source            = "github.com/john-hurringjr/test-modules/networking/firewall-rules/all/allow-ingress-iap"
-  project_id                        = module.tf_project.project_id
+  project_id        = module.tf_project.project_id
   network_self_link = google_compute_network.tf_project_vpc.self_link
   network_name      = google_compute_network.tf_project_vpc.name
 }
