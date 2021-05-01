@@ -36,3 +36,4 @@ resource "google_folder_iam_member" "tf_owner_me" {
   member = "user:${var.my_id}"
   role = "roles/owner"
 }
+
