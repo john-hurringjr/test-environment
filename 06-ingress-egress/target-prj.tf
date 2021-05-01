@@ -17,15 +17,15 @@
   Target Project
  *****************************************/
 
-//module "target_project" {
-//  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
-//  project_friendly_name     = "Target Project"
-//  unique_shared_id          = var.project_unique_shared_id
-//  environment               = "tar"
-//  folder_id                 = google_folder.ingress_egress.id
-//  billing_account_id        = var.billing_account_id
-//  label_business_unit       = "target"
-//  label_restrictions        = "none"
-//  network_viewer_group_id   = var.network_admins_group
-//  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_target.name
-//}
+module "target_project" {
+  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access-2/shared-vpc-host"
+  project_friendly_name     = "Target Project"
+  unique_shared_id          = var.project_unique_shared_id
+  environment               = "tar"
+  folder_id                 = google_folder.ingress_egress.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = "target"
+  label_restrictions        = "none"
+  network_viewer_group_id   = var.network_admins_group
+  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_target.name
+}
