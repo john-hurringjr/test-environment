@@ -94,7 +94,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
       }
 
       egress_to {
-        resources = [module.shared_vpc_service_project.project_number, ]
+        resources = ["projects/${module.shared_vpc_service_project.project_number}", ]
         operations {
           service_name ="*"
           method_selectors {
