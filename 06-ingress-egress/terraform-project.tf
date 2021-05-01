@@ -99,5 +99,5 @@ module "tf_nat" {
   network_self_link       = google_compute_network.tf_project_vpc.self_link
   network_name            = google_compute_network.tf_project_vpc.name
   cloud_router_asn_number = 4200000500
-  region                  = var.region
+  nat_region                  = var.region
 }
