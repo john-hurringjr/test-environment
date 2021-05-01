@@ -48,7 +48,7 @@ module "tf_vpc_subnet_1" {
   project_id              = module.tf_project.project_id
   network_self_link       = google_compute_network.tf_project_vpc.self_link
   network_name            = google_compute_network.tf_project_vpc.name
-  region                  = "us-central1"
+  region                  = var.region
   primary_cidr            = "10.0.0.0/19"
   alias_gke_pod_cidr      = "10.2.0.0/18"
   alias_gke_service_cidr  = "10.1.0.0/19"
@@ -88,4 +88,16 @@ module "restricted_on_prem_vpc_prod_firewall_allow_iap_all" {
   project_id        = module.tf_project.project_id
   network_self_link = google_compute_network.tf_project_vpc.self_link
   network_name      = google_compute_network.tf_project_vpc.name
+}
+
+/******************************************
+  Cloud NAT
+ *****************************************/
+module "tf_nat" {
+  source                  = "github.com/john-hurringjr/test-modules//networking/nat/auto-ip-all-region-subnets?ref=master"
+  project_id              = module.tf_project.project_id
+  network_self_link       = google_compute_network.tf_project_vpc.self_link
+  network_name            = google_compute_network.tf_project_vpc.name
+  cloud_router_asn_number = 4200000500
+  nat_region                  = var.region
 }
