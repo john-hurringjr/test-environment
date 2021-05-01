@@ -54,3 +54,12 @@ resource "google_service_account" "terraform_test_service_account_1" {
   project     = module.target_project.project_id
   account_id  = "terraform-test-1"
 }
+
+/******************************************
+  Service Account
+ *****************************************/
+
+resource "google_service_account" "git_service_account_1" {
+  project     = module.shared_vpc_service_project.project_id
+  account_id  = "git-test-1"
+}
