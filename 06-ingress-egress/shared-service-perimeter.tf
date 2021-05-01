@@ -98,7 +98,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
         operations {
           service_name ="*"
           method_selectors {
-            method ="*"
+            method =""
           }
         }
       }
