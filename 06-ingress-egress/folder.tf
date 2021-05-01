@@ -16,8 +16,17 @@
 /******************************************
   Create Folders
  *****************************************/
-
 resource "google_folder" "ingress_egress" {
   display_name  = "Ingress Egress"
   parent        = "organizations/${var.organization_id}"
+}
+
+/******************************************
+  Folder IAM
+ *****************************************/
+
+resource "google_folder_iam_member" "tf_owner" {
+  folder = google_folder.ingress_egress.id
+  member = "serviceAccount:${var.terraform_service_account}"
+  role = "roles/owner"
 }

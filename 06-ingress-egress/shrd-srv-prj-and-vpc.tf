@@ -13,3 +13,36 @@
  * limitations under the License.
  */
 
+
+/******************************************
+  Shared VPC Host
+ *****************************************/
+
+module "shared_vpc_host_project" {
+  source                    = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access/shared-vpc-host"
+  project_friendly_name     = "Shared VPC Host - Prod"
+  unique_shared_id          = var.project_unique_shared_id
+  environment               = "srvs"
+  folder_id                 = google_folder.ingress_egress.id
+  billing_account_id        = var.billing_account_id
+  label_business_unit       = "shared-services"
+  label_restrictions        = "none"
+  network_viewer_group_id   = var.network_admins_group
+  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_shared_srvs.name
+}
+
+/******************************************
+  Service Prj
+ *****************************************/
+//module "shared_vpc_service_project" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/vpc-sc-restricted-access/shared-vpc-service"
+//  project_friendly_name       = "Shared Perimeter - Service"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "srvs"
+//  folder_id                   = google_folder.ingress_egress.id
+//  billing_account_id          = var.billing_account_id
+//  unique_project_identifier   = "shrd-srvs-prj"
+//  project_viewer_group        = var.network_admins_group
+//  service_perimeter_name    = google_access_context_manager_service_perimeter.service_perimeter_configuration_shared_srvs.name
+//  shared_vpc_host_project_id  = module.shared_vpc_host_project.outputs.project_id
+//}

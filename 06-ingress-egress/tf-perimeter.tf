@@ -86,8 +86,7 @@ resource "google_access_context_manager_service_perimeter" "service_perimeter_co
     ]
 
     vpc_accessible_services {
-      enable_restriction = true
-      allowed_services = ["RESTRICTED-SERVICES"]
+      enable_restriction = false
     }
 
     access_levels = [

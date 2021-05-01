@@ -21,3 +21,6 @@ variable "terraform_service_account" {}
 variable "billing_account_id" {}
 variable "access_policy_name" {}
 variable "my_id" {}
+variable "project_unique_shared_id" {}
+variable "network_admins_group" {}
+variable "security_admins_group" {}
