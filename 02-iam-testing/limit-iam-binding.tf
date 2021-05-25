@@ -49,7 +49,7 @@ resource "google_project_iam_binding" "test_limited_iam_admin_permissions" {
   role = "roles/resourcemanager.projectIamAdmin"
 
   condition {
-    title       = "Test to limit IAM bindings permissions"
+    title       = "Test to limit IAM bindings permissions - First 130"
     expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/bigquery.admin', 'roles/bigtable.admin']) || api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
   }
 }
