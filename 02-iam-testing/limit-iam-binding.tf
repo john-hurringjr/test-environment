@@ -40,19 +40,28 @@ resource "google_project" "limit_iam_binding_2" {
 //  policy_data = ""
 //  project     = google_project.limit_iam_binding_1.project_id
 //}
+//
+//resource "google_project_iam_binding" "test_limited_iam_admin_permissions_1" {
+//  project = google_project.limit_iam_binding_1.project_id
+//  members = [
+//    "serviceAccount:${google_service_account.limited_iam_or_test.email}",
+//    "group:MYADMINGROUPFORTHISPROJECT"
+//  ]
+//  role = "roles/resourcemanager.projectIamAdmin"
+//
+//  condition {
+//    title       = "Test to limit IAM bindings permissions - First 130"
+//    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/bigquery.admin', 'roles/bigtable.admin']) || api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
+//  }
+//}
+//
+//
+//
+//
 
-resource "google_project_iam_binding" "test_limited_iam_admin_permissions" {
-  project = google_project.limit_iam_binding_1.project_id
-  members = [
-    "serviceAccount:${google_service_account.limited_iam_or_test.email}",
-  ]
-  role = "roles/resourcemanager.projectIamAdmin"
 
-  condition {
-    title       = "Test to limit IAM bindings permissions - First 130"
-    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/bigquery.admin', 'roles/bigtable.admin']) || api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
-  }
-}
+
+
 
 
 //resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
