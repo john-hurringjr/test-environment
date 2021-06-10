@@ -22,3 +22,20 @@ resource "google_project" "testing_iam_1" {
   folder_id       = google_folder.testing_iam_1_folder.id
   billing_account = var.billing_account_id
 }
+
+data "google_iam_policy" "testing_redundantuser" {
+  binding {
+    members = [
+      "group:${var.limited_iam_bindings_group}",
+      "group:${var.limited_iam_bindings_group}",
+      "group:${var.limited_iam_bindings_group}",
+      "group:${var.limited_iam_bindings_group}"
+    ]
+    role = "roles/compute.viewer"
+  }
+}
+
+resource "google_project_iam_policy" "testing" {
+  policy_data = data.google_iam_policy.testing_redundantuser.policy_data
+  project = google_project.testing_iam_1.project_id
+}

@@ -113,6 +113,7 @@ module "dev_vpc_region_2_gke_subnet_1" {
   subnet_number           = "gke-1"
 }
 
+
 /******************************************
   Shared VPC Host - Prod
  *****************************************/
