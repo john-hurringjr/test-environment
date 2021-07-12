@@ -15,91 +15,91 @@
 
 /******************************************
   Project 1
- *****************************************/
-
-module "project_limited_testing_1" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 1 - MM"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "mm-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
-/******************************************
-  Project 2
- *****************************************/
-
-module "project_limited_testing_2" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 2 - SM"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "sm-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
-/******************************************
-  Project 3
- *****************************************/
-
-module "project_limited_testing_3" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 3 - SK"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "sk-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
-/******************************************
-  Project 4
- *****************************************/
-
-module "project_limited_testing_4" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 4 - NM"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "nm-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
-/******************************************
-  Project 5
- *****************************************/
-
-module "project_limited_testing_5" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 5 - ZD"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "zd-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
-/******************************************
-  Project 6
- *****************************************/
-
-module "project_limited_testing_6" {
-  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
-  project_friendly_name       = "Test 6 -JH"
-  unique_shared_id            = var.project_unique_shared_id
-  environment                 = "test"
-  project_admin_group_id      = var.group_id
-  unique_project_identifier   = "jh-prj-1"
-  folder_id                   = var.folder_id
-  billing_account_id          = var.billing_account_id
-}
-
+// *****************************************/
+//
+//module "project_limited_testing_1" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 1 - MM"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "mm-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 2
+// *****************************************/
+//
+//module "project_limited_testing_2" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 2 - SM"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "sm-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 3
+// *****************************************/
+//
+//module "project_limited_testing_3" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 3 - SK"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "sk-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 4
+// *****************************************/
+//
+//module "project_limited_testing_4" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 4 - NM"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "nm-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 5
+// *****************************************/
+//
+//module "project_limited_testing_5" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 5 - ZD"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "zd-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 6
+// *****************************************/
+//
+//module "project_limited_testing_6" {
+//  source                      = "github.com/john-hurringjr/test-modules/project-creation/testing"
+//  project_friendly_name       = "Test 6 -JH"
+//  unique_shared_id            = var.project_unique_shared_id
+//  environment                 = "test"
+//  project_admin_group_id      = var.group_id
+//  unique_project_identifier   = "jh-prj-1"
+//  folder_id                   = var.folder_id
+//  billing_account_id          = var.billing_account_id
+//}
+//
