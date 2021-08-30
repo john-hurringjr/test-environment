@@ -53,7 +53,7 @@ resource "google_project_iam_member" "test_limited_iam_admin_permissions_2" {
   role = "roles/resourcemanager.projectIamAdmin"
   condition {
     title       = "Test to limit IAM bindings permissions - Second 130"
-    expression  = "api.getAttribute(api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
+    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
   }
 }
 
@@ -83,19 +83,19 @@ resource "google_service_account" "limited_iam_or_test" {
   account_id = "limited-iam-or-test"
 }
 
-//resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
-//  folder = google_folder.conditional_access_testing.id
-//  members = [
-//    "group:${var.limited_iam_bindings_group}",
-//  ]
-//  role = "roles/resourcemanager.projectIamAdmin"
-//
-//  condition {
-//    title       = "Test to limit IAM bindings permissions"
-//    expression  ="api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user','roles/bigquery.admin', 'roles/bigtable.admin'])" #Can OR it up to 12 times (13 functions to call)
-//  }
-//
-//}
+resource "google_folder_iam_binding" "test_limited_iam_admin_permissions" {
+  folder = google_folder.conditional_access_testing.id
+  members = [
+    "group:${var.limited_iam_bindings_group}",
+  ]
+  role = "roles/resourcemanager.projectIamAdmin"
+
+  condition {
+    title       = "Test to limit IAM bindings permissions"
+    expression  ="api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/billing.user','roles/bigquery.admin', 'roles/bigtable.admin'])" #Can OR it up to 12 times (13 functions to call)
+  }
+
+}
 
 //
 //
