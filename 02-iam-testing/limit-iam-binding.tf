@@ -36,28 +36,39 @@ resource "google_project" "limit_iam_binding_2" {
   IAM Policy
  *****************************************/
 
-//resource "google_project_iam_policy" "limited_iam_binding_policy" {
-//  policy_data = ""
-//  project     = google_project.limit_iam_binding_1.project_id
-//}
-//
-//resource "google_project_iam_binding" "test_limited_iam_admin_permissions_1" {
-//  project = google_project.limit_iam_binding_1.project_id
-//  members = [
-//    "serviceAccount:${google_service_account.limited_iam_or_test.email}",
-//    "group:MYADMINGROUPFORTHISPROJECT"
-//  ]
-//  role = "roles/resourcemanager.projectIamAdmin"
-//
-//  condition {
-//    title       = "Test to limit IAM bindings permissions - First 130"
-//    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/bigquery.admin', 'roles/bigtable.admin']) || api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
-//  }
-//}
-//
-//
-//
-//
+resource "google_project_iam_policy" "limited_iam_binding_policy" {
+  policy_data = ""
+  project     = google_project.limit_iam_binding_1.project_id
+}
+
+resource "google_project_iam_binding" "test_limited_iam_admin_permissions_1" {
+  project = google_project.limit_iam_binding_1.project_id
+  members = [
+    "serviceAccount:${google_service_account.limited_iam_or_test.email}",
+    "user:${var.limited_iam_bindings_group}"
+  ]
+  role = "roles/resourcemanager.projectIamAdmin"
+
+  condition {
+    title       = "Test to limit IAM bindings permissions - First 130"
+    expression  = "api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/storage.admin', 'roles/bigquery.admin', 'roles/bigtable.admin'])"
+  }
+}
+
+resource "google_project_iam_binding" "test_limited_iam_admin_permissions_2" {
+  project = google_project.limit_iam_binding_1.project_id
+  members = [
+    "serviceAccount:${google_service_account.limited_iam_or_test.email}",
+    "user:${var.limited_iam_bindings_group}"
+  ]
+  role = "roles/resourcemanager.projectIamAdmin"
+
+  condition {
+    title       = "Test to limit IAM bindings permissions - First 130"
+    expression  = "api.getAttribute(api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly(['roles/cloudbuild.builds.builder', 'roles/cloudbuild.builds.editor', 'roles/cloudbuild.builds.viewer'])"
+  }
+}
+
 
 
 
