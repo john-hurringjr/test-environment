@@ -39,7 +39,7 @@ resource "google_project" "limit_iam_binding_2" {
 
 resource "google_project_iam_member" "test_limited_iam_admin_permissions_1" {
   project = google_project.limit_iam_binding_1.project_id
-  member = "user:${var.limited_iam_bindings_group}"
+  member = "group:${var.limited_iam_bindings_group}"
   role = "roles/resourcemanager.projectIamAdmin"
   condition {
     title       = "Test to limit IAM bindings permissions - First 130"
@@ -49,7 +49,7 @@ resource "google_project_iam_member" "test_limited_iam_admin_permissions_1" {
 
 resource "google_project_iam_member" "test_limited_iam_admin_permissions_2" {
   project = google_project.limit_iam_binding_1.project_id
-  member = "user:${var.limited_iam_bindings_group}"
+  member = "group:${var.limited_iam_bindings_group}"
   role = "roles/resourcemanager.projectIamAdmin"
   condition {
     title       = "Test to limit IAM bindings permissions - Second 130"
