@@ -36,11 +36,6 @@ resource "google_project" "limit_iam_binding_2" {
   IAM Policy
  *****************************************/
 
-resource "google_project_iam_policy" "limited_iam_binding_policy" {
-  policy_data = ""
-  project     = google_project.limit_iam_binding_1.project_id
-}
-
 resource "google_project_iam_binding" "test_limited_iam_admin_permissions_1" {
   project = google_project.limit_iam_binding_1.project_id
   members = [
