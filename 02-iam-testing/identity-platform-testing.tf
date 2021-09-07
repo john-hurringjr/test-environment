@@ -27,7 +27,7 @@ resource "google_project" "identity_platform_testing_1" {
   Project 2
  *****************************************/
 
-resource "google_project" "identity_platform_testing_1" {
+resource "google_project" "identity_platform_testing_2" {
   name            = "${var.project_unique_shared_id}-identity-p-2"
   project_id      = "${var.project_unique_shared_id}-identity-p-2"
   folder_id       = google_folder.testing_iam_1_folder.id
@@ -38,7 +38,7 @@ resource "google_project" "identity_platform_testing_1" {
   Project 3
  *****************************************/
 
-resource "google_project" "identity_platform_testing_1" {
+resource "google_project" "identity_platform_testing_3" {
   name            = "${var.project_unique_shared_id}-identity-p-3"
   project_id      = "${var.project_unique_shared_id}-identity-p-3"
   folder_id       = google_folder.testing_iam_1_folder.id
@@ -49,7 +49,7 @@ resource "google_project" "identity_platform_testing_1" {
   Project 4
  *****************************************/
 
-resource "google_project" "identity_platform_testing_1" {
+resource "google_project" "identity_platform_testing_4" {
   name            = "${var.project_unique_shared_id}-identity-p-4"
   project_id      = "${var.project_unique_shared_id}-identity-p-4"
   folder_id       = google_folder.testing_iam_1_folder.id
@@ -60,7 +60,7 @@ resource "google_project" "identity_platform_testing_1" {
   Project 5
  *****************************************/
 
-resource "google_project" "identity_platform_testing_1" {
+resource "google_project" "identity_platform_testing_5" {
   name            = "${var.project_unique_shared_id}-identity-p-5"
   project_id      = "${var.project_unique_shared_id}-identity-p-5"
   folder_id       = google_folder.testing_iam_1_folder.id
@@ -71,7 +71,7 @@ resource "google_project" "identity_platform_testing_1" {
   Project 6
  *****************************************/
 
-resource "google_project" "identity_platform_testing_1" {
+resource "google_project" "identity_platform_testing_6" {
   name            = "${var.project_unique_shared_id}-identity-p-6"
   project_id      = "${var.project_unique_shared_id}-identity-p-6"
   folder_id       = google_folder.testing_iam_1_folder.id
@@ -82,7 +82,7 @@ resource "google_project" "identity_platform_testing_1" {
 //  Project 7
 // *****************************************/
 //
-//resource "google_project" "identity_platform_testing_1" {
+//resource "google_project" "identity_platform_testing_7" {
 //  name            = "${var.project_unique_shared_id}-identity-p-7"
 //  project_id      = "${var.project_unique_shared_id}-identity-p-7"
 //  folder_id       = google_folder.testing_iam_1_folder.id
@@ -93,7 +93,7 @@ resource "google_project" "identity_platform_testing_1" {
 //  Project 8
 // *****************************************/
 //
-//resource "google_project" "identity_platform_testing_1" {
+//resource "google_project" "identity_platform_testing_8" {
 //  name            = "${var.project_unique_shared_id}-identity-p-8"
 //  project_id      = "${var.project_unique_shared_id}-identity-p-8"
 //  folder_id       = google_folder.testing_iam_1_folder.id
