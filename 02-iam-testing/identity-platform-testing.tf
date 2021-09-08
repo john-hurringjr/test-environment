@@ -12,71 +12,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/******************************************
-  Project 1
- *****************************************/
-
-resource "google_project" "identity_platform_testing_1" {
-  name            = "${var.project_unique_shared_id}-identity-p-1"
-  project_id      = "${var.project_unique_shared_id}-identity-p-1"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project 2
- *****************************************/
-
-resource "google_project" "identity_platform_testing_2" {
-  name            = "${var.project_unique_shared_id}-identity-p-2"
-  project_id      = "${var.project_unique_shared_id}-identity-p-2"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project 3
- *****************************************/
-
-resource "google_project" "identity_platform_testing_3" {
-  name            = "${var.project_unique_shared_id}-identity-p-3"
-  project_id      = "${var.project_unique_shared_id}-identity-p-3"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project 4
- *****************************************/
-
-resource "google_project" "identity_platform_testing_4" {
-  name            = "${var.project_unique_shared_id}-identity-p-4"
-  project_id      = "${var.project_unique_shared_id}-identity-p-4"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project 5
- *****************************************/
-
-resource "google_project" "identity_platform_testing_5" {
-  name            = "${var.project_unique_shared_id}-identity-p-5"
-  project_id      = "${var.project_unique_shared_id}-identity-p-5"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project 6
- *****************************************/
-
-resource "google_project" "identity_platform_testing_6" {
-  name            = "${var.project_unique_shared_id}-identity-p-6"
-  project_id      = "${var.project_unique_shared_id}-identity-p-6"
-  folder_id       = google_folder.testing_iam_1_folder.id
-  billing_account = var.billing_account_id
-}
+///******************************************
+//  Project 1
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_1" {
+//  name            = "${var.project_unique_shared_id}-identity-p-1"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-1"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 2
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_2" {
+//  name            = "${var.project_unique_shared_id}-identity-p-2"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-2"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 3
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_3" {
+//  name            = "${var.project_unique_shared_id}-identity-p-3"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-3"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 4
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_4" {
+//  name            = "${var.project_unique_shared_id}-identity-p-4"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-4"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 5
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_5" {
+//  name            = "${var.project_unique_shared_id}-identity-p-5"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-5"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
+//
+///******************************************
+//  Project 6
+// *****************************************/
+//
+//resource "google_project" "identity_platform_testing_6" {
+//  name            = "${var.project_unique_shared_id}-identity-p-6"
+//  project_id      = "${var.project_unique_shared_id}-identity-p-6"
+//  folder_id       = google_folder.testing_iam_1_folder.id
+//  billing_account = var.billing_account_id
+//}
 
 ///******************************************
 //  Project 7
