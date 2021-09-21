@@ -66,3 +66,9 @@ resource "google_folder" "testing_iam_blank_folder" {
   display_name  = "Testing IAM Blank"
   parent        = google_folder.iam_top_level.id
 }
+
+
+resource "google_folder" "testing_iam_api_keys" {
+  display_name  = "Testing API Keys"
+  parent        = google_folder.iam_top_level.id
+}
