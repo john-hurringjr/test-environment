@@ -17,8 +17,8 @@
  *****************************************/
 
 resource "google_project" "api_key_testing_1" {
-  name            = "${var.project_unique_shared_id}-${var.purpose}-${random_string.rando_string}"
-  project_id      = "${var.project_unique_shared_id}-${var.purpose}-${random_string.rando_string}"
+  name            = "${var.project_unique_shared_id}-${var.purpose}-${random_string.rando_string.result}"
+  project_id      = "${var.project_unique_shared_id}-${var.purpose}-${random_string.rando_string.result}"
   folder_id       = var.folder_id
   billing_account = var.billing_id
 }
