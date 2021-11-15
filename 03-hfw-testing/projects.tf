@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/******************************************
-  Project 1
- *****************************************/
-
-resource "google_project" "testing_hfw_1" {
-  name            = "${var.project_unique_shared_id}-test-1"
-  project_id      = "${var.project_unique_shared_id}-test-1"
-  folder_id       = google_folder.hfw_testing_top_level.id
-  billing_account = var.billing_account_id
-}
-
-/******************************************
-  Project Security - 1
- *****************************************/
-resource "google_project" "testing_security_1" {
-  name            = "${var.security_test_prj_id}-1"
-  project_id      = "${var.security_test_prj_id}-1"
-  folder_id       = google_folder.hfw_testing_top_level.id
-  billing_account = var.billing_account_id
-}
+#/******************************************
+#  Project 1
+# *****************************************/
+#
+#resource "google_project" "testing_hfw_1" {
+#  name            = "${var.project_unique_shared_id}-test-1"
+#  project_id      = "${var.project_unique_shared_id}-test-1"
+#  folder_id       = google_folder.hfw_testing_top_level.id
+#  billing_account = var.billing_account_id
+#}
+#
+#/******************************************
+#  Project Security - 1
+# *****************************************/
+#resource "google_project" "testing_security_1" {
+#  name            = "${var.security_test_prj_id}-1"
+#  project_id      = "${var.security_test_prj_id}-1"
+#  folder_id       = google_folder.hfw_testing_top_level.id
+#  billing_account = var.billing_account_id
+#}
