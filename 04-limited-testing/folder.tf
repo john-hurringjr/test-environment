@@ -13,32 +13,32 @@
  * limitations under the License.
  */
 
-/******************************************
-  Folders
- *****************************************/
-
-resource "google_folder" "limited_testing" {
-  display_name  = "Limited Testing"
-  parent        = "organizations/${var.organization_id}"
-}
-
-/******************************************
-  Folders Org Policies
- *****************************************/
-
-
-# Restrict to USA Locations Only
-resource "google_folder_organization_policy" "folder_location_restriction" {
-  constraint  = "constraints/gcp.resourceLocations"
-  folder      = google_folder.limited_testing.id
-
-  list_policy {
-    allow {
-      values = ["in:us-locations"]
-    }
-  }
-
-}
+#/******************************************
+#  Folders
+# *****************************************/
+#
+#resource "google_folder" "limited_testing" {
+#  display_name  = "Limited Testing"
+#  parent        = "organizations/${var.organization_id}"
+#}
+#
+#/******************************************
+#  Folders Org Policies
+# *****************************************/
+#
+#
+## Restrict to USA Locations Only
+#resource "google_folder_organization_policy" "folder_location_restriction" {
+#  constraint  = "constraints/gcp.resourceLocations"
+#  folder      = google_folder.limited_testing.id
+#
+#  list_policy {
+#    allow {
+#      values = ["in:us-locations"]
+#    }
+#  }
+#
+#}
 
 # Allow Cloud NAT usage
 //resource "google_organization_policy" "gce_allow_cloud_nat_usage" {
