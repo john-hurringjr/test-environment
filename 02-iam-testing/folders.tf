@@ -17,10 +17,11 @@
 #  Folders
 # *****************************************/
 #
-#resource "google_folder" "iam_top_level" {
-#  display_name  = "IAM Testing"
-#  parent        = "organizations/${var.organization_id}"
-#}
+resource "google_folder" "iam_top_level" {
+  provider = "google-beta"
+  display_name  = "IAM Testing"
+  parent        = "organizations/${var.organization_id}"
+}
 #
 #resource "google_folder" "no_domain_restricted_sharing" {
 #  display_name  = "No Domain Restricted Sharing"
