@@ -14,36 +14,36 @@
  */
 
 
-/******************************************
-  On Prem Project
- *****************************************/
-
-resource "google_project" "on_premise" {
-  name            = "On Premise"
-  project_id      = var.on_premise_project_id
-  folder_id       = google_folder.on_prem.id
-  billing_account = var.billing_account_id
-}
-
-resource "google_project_iam_binding" "on_prem_owner" {
-  project = google_project.on_premise.id
-  members = ["group:${var.security_admins_group}", "serviceAccount:${var.terraform_service_account}"]
-  role    = "roles/owner"
-}
-
-resource "google_project_service" "on_prem_project_enable_compute_api" {
-  depends_on          = [google_project.on_premise]
-  project             = google_project.on_premise.id
-  service             = "compute.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "on_prem_project_enable_dns_api" {
-  depends_on          = [google_project.on_premise]
-  project             = google_project.on_premise.id
-  service             = "dns.googleapis.com"
-  disable_on_destroy  = false
-}
+#/******************************************
+#  On Prem Project
+# *****************************************/
+#
+#resource "google_project" "on_premise" {
+#  name            = "On Premise"
+#  project_id      = var.on_premise_project_id
+#  folder_id       = google_folder.on_prem.id
+#  billing_account = var.billing_account_id
+#}
+#
+#resource "google_project_iam_binding" "on_prem_owner" {
+#  project = google_project.on_premise.id
+#  members = ["group:${var.security_admins_group}", "serviceAccount:${var.terraform_service_account}"]
+#  role    = "roles/owner"
+#}
+#
+#resource "google_project_service" "on_prem_project_enable_compute_api" {
+#  depends_on          = [google_project.on_premise]
+#  project             = google_project.on_premise.id
+#  service             = "compute.googleapis.com"
+#  disable_on_destroy  = false
+#}
+#
+#resource "google_project_service" "on_prem_project_enable_dns_api" {
+#  depends_on          = [google_project.on_premise]
+#  project             = google_project.on_premise.id
+#  service             = "dns.googleapis.com"
+#  disable_on_destroy  = false
+#}
 
 /******************************************
   On Prem Network
