@@ -18,6 +18,7 @@
  *****************************************/
 
 resource "google_folder" "enterprise" {
+  provider = "google-beta"
   display_name  = "Enterprise"
   parent        = "organizations/${var.organization_id}"
 }
